@@ -2,29 +2,52 @@
   "compilerOptions": {
     "target": "ESNext",
     "jsx": "preserve",
-    "lib": ["DOM", "ESNext"],
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
     "baseUrl": ".",
+    "rootDir": "src",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "pro-el-components": [
+        "./src/index.ts"
+      ],
+      "pro-el-components/*": [
+        "./src/*"
+      ]
     },
     "resolveJsonModule": true,
     "types": [
       "vitest",
-      "vite/client",
-      "unplugin-vue-router/client",
-      "vite-plugin-vue-layouts/client",
-      "vite-plugin-pwa/client",
-      "unplugin-vue-macros/macros-global"
+      "vite/client"
     ],
     "allowJs": true,
     "strict": true,
     "strictNullChecks": true,
     "noUnusedLocals": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist/es",
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   },
-  "exclude": ["dist", "node_modules", "cypress", "eslint.config.mjs"]
+  "include": [
+    "src/components",
+    "packages",
+    "../../docs/components.d.ts",
+    "../../docs/auto-imports.d.ts"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "cypress",
+    "eslint.config.mjs"
+  ]
 }

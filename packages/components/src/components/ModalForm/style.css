@@ -1,0 +1,7 @@
+.pro-modal-form {
+  .dialog-footer {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+}

@@ -1,6 +1,6 @@
 import { useDark } from '@vueuse/core'
 
-export default function useDarkMode() {
+export function useDarkMode() {
   const isDark = useDark({
     selector: 'html',
     valueDark: 'dark',

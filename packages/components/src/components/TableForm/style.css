@@ -1,0 +1,29 @@
+.pro-table-form {
+  padding-bottom: 10px;
+
+  .row-button-actions {
+    height: 32px;
+    margin-bottom: 18px;
+    justify-content: center !important;
+  }
+
+  .add-row-btn {
+    margin-right: 10px;
+  }
+
+  .pro-table-form-footer {
+    margin-top: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    display: flex;
+    align-items: center;
+  }
+
+  .row-text {
+    margin-left: 4px;
+  }
+
+  .total-row-text {
+    margin-left: 4px;
+  }
+}

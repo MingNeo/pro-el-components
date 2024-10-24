@@ -1,99 +1,149 @@
 <script setup lang="ts">
-  import { reactive, ref } from 'vue'
-  import useCountdown from '../../composables/useCountdown'
+import { ElButton, ElCheckbox, ElForm, ElFormItem, ElInput, ElMessage } from 'element-plus'
+import { useSecondsCountdown } from 'pro-el-components'
+import { reactive, ref } from 'vue'
+import './style.css'
 
-  const props = defineProps<{
-    getCaptcha: () => Promise<any>
-    login: (values: Record<string, any>) => Promise<void>
-  }>()
-
-  const emit = defineEmits(['success'])
-
-  const formState = reactive({
-    username: 'testUser2',
-    code: 'Admin@123456',
-    remember: false,
-  })
-
-  const rules = ref({
-    username: [{
-      required: true,
-      message: '请输入用户名',
-      trigger: 'blur',
-    }],
-    code: [{
-      required: true,
-      message: '请输入验证码',
-      trigger: 'blur',
-    }],
-  })
-
-  const { start, formattedTime, isCounting } = useCountdown(60)
-  async function handleGetCaptcha() {
-    start()
-    try {
-      await props.getCaptcha()
-    }
-    catch (error) {
-      return ElMessage.error(`获取验证码失败！${error.message}`)
-    }
+interface QuickLoginProps {
+  /** 获取验证码的方法 */
+  getCaptcha: () => Promise<any>
+  /** 登录方法 */
+  login: (values: Record<string, any>) => Promise<void>
+  /** 倒计时时长（秒） */
+  countdownDuration?: number
+  /** 错误提示自定义文案 */
+  errorMessages?: {
+    captchaFailed?: string
+    loginFailed?: string
   }
+  /** 自定义类名 */
+  className?: string
+}
 
-  async function handleSubmit(values) {
-    try {
-      await props.login(values)
-    }
-    catch (error) {
-      return ElMessage.error(`登录失败！${error.message}`)
-    }
+defineOptions({
+  name: 'ProQuickLogin',
+})
 
+const props = withDefaults(defineProps<QuickLoginProps>(), {
+  countdownDuration: 60,
+  errorMessages: () => ({
+    captchaFailed: '获取验证码失败！',
+    loginFailed: '登录失败！',
+  }),
+  className: '',
+})
+
+const emit = defineEmits<{
+  (e: 'success'): void
+  (e: 'captchaSent'): void
+}>()
+
+const formData = reactive({
+  username: '',
+  code: '',
+  remember: false,
+})
+
+const rules = ref({
+  username: [{
+    required: true,
+    message: '请输入用户名',
+    trigger: 'blur',
+  }],
+  code: [{
+    required: true,
+    message: '请输入验证码',
+    trigger: 'blur',
+  }],
+})
+
+const { start, formattedTime, isCounting } = useSecondsCountdown(props.countdownDuration)
+async function handleGetCaptcha() {
+  start()
+  try {
+    await props.getCaptcha()
+    emit('captchaSent')
+  }
+  catch (error: any) {
+    return ElMessage.error(`${props.errorMessages.captchaFailed}${error.message}`)
+  }
+}
+
+async function handleSubmit() {
+  try {
+    await props.login(formData)
     emit('success')
   }
+  catch (error: any) {
+    return ElMessage.error(`${props.errorMessages.loginFailed}${error.message}`)
+  }
+}
 </script>
 
 <template>
-  <div class="bg-white">
-    <div class="mb-6 text-[30px] text-center">
-      登录
-    </div>
-    <el-form
-      :model="formState"
-      class="login-form"
+  <div class="pro-quick-login" :class="[props.className]">
+    <slot name="header">
+      <div class="quick-login__title">
+        <slot name="title">
+          登录
+        </slot>
+      </div>
+    </slot>
+
+    <ElForm
+      :model="formData"
+      class="quick-login__form"
       :rules="rules"
       @finish="handleSubmit"
     >
-      <el-form-item prop="username">
-        <el-input v-model="formState.username" placeholder="请输入账号" />
-      </el-form-item>
+      <slot name="form-header" />
 
-      <el-form-item prop="code">
-        <el-input v-model="formState.code" show-password placeholder="验证码">
-          <template #append>
-            <div v-if="isCounting">
-              <span>{{ formattedTime }}秒后重发</span>
-            </div>
-            <div v-else class="cursor-pointer" @click="handleGetCaptcha">
-              <span>获取验证码</span>
-            </div>
-          </template>
-        </el-input>
-      </el-form-item>
+      <ElFormItem prop="username">
+        <slot name="username-input">
+          <ElInput v-model="formData.username" placeholder="请输入账号" />
+        </slot>
+      </ElFormItem>
 
-      <el-form-item>
-        <el-button :disabled="!formState.remember" class="mt-[10px] w-full !h-10" type="primary" @click="handleSubmit">
-          登录
-        </el-button>
-      </el-form-item>
-      <div class="text-[13px] flex items-center gap-[4px]">
-        <el-checkbox v-model="formState.remember" />
-        我已阅读并同意 <a href="">《用户协议》</a> 和 <a href="">《隐私政策》</a>
-      </div>
-      <div class="flex justify-between text-[13px]">
-        <a href="">注册</a>
-        <a href="">忘记密码</a>
-      </div>
-    </el-form>
+      <ElFormItem prop="code">
+        <slot name="code-input">
+          <ElInput v-model="formData.code" show-password placeholder="验证码">
+            <template #append>
+              <slot name="captcha-button" :is-counting="isCounting" :time="formattedTime" :on-get-captcha="handleGetCaptcha">
+                <div v-if="isCounting">
+                  <span>{{ formattedTime }}秒后重发</span>
+                </div>
+                <div v-else class="captcha-button" @click="handleGetCaptcha">
+                  <span>获取验证码</span>
+                </div>
+              </slot>
+            </template>
+          </ElInput>
+        </slot>
+      </ElFormItem>
+
+      <ElFormItem>
+        <slot name="submit-button">
+          <ElButton :disabled="!formData.remember" class="quick-login__submit" type="primary" @click="handleSubmit">
+            登录
+          </ElButton>
+        </slot>
+      </ElFormItem>
+
+      <slot name="agreement">
+        <div class="quick-login__agreement">
+          <ElCheckbox v-model="formData.remember" />
+          <slot name="agreement-text">
+            我已阅读并同意 <a href="">《用户协议》</a> 和 <a href="">《隐私政策》</a>
+          </slot>
+        </div>
+      </slot>
+
+      <slot name="footer">
+        <div class="quick-login__footer">
+          <a href="">注册</a>
+          <a href="">忘记密码</a>
+        </div>
+      </slot>
+    </ElForm>
   </div>
 </template>
-
-<style lang="scss" scoped></style>

@@ -38,13 +38,13 @@ export interface UseRequestOptions<T = any> {
 /**
  * 请求composable，非全局性的、组件中的请求可使用此composable方便的使用loading等多种功能
  * @param fetchFn 请求方法
+ * @param options 配置
  * @param options.immediate 加载后立即执行请求
  * @param options.shallow 使用 shallowRef
  * @param options.onError 错误回调
  * @param options.onSuccess 成功回调
- * @returns
  */
-export default function useRequest<T = any>(fetchFn: (...args: any) => Promise<T>, options: UseRequestOptions<T> = {
+export function useRequest<T = any>(fetchFn: (...args: any) => Promise<T>, options: UseRequestOptions<T> = {
   immediate: true,
   shallow: true,
 }): UseRequestReturn<T> {

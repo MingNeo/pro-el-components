@@ -1,4 +1,5 @@
 import { EventStreamContentType, fetchEventSource } from '@microsoft/fetch-event-source'
+import { ElMessage } from 'element-plus'
 
 export interface FetchEventOption {
   url: string

@@ -12,12 +12,13 @@ export default defineConfig({
     presetUno(),
     presetTypography(),
   ],
+  theme: {
+    colors: {
+      primary: 'var(--primary-color, var(--el-color-primary))',
+    },
+  },
   rules: [
-    [/^p\-v\-(\d+)(px)?$/, ([, d]) => ({ 'padding-top': `${d}px`, 'padding-bottom': `${d}px` })],
-    [/^p\-h\-(\d+)(px)?$/, ([, d]) => ({ 'padding-left': `${d}px`, 'padding-right': `${d}px` })],
-    [/^m\-v\-(\d+)(px)?$/, ([, d]) => ({ 'margin-top': `${d}px`, 'margin-bottom': `${d}px` })],
-    [/^m\-h\-(\d+)(px)?$/, ([, d]) => ({ 'margin-left': `${d}px`, 'margin-right': `${d}px` })],
-    ['h-v-center', { position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }],
+    ['xy-center', { position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }],
   ],
   transformers: [
     transformerDirectives(),

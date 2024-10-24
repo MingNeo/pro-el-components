@@ -1,0 +1,7 @@
+.pro-expand-collapse-text {
+  .expand-collapse-button {
+    cursor: pointer;
+    color: #007aff;
+    margin-left: 5px;
+  }
+}

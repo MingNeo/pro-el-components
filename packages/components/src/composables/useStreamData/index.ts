@@ -1,155 +1,159 @@
-import { onUnmounted, ref } from 'vue'
 import { v4 as uuid } from 'uuid'
+import { computed, onUnmounted, ref, shallowRef } from 'vue'
 import { fetchEvent } from './fetch-event-source'
 
-interface ResultData {
-  status?: string
-  content?: string
+export interface StreamResponse {
+  data?: {
+    result?: string
+    [key: string]: any
+  }
+  [key: string]: any
 }
 
-interface Configs {
-  scrollToBottom?: (force?: boolean) => void
+export interface StreamOptions {
+  // 基础配置
   url: string
-  method?: string
-  formatChatData?: (data: any) => ResultData
-  /* 请求参数中prompt的key */
-  textKey: string
-  onMessage?: (data: any, text: string) => void
+  method?: 'get' | 'post' | 'put' | 'delete'
+  headers?: Record<string, string>
+
+  // 请求参数配置
+  paramKey?: string // 替换原来的 textKey
+  formatPayload?: (data: any) => any
+
+  // 响应处理
+  formatResponse: (response: StreamResponse) => string
+
+  // 事件回调
+  onStart?: () => void
+  onMessage?: (text: string, raw: StreamResponse) => void
+  onFinish?: (content?: string) => void
+  onError?: (error: Error) => void
+  onCancel?: () => void
+
+  // 结束时是否重置
+  resetOnFinish?: boolean
 }
 
-type Status = 'idle' | 'fetching' | 'outputting' | 'error' | 'cancel'
-// type AnswerStatus = 'idle' | 'fetching' | 'outputting' | 'error'
+export type StreamStatus = 'idle' | 'fetching' | 'outputting' | 'error' | 'completed'
 
-/**
- * 流式逻辑
- * @param {Configs} configs - 一个包含回调函数和配置的对象
- * @param {Function} configs.scrollToBottom - 数据获取成功或发生错误后滚动到页面底部的回调函数
- * @param {string} configs.url - 获取流数据的 URL
- * @param {string} configs.method - 请求方法，默认为 POST
- * @param {string} configs.textKey - 在请求体中包含文本的键名
- * @param {Function} configs.onMessage - 处理获取到的消息的回调函数
- * @returns {object} - 一个包含提问数据和方法的对象
- */
-export function useStreamData({
-  scrollToBottom = () => { },
-  url = '',
-  method = 'post',
-  textKey = 'content',
-  onMessage,
-}: Configs) {
-  let controller = new AbortController()
+export function useStreamData(options: StreamOptions) {
+  const {
+    url,
+    method = 'post',
+    headers,
+    paramKey = 'content',
+    formatPayload,
+    formatResponse,
+    onStart,
+    onMessage,
+    onFinish,
+    onError,
+    onCancel,
+    // 结束时是否重置
+    resetOnFinish = false,
+  } = options
 
-  const questionData = ref<Record<string, any>>({ content: '' })
-  const status = ref<Status>('idle')
-  const answerId = ref()
-  // const answerStatus = ref<AnswerStatus>('idle')
-  const resultText = ref('')
-  // const resultData = ref('')
-  // const currentId = ref()
+  const controller = shallowRef<AbortController>()
+  const status = ref<StreamStatus>('idle')
+  const streamId = ref<string>('')
+  const content = ref('')
+  const error = ref<Error | null>(null)
 
-  /**
-   * 开始提问新问题，往屏幕上输出问题、发出sse请求并流式输出结果
-   */
-  async function startQuestion(query: Record<string, any>) {
-    const promptText = query[textKey]
+  const isStreaming = computed(() => ['fetching', 'outputting'].includes(status.value))
 
-    if (status.value === 'fetching')
-      return
-
-    if (!query && !promptText.trim())
-      return
-
-    // const questionId = `q_local_${uuid()}`
-    answerId.value = uuid()
-
-    // 结束历史请求, 清空一些历史数据
-    controller.abort()
-    controller = new AbortController()
-    status.value = 'fetching'
-    // answerStatus.value = 'idle'
-    resultText.value = ''
-
-    scrollToBottom(true)
+  async function start(payload: Record<string, any> | string) {
+    if (isStreaming.value)
+      throw new Error('Stream is already running')
 
     try {
-      // 使用sse 请求对话信息
+      // 重置状态
+      reset()
+
+      // 生成新的流ID
+      streamId.value = uuid()
+      controller.value = new AbortController()
+      status.value = 'fetching'
+
+      // 格式化请求数据
+      const requestData = formatPayload
+        ? formatPayload(payload)
+        : typeof payload === 'string'
+          ? { [paramKey]: payload }
+          : payload
+
+      onStart?.()
+
       await fetchEvent({
         url,
         method,
-        data: query,
-        signal: controller.signal,
-        onMessage: async (result: any) => {
-          // answerStatus.value = 'outputting'
+        headers,
+        data: requestData,
+        signal: controller.value.signal,
+        onMessage: (response: StreamResponse) => {
           status.value = 'outputting'
-          const newText = await _outputContent({ ...result }) as string
-          onMessage?.(result, newText)
-          scrollToBottom()
+          try {
+            const chunk = formatResponse(response) || ''
+
+            if (chunk) {
+              content.value += chunk
+              onMessage?.(chunk, response)
+            }
+          }
+          catch (e) {
+            console.log(e)
+            handleError(new Error('Failed to process stream chunk'))
+          }
         },
       })
+
+      status.value = 'completed'
+      onFinish?.(content.value)
+      if (resetOnFinish)
+        reset()
     }
-    catch (error: any) {
-      ElMessage.error(error.message)
-      scrollToBottom(true)
-      resultText.value = error.message
-      status.value = 'error'
-      // answerStatus.value = 'error'
-      console.warn('error', error)
+    catch (e) {
+      handleError(e as Error)
     }
-    finally {
+  }
+
+  function stop() {
+    if (controller.value) {
+      controller.value.abort()
+      controller.value = undefined
       status.value = 'idle'
-      // answerStatus.value = 'idle'
-      scrollToBottom(true)
+      onCancel?.()
     }
   }
 
-  async function _outputContent(result: any) {
-    try {
-      const content = result?.data?.result || ''
-      if (!content)
-        return
-
-      if (!result)
-        return await new Promise(resolve => setTimeout(resolve, 100))
-
-      resultText.value = (resultText.value || '') + content
-      return resultText.value
-    }
-    catch (error) {
-      throw new Error(`解析消息失败: ${error}`)
-    }
-  }
-
-  /**
-   * 输入完成提交输入框内容并开始对话
-   */
-  async function quickStart(content?: string) {
-    if (content && content.trim() !== '')
-      startQuestion({ [textKey]: content })
-  }
-
-  function cancelFetch() {
-    controller.abort()
+  function reset() {
+    stop()
+    content.value = ''
+    error.value = null
     status.value = 'idle'
+    streamId.value = ''
   }
 
-  function resetState() {
-    resultText.value = ''
-    status.value = 'idle'
+  function handleError(e: Error) {
+    error.value = e
+    status.value = 'error'
+    onError?.(e)
   }
 
   onUnmounted(() => {
-    if (status.value)
-      controller.abort()
+    stop()
   })
 
   return {
-    questionData,
+    // 状态
     status,
-    startQuestion,
-    quickStart,
-    cancelFetch,
-    // answerStatus,
-    resultText,
-    resetState,
+    content,
+    error,
+    streamId,
+    isStreaming,
+
+    // 方法
+    start,
+    stop,
+    reset,
   }
 }

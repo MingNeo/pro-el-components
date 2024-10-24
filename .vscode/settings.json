@@ -28,7 +28,7 @@
   },
   "editor.formatOnSave": true,
   "testing.automaticallyOpenPeekView": "never",
-  "eslint.experimental.useFlatConfig": true,
+  "eslint.useFlatConfig": true,
   "eslint.rules.customizations": [
     {
       "rule": "style/*",
@@ -71,6 +71,18 @@
       "severity": "off"
     }
   ],
+  "eslint.debug": true,
+  "eslint.workingDirectories": [
+    "./",
+    "./packages/components"
+  ],
+  "typescript.tsserver.watchOptions": {
+    "excludeDirectories": [
+      "**/node_modules",
+      "**/dist",
+      "**/.git"
+    ]
+  },
   "eslint.validate": [
     "javascript",
     "typescript",
@@ -83,5 +95,8 @@
     "toml",
     "gql",
     "graphql"
-  ]
+  ],
+  "vue.format.script.initialIndent": false,
+  "Codegeex.RepoIndex": true,
+  "unot.switchMagic": false
 }

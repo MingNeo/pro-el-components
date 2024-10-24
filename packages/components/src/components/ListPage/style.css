@@ -1,0 +1,9 @@
+.pro-list-page-table {
+  width: 100%;
+  background-color: white;
+
+  .pro-list-page-table__header {
+    height: 50px;
+    margin-bottom: 0;
+  }
+}

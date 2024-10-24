@@ -1,4 +1,4 @@
-## useDarkMode
+# useDarkMode
 
 切换黑暗模式
 

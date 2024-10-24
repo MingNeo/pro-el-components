@@ -1,0 +1,45 @@
+.pro-table {
+  max-width: 100%;
+
+  .row-button-actions {
+    justify-content: flex-end;
+  }
+
+  .table-header {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .pro-table-inner {
+    max-width: 100%;
+  }
+
+  .pro-el-table {
+    width: 100%;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .pro-table-pagination {
+    margin-top: 8px;
+  }
+
+  .file-links {
+    &>a {
+      margin-right: 8px;
+    }
+
+    &>a:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .table-image {
+    width: 100px;
+    height: 100px;
+  }
+}

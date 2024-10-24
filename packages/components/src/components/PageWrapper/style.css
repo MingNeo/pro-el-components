@@ -1,0 +1,12 @@
+.pro-page-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 100%;
+}
+
+.pro-no-permission {
+  flex-grow: 1;
+  padding: 20px;
+}
