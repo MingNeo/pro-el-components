@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "jsx": "preserve",
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
+    "baseUrl": ".",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@/*": [
+        "src/*",
+        "packages/components/src/*"
+      ]
+    },
+    "resolveJsonModule": true,
+    "types": [
+      "vitest"
+    ],
+    "allowJs": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "src",
+    "packages",
+    "docs/components.d.ts",
+    "docs/auto-imports.d.ts"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "packages/components/dist",
+    "packages/components/node_modules",
+    "packages/components/eslint.config.mjs",
+    "packages/components/rollup.config.mjs"
+  ]
+}
