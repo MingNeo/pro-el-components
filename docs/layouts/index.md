@@ -17,22 +17,19 @@
 
 构建完整页面结构的核心布局组件。
 
-| 组件                                       | 描述       | 适用场景                       |
-| ------------------------------------------ | ---------- | ------------------------------ |
-| [PageContainer](/components/PageContainer) | 页面容器   | 所有业务页面的基础容器         |
-| [PageHeader](/components/PageHeader)       | 页面头部   | 需要标题、面包屑、操作区的页面 |
-| [PageWrapper](/components/PageWrapper)     | 页面包装器 | 需要特殊样式的页面包装         |
-| [SideBar](/components/SideBar)             | 侧边栏布局 | 导航菜单、筛选面板等           |
+| 组件                                         | 描述     | 适用场景                       |
+| -------------------------------------------- | -------- | ------------------------------ |
+| [PageContainer](../components/PageContainer) | 页面容器 | 所有业务页面的基础容器         |
+| [PageHeader](../components/PageHeader)       | 页面头部 | 需要标题、面包屑、操作区的页面 |
 
 ### 功能区域布局
 
 针对特定功能区域的专用布局组件。
 
-| 组件                                 | 描述       | 适用场景               |
-| ------------------------------------ | ---------- | ---------------------- |
-| [ListPage](/components/ListPage)     | 列表页容器 | 数据列表、管理后台页面 |
-| [DetailPage](/components/DetailPage) | 详情页布局 | 数据详情、表单详情页面 |
-| [QuickLogin](/components/QuickLogin) | 快速登录   | 登录、注册页面布局     |
+| 组件                                   | 描述       | 适用场景               |
+| -------------------------------------- | ---------- | ---------------------- |
+| [ListPage](../components/ListPage)     | 列表页容器 | 数据列表、管理后台页面 |
+| [DetailPage](../components/DetailPage) | 详情页布局 | 数据详情、表单详情页面 |
 
 ## 🚀 快速开始
 

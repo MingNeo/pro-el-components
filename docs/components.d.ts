@@ -95,7 +95,6 @@ declare module 'vue' {
     LayoutsQuickLogin: typeof import('./../packages/components/src/components/QuickLogin/index.vue')['default']
     LayoutsSideBar: typeof import('./../packages/components/src/components/SideBar/index.vue')['default']
     ListPageContent: typeof import('./../packages/components/src/components/ListPageContent/index.vue')['default']
-    MarkdownView: typeof import('./../packages/components/src/components/MarkdownView/index.vue')['default']
     Modal: typeof import('./../packages/components/src/components/Modal/index.vue')['default']
     ModalDetail: typeof import('./../packages/components/src/components/ModalDetail/index.vue')['default']
     ModalDetailDemosDemo1: typeof import('./../packages/components/src/components/ModalDetail/demos/demo1.vue')['default']

@@ -14,8 +14,6 @@
 
 <demo src="@/composables/useStreamData/demos/demo1.vue" />
 
-<demo src="@/composables/useStreamData/demos/demo2.vue" />
-
 ```typescript
 import { useStreamData } from 'pro-el-components'
 

@@ -136,6 +136,10 @@ export default defineConfig({
     //   port: 443,
     //   open: 'https://components.local.smzdm.com',
     // },
+    // SSR 配置，处理 element-plus 等库的 CSS 导入问题
+    ssr: {
+      noExternal: ['element-plus', 'lodash-es', '@vueuse/core', '@vueuse/shared'],
+    },
     plugins: [
       // mkcert({ hosts: ['components.local.smzdm.com'] }), // 生成证书
       Unocss(),

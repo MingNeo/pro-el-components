@@ -54,23 +54,21 @@ const { execute, isLoading } = useRequest(fetchFn)
 execute().then(result => console.log(result))
 </script>
 ```
-</script>
-```
 ## API
 ### 参数
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| fetchFn | 请求的函数 | `(...args: any[]) => Promise<any>` | - |
-| options.immediate | 在组件加载后是否自动触发请求 | boolean | true |
-| options.shallow | 是否使用shallowRef | boolean | true |
-| options.onError | 错误回调函数 | function | undefined |
-| options.onSuccess | 成功回调函数 | function | undefined |
+| 参数              | 说明                         | 类型                               | 默认值    |
+| ----------------- | ---------------------------- | ---------------------------------- | --------- |
+| fetchFn           | 请求的函数                   | `(...args: any[]) => Promise<any>` | -         |
+| options.immediate | 在组件加载后是否自动触发请求 | boolean                            | true      |
+| options.shallow   | 是否使用shallowRef           | boolean                            | true      |
+| options.onError   | 错误回调函数                 | function                           | undefined |
+| options.onSuccess | 成功回调函数                 | function                           | undefined |
 
 ### Return
-| 属性 | 说明 | 类型 |
-| --- | --- | --- |
-| data | 请求的数据 | `Ref<T \| undefined>` |
-| error | 请求的错误信息 | `ShallowRef<unknown \| undefined>` |
-| isFinished | 请求是否完成 | `Ref<boolean>` |
-| isLoading | 请求是否在加载中 | `Ref<boolean>` |
-| execute | 手动触发请求的函数 | `(...args: any) => PromiseLike<UseRequestReturn<T>>` |
+| 属性       | 说明               | 类型                                                 |
+| ---------- | ------------------ | ---------------------------------------------------- |
+| data       | 请求的数据         | `Ref<T \| undefined>`                                |
+| error      | 请求的错误信息     | `ShallowRef<unknown \| undefined>`                   |
+| isFinished | 请求是否完成       | `Ref<boolean>`                                       |
+| isLoading  | 请求是否在加载中   | `Ref<boolean>`                                       |
+| execute    | 手动触发请求的函数 | `(...args: any) => PromiseLike<UseRequestReturn<T>>` |

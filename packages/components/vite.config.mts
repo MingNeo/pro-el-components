@@ -39,9 +39,9 @@ const external = [
 // 外部依赖函数形式，用于更精确的匹配
 function externalFn(id: string) {
   // 不外部化 element-plus 的样式文件
-  if (id.includes('element-plus') && id.includes('.css')) {
-    return false
-  }
+  // if (id.includes('element-plus') && id.includes('.css')) {
+  //   return false
+  // }
   return external.includes(id) || external.some(item => id.startsWith(item))
 }
 

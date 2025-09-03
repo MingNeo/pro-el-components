@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { useRequest } from '../../../../composables/useRequest'
-import { useUrlData } from '../../../../composables/useUrlData'
+import { useRequest } from '@/composables/useRequest'
+import { useUrlData } from '@/composables/useUrlData'
 import DetailPage from '../index.vue'
 
 const { urlData } = useUrlData()

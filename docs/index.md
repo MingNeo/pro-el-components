@@ -5,10 +5,10 @@ layout: home
 hero:
   name: "Pro El Components"
   text: "企业级高级组件库"
-  tagline: "基于 Element Plus 的中台解决方案，让开发更高效"
-  image:
-    src: /logo.svg
-    alt: Pro El Components
+  tagline: "基于 Element Plus 的高级组件库，让开发更高效"
+  # image:
+  #   src: /logo.svg
+  #   alt: Pro El Components
   actions:
     - theme: brand
       text: 快速开始
