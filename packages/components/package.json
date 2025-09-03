@@ -1,7 +1,7 @@
 {
   "name": "pro-el-components",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Advanced Component Library based on ElementPlus",
   "author": "mingNeo",
   "license": "MIT",
@@ -106,7 +106,7 @@
     "husky": "^9.1.7",
     "js-cookie": "^3.0.5",
     "lodash-es": "^4.17.21",
-    "pro-el-components": "file:./",
+    "pro-el-components": "^0.0.1",
     "uuid": "^11.1.0",
     "vite-plugin-mock": "^3.0.2",
     "vite-plugin-virtual-html": "^1.2.6",
