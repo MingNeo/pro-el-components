@@ -4,6 +4,7 @@ import { MoreFilled } from '@element-plus/icons-vue'
 import { ElButton, ElDropdown, ElDropdownItem, ElDropdownMenu, ElIcon, ElPopconfirm } from 'element-plus'
 import { computed, useSlots } from 'vue'
 import Action from './Action.vue'
+import './style.css'
 
 defineOptions({
   name: 'ProButtonActions',
@@ -173,92 +174,3 @@ function handleClick(action: ButtonAction) {
     </ElDropdown>
   </div>
 </template>
-
-<style lang="css">
-  .pro-button-actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-end;
-    position: relative;
-    --link-action-color: var(--el-color-primary);
-
-    &.is-link {
-      .el-button {
-        margin-left: 0;
-      }
-    }
-
-    .el-dropdown {
-      line-height: normal;
-    }
-
-    .more-action {
-      display: flex;
-      align-items: center;
-      margin-left: 12px;
-    }
-
-    .more-icon {
-      transform: rotate(90deg);
-    }
-
-    .danger-item {
-      background: #ef4444;
-      color: white;
-
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-
-    .dropdown-item-confirm {
-      padding: 0;
-    }
-
-    .confirm-content {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 4px;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      line-height: 20px;
-    }
-  }
-
-  .more-action {
-    display: flex;
-    align-items: center;
-    margin-left: 12px;
-  }
-
-  .more-icon {
-    transform: rotate(90deg);
-  }
-
-  .danger-item {
-    background: #ef4444;
-    color: white;
-
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-
-  .dropdown-item-confirm {
-    padding: 0;
-  }
-
-  .confirm-content {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    line-height: 20px;
-  }
-</style>

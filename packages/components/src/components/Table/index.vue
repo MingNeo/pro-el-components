@@ -11,6 +11,7 @@ import 'pro-el-components/components/StatusText/style.css'
 import { computed, defineProps, inject, ref, useSlots, watchEffect, withDefaults } from 'vue'
 import ColumnSetting from './ColumnSetting.vue'
 import { defaultGetColumnKeys, defaultSaveColumnKeys, getColumnKeys, getRenderProps } from './helper'
+import './style.css'
 
 defineOptions({
   name: 'ProTable',
@@ -155,51 +156,3 @@ const showSlots = computed(() => Object.keys(slots).filter(key => key !== 'defau
     </div>
   </div>
 </template>
-
-<style lang="css">
-  .pro-table {
-    max-width: 100%;
-
-    .row-button-actions {
-      justify-content: flex-end;
-    }
-
-    .table-header {
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-
-    .pro-table-inner {
-      max-width: 100%;
-    }
-
-    .pro-el-table {
-      width: 100%;
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-    }
-
-    .pro-table-pagination {
-      margin-top: 8px;
-    }
-
-    .file-links {
-      &>a {
-        margin-right: 8px;
-      }
-
-      &>a:last-child {
-        margin-right: 0;
-      }
-    }
-
-    .table-image {
-      width: 100px;
-      height: 100px;
-    }
-  }
-</style>

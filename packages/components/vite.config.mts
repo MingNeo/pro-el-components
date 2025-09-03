@@ -98,7 +98,7 @@ export default defineConfig(({ mode }) => {
       Vue(),
       dts({
         entryRoot: 'src',
-        outDir: 'dist/es',
+        outDir: isBuildComponents ? 'dist/es' : 'dist/lib',
         tsconfigPath: path.resolve(__dirname, 'tsconfig.json'),
         include: ['src/**/*.ts', 'src/**/*.d.ts', 'src/**/*.vue'],
         exclude: ['src/**/__tests__/**/', 'src/**/demos/**/', 'src/**/*.stories.ts'],
@@ -107,7 +107,7 @@ export default defineConfig(({ mode }) => {
         cleanVueFileName: true,
       }),
       // 自定义插件：为没有样式的组件创建空的 style.css 文件，并优化 UnoCSS 样式提取
-      {
+      isBuildComponents && {
         name: 'create-empty-styles',
         generateBundle(_options, bundle) {
           if (isBuildComponents) {
@@ -135,24 +135,17 @@ export default defineConfig(({ mode }) => {
           }
         },
       },
-    ],
+    ].filter(Boolean),
     build: {
-      outDir: 'dist/es',
       emptyOutDir: !isBuildComponents,
       sourcemap: false,
       // 为组件构建启用更细粒度的CSS代码分割
       cssCodeSplit: isBuildComponents,
       cssMinify: true,
-      lib: !isBuildComponents
-        ? {
-          entry: path.resolve(__dirname, 'src/index.ts'),
-          name: 'ProElComponents',
-          formats: ['es'],
-          fileName: () => 'pro-el-components.es.js',
-        }
-        : false,
       // 对于组件构建，使用 rollup 的多入口模式而不是 lib 模式
       ...(isBuildComponents && {
+        outDir: 'dist/es',
+        lib: false,
         rollupOptions: {
           input: getComponentEntries(),
           external: (id) => {
@@ -249,6 +242,19 @@ export default defineConfig(({ mode }) => {
       }),
       // 非组件构建的 rollup 配置
       ...(!isBuildComponents && {
+        outDir: 'dist/lib',
+        lib: {
+          entry: path.resolve(__dirname, 'src/index.ts'),
+          name: 'ProElComponents',
+          formats: ['es', 'cjs'],
+          fileName: (format) => {
+            if (format === 'es')
+              return 'pro-el-components.es.js'
+            if (format === 'cjs')
+              return 'pro-el-components.cjs.js'
+            return `pro-el-components.${format}.js`
+          },
+        },
         rollupOptions: {
           external: externalFn,
           preserveEntrySignatures: 'strict',

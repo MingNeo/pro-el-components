@@ -2,6 +2,7 @@
 import { ElButton, ElCheckbox, ElForm, ElFormItem, ElInput, ElMessage } from 'element-plus'
 import { useSecondsCountdown } from 'pro-el-components'
 import { reactive, ref } from 'vue'
+import './style.css'
 
 interface QuickLoginProps {
   /** 获取验证码的方法 */
@@ -146,38 +147,3 @@ async function handleSubmit() {
     </ElForm>
   </div>
 </template>
-
-<style lang="css">
-  .pro-quick-login {
-    background-color: white;
-
-    & .quick-login__title {
-      margin-bottom: 1.5rem;
-      font-size: 30px;
-      text-align: center;
-    }
-
-    & .quick-login__submit {
-      margin-top: 10px;
-      width: 100%;
-      height: 40px;
-    }
-
-    & .quick-login__agreement {
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    & .quick-login__footer {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-    }
-
-    & .captcha-button {
-      cursor: pointer;
-    }
-  }
-</style>

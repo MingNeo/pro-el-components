@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import './style.css'
+
 defineOptions({
   name: 'ProDetailPageContent',
 })
@@ -11,12 +13,3 @@ const { loading = false } = defineProps<{ loading?: boolean }>()
     <slot />
   </div>
 </template>
-
-<style lang="css">
-  .pro-detail-page-content {
-    position: relative;
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px;
-  }
-</style>

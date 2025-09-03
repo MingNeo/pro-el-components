@@ -1,0 +1,67 @@
+.pro-page-header {
+  background: #fff;
+  box-shadow: 0 2px 8px 0 rgba(31, 56, 88, 0.06);
+  padding: 20px;
+  margin-bottom: 16px;
+
+  .pro-page-header__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pro-page-header__title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pro-page-header__back {
+    font-size: 22px;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .pro-page-header__back:hover {
+    color: #409eff;
+  }
+
+  .pro-page-header__title-text {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .pro-page-header__actions {
+    margin-left: 24px;
+  }
+
+  .pro-page-header__tabs {
+    margin-top: 18px;
+  }
+
+  .el-radio-group {
+    background: #f7f8fa;
+    border-radius: 8px;
+    padding: 4px 8px;
+  }
+
+  .el-radio-button__inner {
+    border-radius: 6px !important;
+    margin: 0 2px;
+    font-size: 15px;
+    padding: 6px 22px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .el-radio-button__inner:hover {
+    background: #e6f0ff;
+    color: #409eff;
+  }
+
+  .el-radio-button.is-active .el-radio-button__inner {
+    background: #409eff;
+    color: #fff;
+    box-shadow: 0 2px 8px 0 rgba(64, 158, 255, 0.12);
+  }
+}

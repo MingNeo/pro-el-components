@@ -8,6 +8,7 @@ import 'pro-el-components/components/PageHeader/style.css'
 import 'pro-el-components/components/SectionHeader/style.css'
 import 'pro-el-components/components/ButtonActions/style.css'
 import { computed, defineEmits, defineProps, ref, useSlots, watch } from 'vue'
+import './style.css'
 
 defineOptions({
   name: 'ProDetailPage',
@@ -187,42 +188,3 @@ if (props.getDataService) {
     </div>
   </div>
 </template>
-
-<style lang="css">
-  .pro-detail-page {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  .page-detail-content {
-    position: relative;
-    flex: 1;
-    padding: 0 20px 20px;
-    overflow-y: auto;
-  }
-
-  .page-detail-footer {
-    position: relative;
-    z-index: 2;
-    padding-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .pro-detail-card {
-    padding: 24px;
-    background-color: white;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    border-radius: 8px;
-  }
-
-  .extra-field-section {
-    margin-top: 10px;
-  }
-
-  .extra-field-header {
-    margin-bottom: 10px;
-  }
-</style>

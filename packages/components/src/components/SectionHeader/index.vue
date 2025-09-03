@@ -3,6 +3,7 @@ import type { ButtonAction } from 'pro-el-components'
 import type { VNode } from 'vue'
 import { ProButtonActions } from 'pro-el-components'
 import 'pro-el-components/components/ButtonActions/style.css'
+import './style.css'
 
 defineOptions({
   name: 'ProSectionHeader',
@@ -43,49 +44,3 @@ withDefaults(defineProps<{
     </div>
   </div>
 </template>
-
-<style lang="css">
-  .pro-section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 32px;
-
-    &.clickable {
-      cursor: pointer;
-    }
-
-    &.bordered {
-      border-bottom: 1px solid #e5e7eb;
-      padding-bottom: 12px;
-    }
-
-    .pro-section-header__left {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .title-container {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .title {
-      font-size: 18px;
-      font-weight: 500;
-    }
-
-    .subtitle {
-      font-size: 14px;
-      color: #6b7280;
-    }
-
-    .pro-section-header__right {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-  }
-</style>

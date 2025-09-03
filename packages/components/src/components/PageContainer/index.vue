@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ProPageHeader } from 'pro-el-components'
 import 'pro-el-components/components/PageHeader/style.css'
+import './style.css'
 
 defineOptions({
   name: 'ProPageContainer',
@@ -33,12 +34,3 @@ function handleCancel() {
     <slot />
   </div>
 </template>
-
-<style lang="css">
-  .pro-page-container {
-    position: relative;
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px;
-  }
-</style>

@@ -3,6 +3,7 @@ import type { TableSelectorProps } from './types'
 import { ProTable, useTableList } from 'pro-el-components'
 import 'pro-el-components/components/Table/style.css'
 import { computed, ref, watch } from 'vue'
+import './style.css'
 
 defineOptions({
   name: 'ProTableSelector',
@@ -77,11 +78,3 @@ watch([data, props.modelValue], () => {
     </ProTable>
   </div>
 </template>
-
-<style lang="css">
-  .table-selector-search-form {
-    margin-bottom: 12px;
-    padding: 0;
-    box-shadow: none;
-  }
-</style>

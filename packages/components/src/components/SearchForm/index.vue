@@ -6,6 +6,7 @@ import { ProFormFields } from 'pro-el-components'
 import 'pro-el-components/components/FormFields/style.css'
 import { computed, isRef, ref, watch } from 'vue'
 import SearchFormButtons from './buttons.vue'
+import './style.css'
 
 defineOptions({
   name: 'ProSearchForm',
@@ -110,33 +111,3 @@ defineExpose({
     </ElForm>
   </div>
 </template>
-
-<style lang="css">
-  .pro-search-form {
-    .el-form-item {
-      margin-bottom: 10px;
-    }
-
-    .action-container {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .action-container--full {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      padding-left: 12px;
-      padding-right: 12px;
-    }
-
-    .pro-search-form__collapse-btn {
-      margin-left: 8px;
-    }
-
-    .collapse-icon {
-      margin-left: 2px;
-    }
-  }
-</style>

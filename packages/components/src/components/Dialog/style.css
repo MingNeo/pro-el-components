@@ -1,0 +1,8 @@
+.pro-dialog-footer {
+  display: flex;
+  justify-content: center;
+}
+
+/* .el-dialog {
+  --el-dialog-width: 50%;
+} */

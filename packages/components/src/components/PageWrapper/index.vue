@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import './style.css'
 
 defineOptions({
   name: 'ProPageWrapper',
@@ -22,18 +23,3 @@ const hasPermission = computed(() => typeof props.hasPermission === 'function' ?
     </slot>
   </div>
 </template>
-
-<style lang="css">
-  .pro-page-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
-    height: 100%;
-  }
-
-  .pro-no-permission {
-    flex-grow: 1;
-    padding: 20px;
-  }
-</style>

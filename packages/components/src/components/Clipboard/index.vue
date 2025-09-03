@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ElMessage } from 'element-plus'
+import './style.css'
 
 defineOptions({
   name: 'ProClipboard',
@@ -30,33 +31,3 @@ function handleClick() {
     </div> -->
   </div>
 </template>
-
-<style lang="css">
-  .pro-clipboard {
-    display: inline-block;
-    cursor: pointer;
-    position: relative;
-    padding-left: 16px;
-    padding-right: 16px;
-
-    .pro-clipboard__icon {
-      display: none;
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    &:hover {
-      .pro-clipboard__icon {
-        display: block;
-      }
-    }
-
-    .copy-icon {
-      cursor: pointer;
-      margin-left: 4px;
-    }
-  }
-</style>

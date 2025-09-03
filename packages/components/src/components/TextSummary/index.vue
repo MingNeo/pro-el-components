@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed, defineProps, ref, withDefaults } from 'vue'
+import './style.css'
 
 defineOptions({
   name: 'ProTextSummary',
@@ -38,12 +39,3 @@ function toggle() {
     </span>
   </span>
 </template>
-
-<style lang="css">
-  .pro-text-summary {
-    .expand-btn {
-      cursor: pointer;
-      color: #007aff;
-    }
-  }
-</style>

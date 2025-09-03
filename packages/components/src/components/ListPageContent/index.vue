@@ -2,6 +2,7 @@
 import { ProSectionHeader } from 'pro-el-components'
 import { provide } from 'vue'
 import 'pro-el-components/components/SectionHeader/style.css'
+import './style.css'
 
 defineOptions({
   name: 'ProListPageContent',
@@ -33,20 +34,3 @@ provide('isInListPageContent', true)
     </div>
   </div>
 </template>
-
-<style lang="css">
-  .pro-list-page-content {
-    width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
-
-    .pro-section-header {
-      margin-bottom: 16px;
-    }
-
-    .content-wrapper {
-      border-radius: 8px;
-      padding: 20px;
-    }
-  }
-</style>

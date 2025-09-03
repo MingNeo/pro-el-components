@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ElMenu, ElMenuItem, ElSubMenu } from 'element-plus'
+import './style.css'
 
 interface MenuItem {
   key: string
@@ -47,24 +48,3 @@ const props = defineProps<{
     </div>
   </div>
 </template>
-
-<style lang="css">
-  .pro-sidebar-container {
-    background-color: white;
-    width: 220px;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-
-    .sidebar-menu-container {
-      flex: 1;
-      overflow-y: auto;
-      width: 100%;
-    }
-
-    .sidebar-menu {
-      width: 100%;
-      height: 100%;
-    }
-  }
-</style>

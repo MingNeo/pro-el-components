@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref, useSlots } from 'vue'
+import './style.css'
 
 defineOptions({
   name: 'ProExpandCollapseText',
@@ -73,13 +74,3 @@ function toggle() {
     </span>
   </div>
 </template>
-
-<style>
-  .pro-expand-collapse-text {
-    .expand-collapse-button {
-      cursor: pointer;
-      color: #007aff;
-      margin-left: 5px;
-    }
-  }
-</style>

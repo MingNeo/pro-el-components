@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ElButton, ElDialog } from 'element-plus'
+import './style.css'
 
 defineOptions({
   name: 'ProDialog',
@@ -47,14 +48,3 @@ function handleCancel() {
     </template>
   </ElDialog>
 </template>
-
-<style lang="css">
-  .pro-dialog-footer {
-    display: flex;
-    justify-content: center;
-  }
-
-  /* .el-dialog {
-  --el-dialog-width: 50%;
-} */
-</style>

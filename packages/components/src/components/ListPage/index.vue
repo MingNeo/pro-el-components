@@ -6,6 +6,7 @@ import 'pro-el-components/components/SearchForm/style.css'
 import 'pro-el-components/components/SectionHeader/style.css'
 import 'pro-el-components/components/Table/style.css'
 import { provide } from 'vue'
+import './style.css'
 
 interface ListPageProps {
   // 页面标题
@@ -107,15 +108,3 @@ function handleTableChange(pagination: any, filters: any, sorter: any) {
     <slot />
   </ProPageContainer>
 </template>
-
-<style lang="css">
-  .pro-list-page-table {
-    width: 100%;
-    background-color: white;
-
-    .pro-list-page-table__header {
-      height: 50px;
-      margin-bottom: 0;
-    }
-  }
-</style>

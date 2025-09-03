@@ -1,7 +1,7 @@
 {
   "name": "pro-el-components",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A Advanced Component Library based on ElementPlus",
   "author": "mingNeo",
   "license": "MIT",
@@ -22,10 +22,15 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/es/index.d.ts",
-      "import": "./dist/es/pro-el-components.es.js"
+      "types": "./dist/lib/index.d.ts",
+      "import": "./dist/lib/pro-el-components.es.js",
+      "require": "./dist/lib/pro-el-components.es.js",
+      "default": "./dist/lib/pro-el-components.es.js"
     },
-    "./dist/index.css": "./dist/es/index.css",
+    "./dist/index.css": "./dist/lib/style.css",
+    "./dist/style.css": "./dist/lib/style.css",
+    "./style.css": "./dist/lib/style.css",
+    "./dist/lib/style.css": "./dist/lib/style.css",
     "./es/components/*": {
       "types": "./dist/es/components/*/index.d.ts",
       "import": "./dist/es/components/*/index.js"
@@ -37,12 +42,8 @@
     },
     "./components/*/style.css": "./dist/es/components/*/style.css",
     "./es": {
-      "types": "./dist/es/index.d.ts",
-      "import": "./dist/es/pro-el-components.es.js"
-    },
-    "./lib": {
-      "types": "./dist/es/index.d.ts",
-      "require": "./dist/umd/pro-el-components.umd.js"
+      "types": "./dist/lib/index.d.ts",
+      "import": "./dist/lib/pro-el-components.es.js"
     },
     "./dist/es/*": {
       "types": "./dist/es/components/*/index.d.ts",
@@ -56,11 +57,10 @@
     },
     "./*": "./*"
   },
-  "main": "./dist/es/pro-el-components.es.js",
-  "module": "./dist/es/pro-el-components.es.js",
-  "unpkg": "dist/umd/pro-el-components.umd.js",
-  "types": "./dist/es/index.d.ts",
-  "resolver": "./dist/resolver/resolver.umd.js",
+  "main": "./dist/lib/pro-el-components.es.js",
+  "module": "./dist/lib/pro-el-components.es.js",
+  "types": "./dist/lib/index.d.ts",
+  "resolver": "./dist/resolver/resolver.js",
   "resolverTypes": "./dist/resolver/resolver.d.ts",
   "files": [
     "dist"
@@ -106,7 +106,6 @@
     "husky": "^9.1.7",
     "js-cookie": "^3.0.5",
     "lodash-es": "^4.17.21",
-    "pro-el-components": "^0.0.1",
     "uuid": "^11.1.0",
     "vite-plugin-mock": "^3.0.2",
     "vite-plugin-virtual-html": "^1.2.6",

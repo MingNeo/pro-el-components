@@ -5,6 +5,7 @@ import { ElDialog } from 'element-plus'
 import { ProTable, useTableList } from 'pro-el-components'
 import 'pro-el-components/components/Table/style.css'
 import { watch } from 'vue'
+import './style.css'
 
 defineOptions({
   name: 'ProTableModal',
@@ -57,9 +58,3 @@ watch(() => props.modelValue, (val: any, prevVal: any) => {
     </template>
   </ElDialog>
 </template>
-
-<style lang="css">
-  .pro-table-modal {
-    width: 100%;
-  }
-</style>

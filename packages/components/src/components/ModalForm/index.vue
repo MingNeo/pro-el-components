@@ -5,6 +5,7 @@ import { ProFormFields } from 'pro-el-components'
 import 'pro-el-components/components/FormFields/style.css'
 import { computed, nextTick, ref, watch } from 'vue'
 import { unbind } from '../../utils'
+import './style.css'
 
 interface ModalFormProps {
   title?: string
@@ -180,13 +181,3 @@ defineExpose({
     </template>
   </ElDialog>
 </template>
-
-<style lang="css">
-  .pro-modal-form {
-    .dialog-footer {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-    }
-  }
-</style>

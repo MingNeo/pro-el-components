@@ -5,6 +5,7 @@ import dayjs from 'dayjs'
 import { ElColorPicker, ElDatePicker, ElImage, ElInput, ElInputNumber, ElRate, ElSwitch, ElUpload } from 'element-plus'
 import { ProCascader, ProCheckbox, ProRadio, ProSelect } from 'pro-el-components'
 import { computed, ref, watch } from 'vue'
+import './style.css'
 
 defineOptions({
   name: 'ProField',
@@ -139,12 +140,3 @@ const viewInfo = computed<{ value?: string, type?: string, component?: Component
     @update:model-value="handleChange"
   />
 </template>
-
-<style lang="css">
-  .pro-field-view {
-    min-height: 32px;
-    padding: 0 12px;
-    line-height: 32px;
-    color: var(--el-text-color-regular);
-  }
-</style>

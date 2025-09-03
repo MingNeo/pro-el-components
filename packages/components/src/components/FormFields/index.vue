@@ -11,6 +11,7 @@ import FieldWrapper from './FieldWrapper.vue'
 import { formatRangeData, getFormFieldProps, getFormItemCol, getformItemProps, getItemName, getPlaceholder, getRulesForColumn, renderView } from './helper'
 import { useFieldWatch } from './hooks/useFieldWatch'
 import Wrapper from './Wrapper.vue'
+import './style.css'
 
 defineOptions({
   name: 'ProFormFields',
@@ -301,47 +302,3 @@ const formItems = computed<ProFormFieldsField[]>(() => {
     <slot :col-span="defaultColSpan" />
   </Wrapper>
 </template>
-
-<style lang="css">
-  :root {
-    --label-extra-color: #B2B2B2;
-  }
-
-  .pro-form-items-builder {
-    &.view-mode {
-      padding-bottom: 8px;
-    }
-  }
-
-  .el-form-item.pro-form-item.view-mode {
-    margin-bottom: 0;
-  }
-
-  .pro-form-item__label-extra {
-    color: var(--label-extra-color);
-    margin-left: 4px;
-  }
-
-  .label-tip-icon {
-    margin-left: 2px;
-  }
-
-  .el-form-item.pro-form-item {
-    &.view-mode {
-      margin-bottom: 18px;
-
-      &.is-required:not(.is-no-asterisk).asterisk-left>.el-form-item__label-wrap>.el-form-item__label:before,
-      &.is-required:not(.is-no-asterisk).asterisk-left>.el-form-item__label:before {
-        content: '';
-      }
-    }
-
-    .el-form-item__content {
-
-      .el-picker,
-      .el-input-number {
-        width: 100%;
-      }
-    }
-  }
-</style>

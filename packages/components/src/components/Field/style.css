@@ -1,0 +1,6 @@
+.pro-field-view {
+  min-height: 32px;
+  padding: 0 12px;
+  line-height: 32px;
+  color: var(--el-text-color-regular);
+}

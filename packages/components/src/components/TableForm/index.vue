@@ -8,6 +8,7 @@ import 'pro-el-components/components/ButtonActions/style.css'
 import 'pro-el-components/components/FormFields/style.css'
 import { v4 as uuid } from 'uuid'
 import { computed, ref } from 'vue'
+import './style.css'
 
 defineOptions({
   name: 'ProTableForm',
@@ -141,35 +142,3 @@ defineExpose({
     </div>
   </div>
 </template>
-
-<style lang="css">
-  .pro-table-form {
-    padding-bottom: 10px;
-
-    .row-button-actions {
-      height: 32px;
-      margin-bottom: 18px;
-      justify-content: center !important;
-    }
-
-    .add-row-btn {
-      margin-right: 10px;
-    }
-
-    .pro-table-form-footer {
-      margin-top: 10px;
-      padding-left: 12px;
-      padding-right: 12px;
-      display: flex;
-      align-items: center;
-    }
-
-    .row-text {
-      margin-left: 4px;
-    }
-
-    .total-row-text {
-      margin-left: 4px;
-    }
-  }
-</style>

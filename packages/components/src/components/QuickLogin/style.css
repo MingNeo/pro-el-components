@@ -1,0 +1,32 @@
+.pro-quick-login {
+  background-color: white;
+
+  & .quick-login__title {
+    margin-bottom: 1.5rem;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  & .quick-login__submit {
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+  }
+
+  & .quick-login__agreement {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  & .quick-login__footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+
+  & .captcha-button {
+    cursor: pointer;
+  }
+}
