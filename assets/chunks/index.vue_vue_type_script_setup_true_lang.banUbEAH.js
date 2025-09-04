@@ -1,0 +1,1 @@
+import{d as r,c as a,o,r as s,K as n}from"./framework.CCndWvNN.js";const d=r({name:"ProCard",__name:"index",setup(t){return(e,c)=>(o(),a("div",n({class:"pro-card"},e.$attrs),[s(e.$slots,"default")],16))}});export{d as _};

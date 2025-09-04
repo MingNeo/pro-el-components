@@ -1,0 +1,1 @@
+import{_ as e}from"./index.vue_vue_type_script_setup_true_lang.B9Xf-XZN.js";import{d as o,b as n,o as t}from"./framework.CCndWvNN.js";const s=o({__name:"demo1",setup(_){return(a,r)=>(t(),n(e,{"max-length":20,content:"这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本"}))}});export{s as _};

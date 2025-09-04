@@ -1,0 +1,1 @@
+async function c(r){const{pageNo:e=1,pageSize:n=10,name:o}=r||{};await new Promise(a=>setTimeout(a,200));const s=Array.from({length:100}).fill(0).map((a,t)=>({date:`2016-05-0${t+1}`,name:`用户${t+1}`,address:`上海市普陀区金沙江路 1518 弄${t+1}号`})).filter(a=>!o||a.name.includes(o));return{data:s.slice((e-1)*n,e*n),total:s.length}}export{c as getData};

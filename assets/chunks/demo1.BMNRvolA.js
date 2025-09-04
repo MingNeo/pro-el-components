@@ -1,0 +1,1 @@
+import{_ as o}from"./index.vue_vue_type_script_setup_true_lang.DIcC160L.js";import{b as e,o as t}from"./framework.CCndWvNN.js";const m={__name:"demo1",setup(a){return(r,_)=>(t(),e(o,{"auto-height":""}))}};export{m as default};

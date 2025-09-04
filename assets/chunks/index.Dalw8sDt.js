@@ -1,0 +1,1 @@
+import{u as t}from"./index.BxCfNOki.js";import"./index.CQyIUMkD.js";import"./framework.CCndWvNN.js";function u(){const e=t({selector:"html",valueDark:"dark",valueLight:"light"});return{isDark:e,toggleDarkMode:()=>{e.value=!e.value,document.documentElement.classList.toggle("dark",e.value)}}}export{u as useDarkMode};

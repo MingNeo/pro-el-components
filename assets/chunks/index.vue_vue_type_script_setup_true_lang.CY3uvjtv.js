@@ -1,0 +1,1 @@
+import{d as o,a2 as t,ao as n,o as s,c as r,r as i,K as l}from"./framework.CCndWvNN.js";const m=o({name:"ProDetailPageContent",__name:"index",props:{loading:{type:Boolean,default:!1}},setup(d){return(e,p)=>{const a=n("loading");return t((s(),r("div",l({class:"pro-detail-page-content"},e.$attrs),[i(e.$slots,"default")],16)),[[a,e.loading]])}}});export{m as _};

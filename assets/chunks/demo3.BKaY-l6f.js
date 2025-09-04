@@ -1,0 +1,1 @@
+import{_ as a}from"./index.vue_vue_type_script_setup_true_lang.DIcC160L.js";import{p as l,b as m,o as r}from"./framework.CCndWvNN.js";const _={__name:"demo3",setup(n){const e=l("");return(u,o)=>(r(),m(a,{modelValue:e.value,"onUpdate:modelValue":o[0]||(o[0]=t=>e.value=t),"min-height":60,"tool-in-bottom":!0},null,8,["modelValue"]))}};export{_ as default};
