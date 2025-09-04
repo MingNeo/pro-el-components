@@ -1,5 +1,6 @@
 import type { ComponentResolver } from 'unplugin-vue-components/types'
 import path from 'node:path'
+import process from 'node:process'
 import Unocss from 'unocss/vite'
 // import AutoImport from 'unplugin-auto-import/vite'
 import ElementPlusResolver from 'unplugin-element-plus/vite'
@@ -29,10 +30,13 @@ function DemoResolver(): ComponentResolver {
   }
 }
 
+// const isDev = process.argv[2] === 'dev'
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'pro-el-components',
   description: 'custom components',
+  base: '/pro-el-components/', // GitHub Pages 部署路径
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
