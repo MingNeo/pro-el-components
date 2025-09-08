@@ -38,7 +38,7 @@
 ```vue
 <template>
   <!-- 最简单的页面结构 -->
-  <PageContainer title="用户管理">
+  <ProPageContainer title="用户管理">
     <template #extra>
       <el-button type="primary">
         新增用户
@@ -47,10 +47,10 @@
 
     <!-- 页面内容 -->
     <div class="page-content">
-      <SearchForm :fields="searchFields" />
+      <ProSearchForm :fields="searchFields" />
       <ProTable :columns="columns" :data="data" />
     </div>
-  </PageContainer>
+  </ProPageContainer>
 </template>
 ```
 
@@ -59,11 +59,11 @@
 ```vue
 <template>
   <!-- 专为列表页设计的布局 -->
-  <ListPage :search-form="searchFields" :header-actions="actions" :columns="columns" :data="data" />
+  <ProListPage :search-form="searchFields" :header-actions="actions" :columns="columns" :data="data" />
   <!-- or -->
-  <ListPage>
+  <ProListPage>
     <template #search>
-      <SearchForm :fields="searchFields" />
+      <ProSearchForm :fields="searchFields" />
     </template>
 
     <template #actions>
@@ -76,7 +76,7 @@
     <template #content>
       <ProTable :columns="columns" :data="data" />
     </template>
-  </ListPage>
+  </ProListPage>
 </template>
 ```
 
@@ -153,18 +153,20 @@
 ## 💡 最佳实践
 
 ```vue
-<!-- 根据页面类型选择合适的布局 -->
+<template>
+  <!-- 根据页面类型选择合适的布局 -->
 
-<!-- 数据列表页 -->
-<ListPage ... />
+  <!-- 数据列表页 -->
+  <ProListPage ... />
 
-<!-- 详情展示页 -->
-<DetailPage :title="title" ... />
+  <!-- 详情展示页 -->
+  <ProDetailPage :title="title" ... />
 
-<!-- 普通业务页 -->
-<PageContainer :title="title">
-  <div>业务内容</div>
-</PageContainer>
+  <!-- 普通业务页 -->
+  <ProPageContainer :title="title">
+    <div>业务内容</div>
+  </ProPageContainer>
+</template>
 ```
 
 ## 🔗 相关链接

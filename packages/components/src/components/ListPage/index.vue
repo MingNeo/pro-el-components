@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import type { ButtonAction, Column, SearchFormProps } from 'pro-el-components'
 import { ProPageContainer, ProSearchForm, ProSectionHeader, ProTable } from 'pro-el-components'
+import { provide } from 'vue'
 import 'pro-el-components/components/PageContainer/style.css'
 import 'pro-el-components/components/SearchForm/style.css'
 import 'pro-el-components/components/SectionHeader/style.css'
 import 'pro-el-components/components/Table/style.css'
-import { provide } from 'vue'
 import './style.css'
 
 interface ListPageProps {
@@ -16,8 +16,7 @@ interface ListPageProps {
   headerActions?: ButtonAction[]
   actions?: ButtonAction[]
   // 搜索表单配置
-  searchFields?: SearchFormProps['fields']
-  searchProps?: SearchFormProps['formProps']
+  searchForm?: SearchFormProps['formProps']
   // 表格配置
   columns: Column[]
   // 表格数据
@@ -64,10 +63,10 @@ function handleTableChange(pagination: any, filters: any, sorter: any) {
 
     <!-- 搜索表单 -->
     <ProSearchForm
-      v-if="searchFields?.length"
-      v-bind="searchProps"
+      v-if="searchForm?.fields?.length"
+      :fields="searchForm?.fields"
+      v-bind="searchForm"
       class="pro-list-page-search"
-      :fields="searchFields"
       @search="handleSearch"
       @reset="handleReset"
     >

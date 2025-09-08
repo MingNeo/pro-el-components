@@ -30,24 +30,24 @@
 
 ### Props
 
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|-------|
-| `text` | 要复制的文本内容 | `string` | `''` |
-| `tooltip` | 复制按钮的提示文案 | `string` | `'复制'` |
-| `successMessage` | 复制成功的提示信息 | `string` | `'复制成功'` |
-| `disabled` | 是否禁用复制功能 | `boolean` | `false` |
+| 参数             | 说明               | 类型      | 默认值       |
+| ---------------- | ------------------ | --------- | ------------ |
+| `text`           | 要复制的文本内容   | `string`  | `''`         |
+| `tooltip`        | 复制按钮的提示文案 | `string`  | `'复制'`     |
+| `successMessage` | 复制成功的提示信息 | `string`  | `'复制成功'` |
+| `disabled`       | 是否禁用复制功能   | `boolean` | `false`      |
 
 ### Events
 
-| 事件名 | 说明 | 参数 |
-|--------|------|------|
+| 事件名    | 说明           | 参数             |
+| --------- | -------------- | ---------------- |
 | `success` | 复制成功时触发 | `(text: string)` |
-| `error` | 复制失败时触发 | `(error: Error)` |
+| `error`   | 复制失败时触发 | `(error: Error)` |
 
 ### Slots
 
-| 插槽名 | 说明 | 参数 |
-|--------|------|------|
+| 插槽名    | 说明           | 参数                                    |
+| --------- | -------------- | --------------------------------------- |
 | `default` | 自定义触发元素 | `{ copy: Function, disabled: boolean }` |
 
 ## 💻 使用示例
@@ -57,10 +57,10 @@
 ```vue
 <template>
   <!-- 简单文本复制 -->
-  <Clipboard text="Hello World!" />
+  <ProClipboard text="Hello World!" />
 
   <!-- 自定义提示文案 -->
-  <Clipboard
+  <ProClipboard
     text="https://example.com/share/12345"
     tooltip="复制链接"
     success-message="链接已复制到剪贴板"
@@ -72,7 +72,7 @@
 
 ```vue
 <template>
-  <Clipboard text="要复制的内容">
+  <ProClipboard text="要复制的内容">
     <template #default="{ copy, disabled }">
       <el-button
         type="primary"
@@ -83,7 +83,7 @@
         复制内容
       </el-button>
     </template>
-  </Clipboard>
+  </ProClipboard>
 </template>
 ```
 
@@ -108,7 +108,7 @@ function handleCopyError(error) {
 </script>
 
 <template>
-  <Clipboard
+  <ProClipboard
     :text="shareUrl"
     @success="handleCopySuccess"
     @error="handleCopyError"
@@ -129,7 +129,7 @@ const shareCode = computed(() => `INVITE_${userId.value}_${Date.now()}`)
 <template>
   <div class="share-panel">
     <el-input v-model="shareCode" readonly />
-    <Clipboard
+    <ProClipboard
       :text="shareCode"
       tooltip="复制邀请码"
       success-message="邀请码已复制"
@@ -144,14 +144,14 @@ const shareCode = computed(() => `INVITE_${userId.value}_${Date.now()}`)
 
 ```vue
 <!-- ✅ 推荐：明确的提示文案 -->
-<Clipboard
+<ProClipboard
   text="产品链接"
   tooltip="复制产品链接"
   success-message="产品链接已复制到剪贴板"
 />
 
 <!-- ❌ 避免：模糊的提示 -->
-<Clipboard text="内容" tooltip="复制" />
+<ProClipboard text="内容" tooltip="复制" />
 ```
 
 ### 2. 错误处理

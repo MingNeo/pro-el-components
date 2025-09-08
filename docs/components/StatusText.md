@@ -11,16 +11,16 @@
 
 ## API
 
-| 属性名 | 类型 | 默认值 | 说明 |
-|--------|------|--------|------|
-| status | string | 'ready' | 状态类型 |
-| text | string | - | 显示文本 |
-| colors | object | {...} | 状态颜色配置，支持单色或渐变色数组 |
-| size | 'small' \| 'default' \| 'large' | 'default' | 组件尺寸 |
-| mode | 'dot' \| 'line' \| 'filled' \| 'pill' \| 'glow' \| 'gradient' | 'dot' | 显示模式 |
-| animation | 'none' \| 'pulse' \| 'blink' \| 'wave' \| 'shine' | 'none' | 动画效果 |
-| elevated | boolean | false | 是否启用立体效果 |
-| customClass | string | - | 自定义样式类名 |
+| 属性名      | 类型                                                          | 默认值    | 说明                               |
+| ----------- | ------------------------------------------------------------- | --------- | ---------------------------------- |
+| status      | string                                                        | 'ready'   | 状态类型                           |
+| text        | string                                                        | -         | 显示文本                           |
+| colors      | object                                                        | {...}     | 状态颜色配置，支持单色或渐变色数组 |
+| size        | 'small' \| 'default' \| 'large'                               | 'default' | 组件尺寸                           |
+| mode        | 'dot' \| 'line' \| 'filled' \| 'pill' \| 'glow' \| 'gradient' | 'dot'     | 显示模式                           |
+| animation   | 'none' \| 'pulse' \| 'blink' \| 'wave' \| 'shine'             | 'none'    | 动画效果                           |
+| elevated    | boolean                                                       | false     | 是否启用立体效果                   |
+| customClass | string                                                        | -         | 自定义样式类名                     |
 
 ## 显示模式
 - dot: 圆点模式
@@ -52,7 +52,7 @@ const colors = {
 ```vue
 <template>
   <!-- 渐变胶囊 -->
-  <StatusText
+  <ProStatusText
     status="enabled"
     text="自定义渐变"
     mode="gradient"
@@ -63,7 +63,7 @@ const colors = {
   />
 
   <!-- 发光效果 -->
-  <StatusText
+  <ProStatusText
     status="glow"
     text="发光文本"
     mode="glow"

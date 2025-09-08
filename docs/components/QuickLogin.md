@@ -9,12 +9,8 @@ QuickLogin 是一个快速登录组件，提供便捷的登录入口。
 ### 基础用法
 
 ```vue
-<script setup lang="ts">
-import { QuickLogin } from '@pro-element-plus/components'
-</script>
-
 <template>
-  <QuickLogin />
+  <ProQuickLogin />
 </template>
 ```
 

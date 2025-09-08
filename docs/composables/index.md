@@ -53,7 +53,7 @@ const {
 <template>
   <div>
     <!-- 搜索表单 -->
-    <SearchForm
+    <ProSearchForm
       :fields="searchFields"
       :search="{ submit, reset }"
       :default-value="searchData"

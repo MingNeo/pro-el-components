@@ -46,7 +46,7 @@ function footerActions({ cancel, submit, submitLoading }: any) {
 </script>
 
 <template>
-  <page-detail
+  <ProDetailPage
     v-model:form-data="data"
     title="资源库管理"
     :loading="loading"

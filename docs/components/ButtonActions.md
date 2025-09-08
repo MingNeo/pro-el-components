@@ -36,7 +36,7 @@ const actions = [{
 </script>
 
 <template>
-  <ButtonActions v-if="column.key === 'actions'" :actions="column.actions" :record="record" :column="column" />
+  <ProButtonActions v-if="column.key === 'actions'" :actions="column.actions" :record="record" :column="column" />
 </template>
 ```
 
@@ -44,7 +44,7 @@ const actions = [{
 
 ```vue
 <template>
-  <button-actions
+  <ProButtonActions
     :actions="actions"
     :more-config="{
       maxCount: 2,
@@ -58,39 +58,39 @@ const actions = [{
 ## API
 ### Props
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| actions | 操作项配置 | `Action[] \| ((...args: any[]) => Action[])` | `[]` |
-| hasPermission | 权限判断方法 | `(permission: string \| string[]) => boolean` | `() => true` |
-| maxCount | 最多显示的操作数，超出后显示更多下拉 | `number` | `3` |
-| moreText | 更多按钮的文本 | `string` | `''` |
-| moreIcon | 更多按钮的图标 | `Component` | - |
-| placement | 下拉菜单的位置 | `'top' \| 'top-start' \| 'top-end' \| 'bottom' \| 'bottom-start' \| 'bottom-end'` | `'bottom'` |
-| mode | 按钮模式 | `'link' \| 'button'` | `'link'` |
+| 参数          | 说明                                 | 类型                                                                              | 默认值       |
+| ------------- | ------------------------------------ | --------------------------------------------------------------------------------- | ------------ |
+| actions       | 操作项配置                           | `Action[] \| ((...args: any[]) => Action[])`                                      | `[]`         |
+| hasPermission | 权限判断方法                         | `(permission: string \| string[]) => boolean`                                     | `() => true` |
+| maxCount      | 最多显示的操作数，超出后显示更多下拉 | `number`                                                                          | `3`          |
+| moreText      | 更多按钮的文本                       | `string`                                                                          | `''`         |
+| moreIcon      | 更多按钮的图标                       | `Component`                                                                       | -            |
+| placement     | 下拉菜单的位置                       | `'top' \| 'top-start' \| 'top-end' \| 'bottom' \| 'bottom-start' \| 'bottom-end'` | `'bottom'`   |
+| mode          | 按钮模式                             | `'link' \| 'button'`                                                              | `'link'`     |
 
 ### Action
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| text | 操作文本 | `string` | - |
-| onClick | 点击回调 | `(...args: any[]) => void` | - |
-| show | 是否显示 | `boolean \| ((...args: any[]) => boolean)` | `true` |
-| disabled | 是否禁用 | `boolean \| ((...args: any[]) => boolean)` | `false` |
-| danger | 是否危险操作 | `boolean` | `false` |
-| confirm | 是否需要确认 | `boolean` | `false` |
-| confirmText | 确认提示文本 | `string` | `'确认?'` |
-| permission | 权限标识 | `string \| string[]` | - |
-| ... | 其他按钮属性, 参考[Element Plus Button 组件](https://element-plus.org/zh-CN/component/button.html#api) | `any` | - |
+| 参数        | 说明                                                                                                   | 类型                                       | 默认值    |
+| ----------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------ | --------- |
+| text        | 操作文本                                                                                               | `string`                                   | -         |
+| onClick     | 点击回调                                                                                               | `(...args: any[]) => void`                 | -         |
+| show        | 是否显示                                                                                               | `boolean \| ((...args: any[]) => boolean)` | `true`    |
+| disabled    | 是否禁用                                                                                               | `boolean \| ((...args: any[]) => boolean)` | `false`   |
+| danger      | 是否危险操作                                                                                           | `boolean`                                  | `false`   |
+| confirm     | 是否需要确认                                                                                           | `boolean`                                  | `false`   |
+| confirmText | 确认提示文本                                                                                           | `string`                                   | `'确认?'` |
+| permission  | 权限标识                                                                                               | `string \| string[]`                       | -         |
+| ...         | 其他按钮属性, 参考[Element Plus Button 组件](https://element-plus.org/zh-CN/component/button.html#api) | `any`                                      | -         |
 
 ### MoreConfig
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| maxCount | 显示的最大操作数,超出后显示更多下拉 | `number` | `3` |
-| showMore | 自定义是否显示更多的判断函数 | `(actions: Action[]) => boolean` | - |
-| moreText | 更多按钮的文本 | `string` | `'更多'` |
-| moreIcon | 更多按钮的图标 | `string` | - |
-| placement | 下拉菜单的位置 | `'top' \| 'top-start' \| 'top-end' \| 'bottom' \| 'bottom-start' \| 'bottom-end'` | `'bottom'` |
+| 参数      | 说明                                | 类型                                                                              | 默认值     |
+| --------- | ----------------------------------- | --------------------------------------------------------------------------------- | ---------- |
+| maxCount  | 显示的最大操作数,超出后显示更多下拉 | `number`                                                                          | `3`        |
+| showMore  | 自定义是否显示更多的判断函数        | `(actions: Action[]) => boolean`                                                  | -          |
+| moreText  | 更多按钮的文本                      | `string`                                                                          | `'更多'`   |
+| moreIcon  | 更多按钮的图标                      | `string`                                                                          | -          |
+| placement | 下拉菜单的位置                      | `'top' \| 'top-start' \| 'top-end' \| 'bottom' \| 'bottom-start' \| 'bottom-end'` | `'bottom'` |
 
 ### Slot
 也可以使用自行配置，slot的内容会与actions配置的同时显示。
@@ -101,7 +101,7 @@ const actions = [{
 
 ```html
 <template>
-  <ButtonActions v-if="column.key === 'actions'">
+  <ProButtonActions v-if="column.key === 'actions'">
     <a @click="handleShowDetail(record, column)">详情1</a>
     <a @click="handleEdit(record, column)">编辑</a>
     <el-popconfirm
@@ -112,6 +112,6 @@ const actions = [{
     >
       <a>删除</a>
     </el-popconfirm>
-  </ButtonActions>
+  </ProButtonActions>
 </template>
 ```

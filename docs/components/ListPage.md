@@ -10,14 +10,14 @@
 
 ### Props
 
-| 参数       | 说明             | 类型            | 默认值 |
-| ---------- | ---------------- | --------------- | ------ |
-| title      | 页面标题         | string          | -      |
-| actions    | 操作按钮配置     | ButtonAction[]  | []     |
-| searchForm | 搜索表单配置     | SearchFormProps | -      |
-| tableProps | 表格配置         | TableProps      | -      |
-| showSearch | 是否显示搜索表单 | boolean         | true   |
-| showTable  | 是否显示表格     | boolean         | true   |
+| 参数       | 说明             | 类型                                          | 默认值 |
+| ---------- | ---------------- | --------------------------------------------- | ------ |
+| title      | 页面标题         | string                                        | -      |
+| actions    | 操作按钮配置     | ButtonAction[]，见ProButtonActions 配置       | []     |
+| searchForm | 搜索表单配置     | ProSearchForm组件的 props，如: { fields: [] } | -      |
+| tableProps | 表格配置         | ProTable组件的 props, 如： { columns: [] }    | -      |
+| showSearch | 是否显示搜索表单 | boolean                                       | true   |
+| showTable  | 是否显示表格     | boolean                                       | true   |
 
 ### Events
 

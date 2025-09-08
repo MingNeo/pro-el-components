@@ -3,8 +3,8 @@ import type { ButtonAction } from 'pro-el-components'
 import { ArrowLeft } from '@element-plus/icons-vue'
 import { ElIcon, ElRadioButton, ElRadioGroup } from 'element-plus'
 import { ProButtonActions } from 'pro-el-components'
-import 'pro-el-components/components/ButtonActions/style.css'
 import { ref, watch } from 'vue'
+import 'pro-el-components/components/ButtonActions/style.css'
 import './style.css'
 
 defineOptions({

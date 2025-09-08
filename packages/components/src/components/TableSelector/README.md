@@ -8,7 +8,7 @@
 以下是一个单独使用的例子：
 ```html
 <template>
-  <TableSelector
+  <ProTableSelector
     v-model="selectedUsers" :search-fields="searchFields" :service="getUserList" :columns="columns"
     row-key="userId"
     :set-row-disabled="setRowDisabled"
@@ -85,14 +85,14 @@ const setRowDisabled = (record: any) => record.userId === 1
 ```
 
 ### 参数列表
-| 参数名         | 类型                                         | 描述                                                                        | 是否必填 | 默认值     |
-| -------------- | -------------------------------------------- | --------------------------------------------------------------------------- | -------- | ---------- |
-| searchFields   | SearchField[]                                | 搜索表单配置                                                                | 否       | -          |
-| service        | UseTableListService                          | 列表数据接口                                                                | 是       | -          |
-| data           | Record<string, any>[]                        | 列表数据，如果存在 service 则忽略 data，不存在 service 时 data 进行本地分页 | 否       | -          |
-| columns        | ColumnsType                                  | Table组件columns属性                                                        | 是       | -          |
-| type           | 'checkbox' \| 'radio'                        | 单选或多选                                                                  | 否       | 'checkbox' |
-| modelValue     | Record<string, any> \| Record<string, any>[] | 已选中的值                                                                  | 否       | -          |
+| 参数名       | 类型                                         | 描述                                                                        | 是否必填 | 默认值     |
+| ------------ | -------------------------------------------- | --------------------------------------------------------------------------- | -------- | ---------- |
+| searchFields | SearchField[]                                | 搜索表单配置                                                                | 否       | -          |
+| service      | UseTableListService                          | 列表数据接口                                                                | 是       | -          |
+| data         | Record<string, any>[]                        | 列表数据，如果存在 service 则忽略 data，不存在 service 时 data 进行本地分页 | 否       | -          |
+| columns      | ColumnsType                                  | Table组件columns属性                                                        | 是       | -          |
+| type         | 'checkbox' \| 'radio'                        | 单选或多选                                                                  | 否       | 'checkbox' |
+| modelValue   | Record<string, any> \| Record<string, any>[] | 已选中的值                                                                  | 否       | -          |
 
 ### Events
 

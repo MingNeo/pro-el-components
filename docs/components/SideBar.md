@@ -9,16 +9,12 @@ SideBar 是一个侧边栏组件，用于应用的导航菜单展示。
 ### 基础用法
 
 ```vue
-<script setup lang="ts">
-import { SideBar } from '@pro-element-plus/components'
-</script>
-
 <template>
-  <SideBar>
+  <ProSideBar>
     <template #default>
       <!-- 侧边栏内容 -->
     </template>
-  </SideBar>
+  </ProSideBar>
 </template>
 ```
 

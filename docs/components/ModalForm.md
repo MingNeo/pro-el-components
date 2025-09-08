@@ -31,7 +31,7 @@ const modalFormRef = ref(null)
 </script>
 
 <template>
-  <modal-form
+  <ProModalForm
     ref="modalFormRef"
     v-model="showModal"
     ...
@@ -51,7 +51,7 @@ const formData = reactive({
 </script>
 
 <template>
-  <modal-form
+  <ProModalForm
     v-model="showModal"
     v-model:form-data="formData"
     ...
@@ -70,11 +70,11 @@ const formData = reactive({
 | width            | number              | 520       | 否       | 宽度                                                                         |
 | defaultValue     | any                 |           | 否       | 表单默认值，变化时会更新表单数据，但表单数据变化不会影响原始传入值           |
 | v-model:formData | Record<string, any> |           | 否       | 表单数据，如果需要使用表单数据，可以绑定formData，使用该值时defaultValue无效 |
-| viewMode         | boolean             | false     | 否       | 是否为只读模式            |
+| viewMode         | boolean             | false     | 否       | 是否为只读模式                                                               |
 | idKey            | string              | "id"      | 否       | 提交更新或者创建服务时，作为主键的字段名                                     |
-| fields           | `Field[]`           |           | 是       | 表单字段列表。[见ProFormFields](./FormFields.md)                    |
+| fields           | `Field[]`           |           | 是       | 表单字段列表。[见ProFormFields](./FormFields.md)                             |
 | column           | number              | 1         | 否       | 每行展示的列数                                                               |
-| propPrefix       | (string             | number)[] | []       | 否                                                                           | 表单字段的名称前缀
+| propPrefix       | (string             | number)[] | []       | 否                                                                           | 表单字段的名称前缀 |
 | formItemProps    | Record<string, any> | {}        | 否       | 表单元素选项                                                                 |
 
 ### Events
@@ -107,7 +107,7 @@ ProModalForm组件提供了几个默认插槽`<slot />`，用于显示在模态�
 
     <template #default="{ data, onChange, formRef }">
       <!-- 如果不使用内置的ProFormFields或者希望使用多个，可以在这里自定义，data为表单数据，数据变更后需手工触发onChange -->
-        <form-items-builder
+        <ProFormFields
           :model-value="data"
           :column="props.column || 2"
           :view-mode="props.viewMode"

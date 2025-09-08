@@ -166,7 +166,7 @@ watch(formData.province, province => (formData.city = cityOptions.find(v => v.pr
 </script>
 
 <template>
-  <form-items-builder v-model="formData" :fields="fields" />
+  <ProFormFields v-model="formData" :fields="fields" />
 </template>
 ```
 

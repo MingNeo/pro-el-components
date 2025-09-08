@@ -12,9 +12,9 @@
 
 ``` vue
 <template>
-  <page-header title="货币管理">
+  <ProPageHeader title="货币管理">
     <!-- ... -->
-  </page-header>
+  </ProPageHeader>
 </template>
 ```
 

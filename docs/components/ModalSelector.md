@@ -64,7 +64,7 @@ const columns = [
   <el-button @click="visible = true">
     弹窗选择
   </el-button>
-  <modal-selector
+  <ProModalSelector
     v-model:visible="visible" :width="800" :search-fields="searchFields" :service="getUserList"
     :columns="columns" row-key="userId"
   />

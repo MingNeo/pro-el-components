@@ -8,9 +8,9 @@
 
 ``` vue
 <template>
-  <page-container title="货币管理">
+  <ProPageContainer title="货币管理">
     <!-- ... -->
-  </page-container>
+  </ProPageContainer>
 </template>
 ```
 

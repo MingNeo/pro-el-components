@@ -9,14 +9,10 @@ PageWrapper 是一个页面级的包裹组件，提供标准的页面容器样�
 ### 基础用法
 
 ```vue
-<script setup lang="ts">
-import { PageWrapper } from '@pro-element-plus/components'
-</script>
-
 <template>
-  <PageWrapper>
+  <ProPageWrapper>
     <div>页面内容</div>
-  </PageWrapper>
+  </ProPageWrapper>
 </template>
 ```
 
