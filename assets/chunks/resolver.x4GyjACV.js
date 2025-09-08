@@ -1,0 +1,1 @@
+function l(s={}){const{importStyle:n=!0}=s;return{type:"component",resolve:o=>{if(o.startsWith("Pro")&&!["Promise","ProElComponentsResolver"].includes(o)){const r=o.slice(3),e={name:o,from:"pro-el-components"};if(n){const t=`pro-el-components/components/${r}/style.css`;t&&(e.sideEffects=[t])}return e}}}}export{l as ProElComponentsResolver,l as default};

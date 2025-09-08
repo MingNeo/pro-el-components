@@ -1,0 +1,1 @@
+import{_ as o}from"./index.vue_vue_type_script_setup_true_lang.D9vERfz0.js";import{b as t,o as e}from"./framework.C7SOrqHQ.js";const n={__name:"demo2",setup(r){return(_,a)=>(e(),t(o,{"min-height":60,"tool-in-bottom":!0}))}};export{n as default};

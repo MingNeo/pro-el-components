@@ -1,0 +1,1 @@
+import{a5 as c,am as s,an as i}from"./framework.C7SOrqHQ.js";function m(a){const e=c(),t=e==null?void 0:e.type.emits,n={};return t!=null&&t.length||console.warn(`No emitted event found. Please check component: ${e==null?void 0:e.type.__name}`),t==null||t.forEach(o=>{n[s(i(o))]=(...r)=>a(o,...r)}),n}export{m as useEmitAsProps};

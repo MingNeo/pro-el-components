@@ -1,0 +1,1 @@
+import{_ as e,c as r,o,a4 as l}from"./chunks/framework.C7SOrqHQ.js";const _=JSON.parse('{"title":"指南","description":"","frontmatter":{},"headers":[],"relativePath":"guide/index.md","filePath":"guide/index.md"}'),n={name:"guide/index.md"};function i(a,t,s,g,d,c){return o(),r("div",null,t[0]||(t[0]=[l("",7)]))}const p=e(n,[["render",i]]);export{_ as __pageData,p as default};

@@ -1,1 +1,0 @@
-import{b as s}from"./base.D1hT_OMg.js";import{L as o,h as t,k as r}from"./framework.CCndWvNN.js";const a=["","default","small","large"],c=s({type:String,values:a,required:!1}),i=Symbol("size"),l=()=>{const e=o(i,{});return t(()=>r(e.size)||"")};export{i as S,c as a,a as c,l as u};
