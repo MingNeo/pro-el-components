@@ -5,7 +5,7 @@
   import demo1 from '@/components/ModalSelector/demos/demo1.vue'
   import demo1Code from '@/components/ModalSelector/demos/demo1.vue?raw'
 </script>
-<demo :comp="demo1" :code="demo1Code" title="基础使用" />
+<demo :comp="demo1" :code="demo1Code" title="基础用法" />
 
 ## 使用方法
 以下是一个单独使用的例子：

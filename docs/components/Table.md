@@ -1,8 +1,6 @@
 # ProTable 高级表格
 
-> 🚀 基于 Element Plus Table 的高级表格组件，专为中台系统设计，提供开箱即用的数据展示解决方案。
-
-## ✨ 特性亮点
+> 基于 Element Plus Table 的高级表格组件，专为中台系统设计，提供开箱即用的数据展示解决方案。
 
 在中台工程中，表格是最常用的数据展示组件。
 
@@ -10,17 +8,17 @@
 
 传统的表格封装往往只考虑了快速配置，忽略了维护成本和自定义扩展的灵活性。但是高级组件最重要的并不是快速配置，而是能快速配置的同时保持原有的灵活性。
 
-**ProTable 的优势：**
+**ProTable**
 
-- ✅ **完全兼容** - 100% 兼容 Element Plus Table原始用法，改个组件名即可无缝升级。同时，你完全可以配合原始用法来自由扩充你想要的功能。
-- 🔧 **配置驱动** - 通过简单配置快速生成表格列和操作按钮
-- 🎨 **可视化配置** - 内置列显示/隐藏控制器，用户可自定义显示
-- 🎯 **智能映射** - 自动映射枚举数据和状态显示
-- 📝 **类型格式化** - 内置多种数据类型格式化器
-- 📏 **自适应高度** - 可选自动计算表格高度，充分利用页面空间
-- 📄 **分页集成** - 内置分页组件，简化分页逻辑
+- **完全兼容** - 100% 兼容 Element Plus Table原始用法，改个组件名即可无缝升级。同时，你完全可以配合原始用法来自由扩充你想要的功能。
+- **配置驱动** - 通过简单配置快速生成表格列和操作按钮
+- **可视化配置** - 内置列显示/隐藏控制器，用户可自定义显示
+- **智能映射** - 自动映射枚举数据和状态显示
+- **类型格式化** - 内置多种数据类型格式化器
+- **自适应高度** - 可选自动计算表格高度，充分利用页面空间
+- **内置分页** - 内置分页组件，简化分页逻辑
 
-## 🚀 基础使用
+## 基础用法
 
 ### 快速开始
 
@@ -46,14 +44,14 @@ ProTable 100% 兼容 Element Plus Table 的原生写法。只需将 `<ElTable>` 
 
 <demo src="@/components/Table/demos/demo4.vue" title="完全兼容原生用法" />
 
-> 💡 **兼容性说明**
+> **兼容性说明**
 > - 支持 Element Plus Table 的所有事件、方法、属性和插槽
 
 ### 混合使用配置式和模板式列
 ProTable 支持同时使用配置式列（columns）和Elment plus 的 ElTableColumn 组件，让你可以渐进式迁移或灵活选择最适合的方式：
 
 <demo src="@/components/Table/demos/demo5.vue" title="配置式与模板式混合使用" />
-## 🔧 高级功能
+## 高级功能
 
 ### 列配置管理
 
@@ -70,7 +68,7 @@ ProTable 支持同时使用配置式列（columns）和Elment plus 的 ElTableCo
 </template>
 ```
 
-> 💡 **注意事项**
+> **注意事项**
 > - 如果启用了columnSetting，且页面中有多个表格，必须设置不同的 `tableId` 用于区分
 > - 如果只有一个表格，`tableId` 会根据路由路径自动生成
 
@@ -151,7 +149,7 @@ const columns = [
 </template>
 ```
 
-## 📋 API 参考
+## API
 
 ### ProTable Props
 
@@ -187,7 +185,7 @@ const columns = [
 | `confirmText` | 确认对话框文本     | `string`                       | `'确认执行此操作？'` |
 | `danger`      | 是否为危险操作样式 | `boolean`                      | `false`              |
 
-## 🔗 相关链接
+## 相关链接
 
 - [Element Plus Table](https://element-plus.org/zh-CN/component/table.html) - 查看原始 Table 组件文档
 - [useTableList](/composables/useTableList) - 配套的数据管理 Hook

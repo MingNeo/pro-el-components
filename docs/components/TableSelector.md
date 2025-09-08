@@ -9,7 +9,7 @@
 </script>
 ## 使用方法
 
-<demo :comp="demo1" :code="demo1Code" title="基础使用" />
+<demo :comp="demo1" :code="demo1Code" title="基础用法" />
 
 ### 参数列表
 | 参数名         | 类型                                         | 描述                                                                        | 是否必填 | 默认值     |

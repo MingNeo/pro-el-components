@@ -2,22 +2,7 @@
 
 > 📋 一键复制文本到剪贴板的实用组件，提供优雅的用户反馈和兼容性处理。
 
-## ✨ 特性
-
-- **🚀 简单易用** - 只需传入要复制的文本，一键完成复制操作
-- **✅ 成功反馈** - 内置成功提示，用户操作反馈清晰
-- **🔧 兼容性好** - 自动处理浏览器兼容性问题
-- **🎨 自定义样式** - 支持自定义按钮样式和提示文案
-- **⚡ 零依赖** - 基于现代浏览器原生 API 实现
-
-## 🎯 适用场景
-
-- **分享链接** - 快速复制页面链接或分享地址
-- **代码展示** - 复制代码片段到剪贴板
-- **表单数据** - 复制表单中的重要信息
-- **用户信息** - 复制用户ID、邀请码等
-
-## 🚀 基础使用
+## 基础用法
 
 <script setup>
   import Demo1 from '@/components/Clipboard/demos/demo1.vue'
@@ -26,7 +11,7 @@
 
 <demo :comp="Demo1" :code="Demo1Code" title="基础用法" />
 
-## 📋 API 参考
+## API
 
 ### Props
 
@@ -50,7 +35,7 @@
 | --------- | -------------- | --------------------------------------- |
 | `default` | 自定义触发元素 | `{ copy: Function, disabled: boolean }` |
 
-## 💻 使用示例
+## 使用示例
 
 ### 基础复制
 
@@ -207,41 +192,3 @@ watch(isLoggedIn, (loggedIn) => {
   />
 </template>
 ```
-
-## 🔧 技术实现
-
-Clipboard 组件基于现代浏览器的 `navigator.clipboard` API 实现，对于不支持的浏览器会自动降级到 `document.execCommand` 方法：
-
-```javascript
-async function copyToClipboard(text) {
-  try {
-    // 优先使用现代 API
-    if (navigator.clipboard) {
-      await navigator.clipboard.writeText(text)
-      return true
-    }
-
-    // 降级方案
-    const textArea = document.createElement('textarea')
-    textArea.value = text
-    document.body.appendChild(textArea)
-    textArea.select()
-    const successful = document.execCommand('copy')
-    document.body.removeChild(textArea)
-
-    if (!successful)
-      throw new Error('复制失败')
-    return true
-  }
-  catch (error) {
-    console.error('复制操作失败:', error)
-    throw error
-  }
-}
-```
-
-## 🔗 相关链接
-
-- [Clipboard API MDN 文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Clipboard_API)
-- [Element Plus Button](https://element-plus.org/zh-CN/component/button.html) - 自定义按钮样式
-- [Element Plus Message](https://element-plus.org/zh-CN/component/message.html) - 消息提示组件

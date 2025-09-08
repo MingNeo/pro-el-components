@@ -7,7 +7,7 @@
 </script>
 
 ## 使用方法
-<demo :comp="demo" :code="demoCode" title="基础使用" />
+<demo :comp="demo" :code="demoCode" title="基础用法" />
 
 ## API
 

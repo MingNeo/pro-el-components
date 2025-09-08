@@ -5,4 +5,4 @@
   import demo1 from '@/components/TextSummary/demos/demo1.vue'
   import demo1Code from '@/components/TextSummary/demos/demo1.vue?raw'
 </script>
-<demo :comp="demo1" :code="demo1Code" title="基础使用" />
+<demo :comp="demo1" :code="demo1Code" title="基础用法" />

@@ -2,7 +2,7 @@
 
 Pro El Components 提供了丰富的业务组件，帮助您快速构建企业级中台应用。所有组件都基于 Element Plus 设计，保持一致的用户体验。
 
-## 🎯 设计原则
+## 设计原则
 
 - **兼容性优先** - 完全兼容 Element Plus 的所有原始用法，支持渐进式升级
 - **业务导向** - 专注解决中台系统常见业务场景
@@ -27,8 +27,8 @@ Pro El Components 提供了丰富的业务组件，帮助您快速构建企业�
 
 | 组件                                     | 描述         | 特性                           |
 | ---------------------------------------- | ------------ | ------------------------------ |
-| [ProFormFields](/components/FormFields)  | 表单项生成器 | 配置化生成、多种布局、联动支持 |
-| [ProField](/components/Field)            | 统一表单字段 | 多种输入类型、验证规则、格式化 |
+| [FormFields](/components/FormFields)     | 表单项生成器 | 配置化生成、多种布局、联动支持 |
+| [Field](/components/Field)               | 统一表单字段 | 多种输入类型、验证规则、格式化 |
 | [SearchForm](/components/SearchForm)     | 搜索表单组件 | 快速筛选、重置功能、响应式布局 |
 | [RemoteSelect](/components/RemoteSelect) | 远程选择器   | 异步加载、搜索过滤、无限滚动   |
 | [Cascader](/components/Cascader)         | 级联选择器   | 多级联动、异步加载、自定义显示 |
@@ -73,7 +73,7 @@ Pro El Components 提供了丰富的业务组件，帮助您快速构建企业�
 | [Clipboard](/components/Clipboard)           | 剪贴板操作 | 一键复制、成功提示、兼容性处理 |
 | [SubmitTextarea](/components/submitTextarea) | 提交文本框 | 快捷键提交、字数统计、自动扩展 |
 
-## 🚀 快速开始
+## 快速开始
 
 ### 全量引入
 

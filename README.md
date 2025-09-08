@@ -4,7 +4,7 @@
 <!-- [![License](https://img.shields.io/npm/l/pro-el-components.svg)](LICENSE) -->
 [![Built with Element Plus](https://img.shields.io/badge/Built%20with-Element%20Plus-409eff)](https://element-plus.org/)
 
-> 🚀 基于 Element Plus 的企业级高级组件库，专为中台系统打造，提供开箱即用的业务组件和解决方案。
+> 基于 Element Plus 的企业级高级组件库，专为中台系统打造，提供开箱即用的业务组件和解决方案。
 
 在中台开发中，封装高级组件是常见的行为。市面上也有不少成熟的高级组件库，但是很遗憾，这些组件库的设计思路，**基本都是错误的**。它们虽然能快速编写页面，但通通存在以下问题：
 
@@ -19,7 +19,7 @@
 ## ✨ 特性
 
 - ✅ **完全兼容** - 100% 兼容 Element Plus 原始用法，改个组件名即可无缝升级。同时，你完全可以配合原始用法来自由扩充你想要的功能。
-- 🎯 **企业级** - 专注中台业务场景，提供高质量的业务组件
+- **企业级** - 专注中台业务场景，提供高质量的业务组件
 - 🔧 **开箱即用** - 丰富的业务组件，快速构建中台应用
 - 🎨 **优雅易用** - 基于 Element Plus 设计语言，保持一致的用户体验
 - 🔀 **TypeScript** - 完整的 TypeScript 支持，提供优秀的开发体验

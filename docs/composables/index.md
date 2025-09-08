@@ -23,7 +23,7 @@ Vue 3 的组合式 API 为我们提供了强大的逻辑复用能力。Pro El Co
 | [useDarkMode](/composables/useDarkMode)     | 暗黑模式 | 主题切换、系统偏好检测 |
 | [useStreamData](/composables/useStreamData) | 流式数据 | SSE 连接、实时数据更新 |
 
-## 🚀 快速开始
+## 快速开始
 
 ### 基本使用
 

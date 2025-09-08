@@ -11,25 +11,25 @@
 
 ## 用法
 
-<demo src="@/components/TableModal/demos/demo1.vue" title="基础使用" />
+<demo src="@/components/TableModal/demos/demo1.vue" title="基础用法" />
 
 ## API
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| modelValue | 是否显示 | `boolean` | false |
-| title | 标题 | `string` | 选择用户 |
-| width | 宽度 | `string` | 700px |
-| service | 自动获取表格数据服务，第一次打开弹窗时加载数据 | `(...args: any[]) => Promise<Record<string, any>[]>` | - |
-| columns | 列 | `Column[]` | - |
-| data | 表格数据，配置此参数时，service 参数无效 | `Record<string, any>[]` | - |
-| pagination | 表格的分页，参见[Element-Plus Pagination 组件](https://element-plus.org/zh-CN/component/pagination.html) | `Partial<PaginationProps>` | - |
+| 参数       | 说明                                                                                                     | 类型                                                 | 默认值   |
+| ---------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | -------- |
+| modelValue | 是否显示                                                                                                 | `boolean`                                            | false    |
+| title      | 标题                                                                                                     | `string`                                             | 选择用户 |
+| width      | 宽度                                                                                                     | `string`                                             | 700px    |
+| service    | 自动获取表格数据服务，第一次打开弹窗时加载数据                                                           | `(...args: any[]) => Promise<Record<string, any>[]>` | -        |
+| columns    | 列                                                                                                       | `Column[]`                                           | -        |
+| data       | 表格数据，配置此参数时，service 参数无效                                                                 | `Record<string, any>[]`                              | -        |
+| pagination | 表格的分页，参见[Element-Plus Pagination 组件](https://element-plus.org/zh-CN/component/pagination.html) | `Partial<PaginationProps>`                           | -        |
 
 ## 插槽
 
-| 名称 | 说明 |
-| --- | --- |
-| pre | 弹窗顶部内容 |
-| after | 弹窗表格之后内容 |
+| 名称   | 说明                                                                                             |
+| ------ | ------------------------------------------------------------------------------------------------ |
+| pre    | 弹窗顶部内容                                                                                     |
+| after  | 弹窗表格之后内容                                                                                 |
 | header | 弹窗头部内容，见[Element-Plus Dialog 组件](https://element-plus.org/zh-CN/component/dialog.html) |
 | footer | 弹窗底部内容，见[Element-Plus Dialog 组件](https://element-plus.org/zh-CN/component/dialog.html) |

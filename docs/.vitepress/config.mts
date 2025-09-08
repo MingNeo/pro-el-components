@@ -76,8 +76,8 @@ export default defineConfig({
       {
         text: '表单组件',
         items: [
-          { text: 'ProFormFields 表单项生成器', link: '/components/FormFields' },
-          { text: 'ProField 表单组件', link: '/components/Field' },
+          { text: 'FormFields 表单块生成器', link: '/components/FormFields' },
+          { text: 'Field 表单组件', link: '/components/Field' },
           { text: 'Select 选择器', link: '/components/Select' },
           { text: 'RemoteSelect 远程选择器', link: '/components/RemoteSelect' },
           { text: 'Cascader 级联选择', link: '/components/Cascader' },

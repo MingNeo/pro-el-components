@@ -2,8 +2,6 @@
 
 一个基于 Vue 3 的聊天界面组件,支持消息发送、文件上传、Markdown 渲染等功能。
 
-## 特性
-
 - 💬 支持文本消息、Markdown、代码高亮
 - 📎 支持文件和图片上传
 - 👍 消息反馈(点赞/踩)
@@ -46,26 +44,26 @@ function handleMessageSend(content, attachment) {
 ```
 ## Props
 
-| 名称 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| chats | `Message[]` | `[]` | 聊天消息列表 |
-| role-config | `RoleConfig` | - | 角色配置 |****
-| hints | `string[]` | `[]` | 提示建议列表 |
-| mode | `'bubble' \| 'noBubble' \| 'userBubble'` | `'bubble'` | 消息气泡模式 |
-| align | `'leftRight' \| 'leftAlign'` | `'leftRight'` | 消息对齐方式 |****
-| show-clear-context | `boolean` | `false` | 是否显示清空上下文按钮 |
-| show-stop-generate | `boolean` | `false` | 是否显示停止生成按钮 |****
-| send-hot-key | `'enter' \| 'shift+enter'` | `'enter'` | 发送消息快捷键 |
-| placeholder | `string` | `'请输入消息...'` | 输入框占位文本 |
+| 名称               | 类型                                     | 默认值            | 说明                   |
+| ------------------ | ---------------------------------------- | ----------------- | ---------------------- |
+| chats              | `Message[]`                              | `[]`              | 聊天消息列表           |
+| role-config        | `RoleConfig`                             | -                 | 角色配置               | **** |
+| hints              | `string[]`                               | `[]`              | 提示建议列表           |
+| mode               | `'bubble' \| 'noBubble' \| 'userBubble'` | `'bubble'`        | 消息气泡模式           |
+| align              | `'leftRight' \| 'leftAlign'`             | `'leftRight'`     | 消息对齐方式           | **** |
+| show-clear-context | `boolean`                                | `false`           | 是否显示清空上下文按钮 |
+| show-stop-generate | `boolean`                                | `false`           | 是否显示停止生成按钮   | **** |
+| send-hot-key       | `'enter' \| 'shift+enter'`               | `'enter'`         | 发送消息快捷键         |
+| placeholder        | `string`                                 | `'请输入消息...'` | 输入框占位文本         |
 
 ## Events
 
-| 名称 | 参数 | 说明 |
-|------|------|------|
-| message-send | `(content: string, attachment: FileItem[])` | 发送消息时触发 |
-| clear | - | 清空上下文时触发 |
-| hint-click | `(hint: string)` | 点击提示建议时触发 |
-| chats-change | `(chats: Message[])` | 消息列表变化时触发 |
+| 名称         | 参数                                        | 说明               |
+| ------------ | ------------------------------------------- | ------------------ |
+| message-send | `(content: string, attachment: FileItem[])` | 发送消息时触发     |
+| clear        | -                                           | 清空上下文时触发   |
+| hint-click   | `(hint: string)`                            | 点击提示建议时触发 |
+| chats-change | `(chats: Message[])`                        | 消息列表变化时触发 |
 
 ## 类型定义
 

@@ -8,7 +8,7 @@
   import Demo1 from '@/components/Select/demos/demo1.vue'
   import Demo1Code from '@/components/Select/demos/demo1.vue?raw'
 </script>
-<demo :comp="Demo1" :code="Demo1Code" title="基础使用" />
+<demo :comp="Demo1" :code="Demo1Code" title="基础用法" />
 
 ## 使用方法
 

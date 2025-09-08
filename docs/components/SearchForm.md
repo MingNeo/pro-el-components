@@ -7,7 +7,7 @@
 
 #### 单独使用
 以下是单独使用的例子：
-<demo src="@/components/SearchForm/demos/demo1.vue" title="基础使用" />
+<demo src="@/components/SearchForm/demos/demo1.vue" title="基础用法" />
 
 #### 联动
 参考[ProFormFields](./FormFields.md)

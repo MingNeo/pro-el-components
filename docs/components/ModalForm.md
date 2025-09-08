@@ -15,7 +15,7 @@
 
 # 使用方法
 
-<demo :comp="demo1" :code="demo1Code" title="基础使用" />
+<demo :comp="demo1" :code="demo1Code" title="基础用法" />
 
 ### 表单state
 默认情况下，ProModalForm为非受控模式，formData由内部自行管理，提交表单时通过ok事件的回调函数获取formData。
