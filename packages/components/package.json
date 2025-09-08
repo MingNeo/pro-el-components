@@ -1,7 +1,7 @@
 {
   "name": "pro-el-components",
   "type": "module",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A Advanced Component Library based on ElementPlus",
   "author": "mingNeo",
   "license": "MIT",
