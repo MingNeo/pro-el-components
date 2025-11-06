@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { RadioProps } from 'element-plus'
+import { ElRadio, ElRadioGroup } from 'element-plus'
 import { computed, ref, watch, watchEffect } from 'vue'
 
 interface Option {
@@ -9,6 +10,7 @@ interface Option {
 
 defineOptions({
   name: 'ProRadio',
+  inheritAttrs: false,
 })
 
 const props = withDefaults(defineProps<{
@@ -17,7 +19,7 @@ const props = withDefaults(defineProps<{
   options?: Option[]
   viewMode?: boolean
   viewModeSeparator?: string // 查看模式多个数据的分割符
-  modelValue?: string[] | number[]
+  modelValue?: string | number
   radioProps?: RadioProps
 }>(), { optionNames: () => ({ label: 'label', value: 'value' }), viewModeSeparator: ', ' })
 
@@ -47,7 +49,7 @@ watchEffect(() => fetchData())
 // 查看模式下回显
 const viewText = computed(() => {
   if (props.modelValue !== undefined)
-    return (props.modelValue as string[] | number[]).map((item: string | number) => options.value.find(option => option[props.optionNames.value] === item)?.[props.optionNames.label] || item).join(props.viewModeSeparator)
+    return options.value.find(option => option[props.optionNames.value] === props.modelValue)?.[props.optionNames.label] || props.modelValue
 
   return '-'
 })
@@ -57,7 +59,8 @@ const viewText = computed(() => {
   <ElRadioGroup
     v-if="!viewMode"
     :loading="loading"
-    :model-value="modelValue as any"
+    :model-value="modelValue"
+    v-bind="$attrs"
   >
     <slot name="default">
       <ElRadio

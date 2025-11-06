@@ -1,6 +1,8 @@
 <script lang="ts" setup>
+import { vLoading } from 'element-plus'
 import { ProPageHeader } from 'pro-el-components'
 import 'pro-el-components/components/PageHeader/style.css'
+import 'element-plus/es/components/loading/style/index'
 import './style.css'
 
 defineOptions({

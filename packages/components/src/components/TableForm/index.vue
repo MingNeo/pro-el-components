@@ -3,11 +3,11 @@ import type { TableFormColumn, TableFormEmits, TableFormProps } from './types'
 import { Delete, Plus } from '@element-plus/icons-vue'
 import { ElButton, ElIcon, ElInputNumber } from 'element-plus'
 import { ProButtonActions, ProFormFields, ProTable } from 'pro-el-components'
+import { v4 as uuid } from 'uuid'
+import { computed, ref } from 'vue'
 import 'pro-el-components/components/Table/style.css'
 import 'pro-el-components/components/ButtonActions/style.css'
 import 'pro-el-components/components/FormFields/style.css'
-import { v4 as uuid } from 'uuid'
-import { computed, ref } from 'vue'
 import './style.css'
 
 defineOptions({

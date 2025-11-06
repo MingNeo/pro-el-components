@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import type { ButtonProps as ElButtonProps, FormInstance, FormItemProps } from 'element-plus'
-import { ElButton, ElDialog, ElForm } from 'element-plus'
+import { ElButton, ElDialog, ElForm, vLoading } from 'element-plus'
 import { ProFormFields } from 'pro-el-components'
-import 'pro-el-components/components/FormFields/style.css'
 import { computed, nextTick, ref, watch } from 'vue'
 import { unbind } from '../../utils'
+import 'element-plus/es/components/loading/style/index'
+import 'pro-el-components/components/FormFields/style.css'
 import './style.css'
 
 interface ModalFormProps {

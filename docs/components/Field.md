@@ -1,23 +1,25 @@
 # ProField 高级表单项
 
-ProField 是一个通用的表单项组件，可以根据 `valueType` 渲染不同的表单控件。
+ProField 是一个通用的表单项组件，可以视作 FormItem 和 表单 Field 组件的组合，可以根据 `fieldType` 渲染不同的表单控件。
 
 ## 基础用法
 
-通过设置 `valueType` 和 `fieldProps` 来使用不同类型的表单控件。
+通过设置 `fieldType` 和 `fieldProps` 来使用不同类型的表单控件。
 
 <demo src="@/components/Field/demos/demo1.vue" title="基础用法" />
 
 ## 组件属性
 
-| 属性名      | 说明                 | 类型                  | 默认值   |
-| ----------- | -------------------- | --------------------- | -------- |
-| value       | 组件的值             | `any`                 | -        |
-| value-type  | 控件类型             | `ValueType`           | `'text'` |
-| field-props | 传递给具体控件的属性 | `Record<string, any>` | `{}`     |
-| mode        | 编辑/只读模式        | `'read' \| 'edit'`    | `'edit'` |
+| 属性名         | 说明                     | 类型                     | 默认值   |
+| -------------- | ------------------------ | ------------------------ | -------- |
+| value          | 组件的值                 | `any`                    | -        |
+| field-type     | 控件类型                 | `FieldType \| Component` | `'text'` |
+| field-props    | 传递给具体控件的属性     | `Record<string, any>`    | `{}`     |
+| mode           | 编辑/只读模式            | `'read' \| 'edit'`       | `'edit'` |
+| with-form-item | 是否包裹 FormItem        | `boolean`                | `true`   |
+| ...            | 所有 ElFormItem 的 props | `any`                    | -        |
 
-## ValueType 类型
+## FieldType 类型
 
 | 类型值        | 说明               | 对应组件      |
 | ------------- | ------------------ | ------------- |
@@ -49,8 +51,10 @@ ProField 是一个通用的表单项组件，可以根据 `valueType` 渲染不�
 vue
 <template>
   <ProField
+    label="标题"
+    prop="text"
     v-model:value="textValue"
-    value-type="text"
+    field-type="text"
     :field-props="{ placeholder: '请输入文本' }"
   />
 </template>
@@ -59,8 +63,10 @@ vue
 ```vue
 <template>
   <ProField
+    label="日期"
+    prop="text"
     v-model:value="dateValue"
-    value-type="date"
+    field-type="date"
     :field-props="{ placeholder: '请选择日期' }"
   />
 </template>
@@ -70,7 +76,24 @@ vue
 <template>
   <ProField
     v-model:value="selectValue"
-    value-type="select"
+    field-type="select"
+    :field-props="{
+      placeholder: '请选择',
+      options: [
+        { label: '选项1', value: 1 },
+        { label: '选项2', value: 2 },
+      ],
+    }"
+  />
+</template>
+```
+
+### 传入Field
+```vue
+<template>
+  <ProField
+    v-model:value="selectValue"
+    :field-type="ElSelect"
     :field-props="{
       placeholder: '请选择',
       options: [

@@ -20,29 +20,36 @@ Pro El Components 提供了丰富的业务组件，帮助您快速构建企业�
 | [ProTable](/components/Table)          | 高级表格组件 | 自动分页、列配置、数据格式化、操作列 |
 | [StatusText](/components/StatusText)   | 状态文本显示 | 多种状态样式、自定义颜色、图标支持   |
 | [TextSummary](/components/TextSummary) | 文本摘要组件 | 展开收起、字数限制、优雅截断         |
+| [SwiperCard](/components/swiperCard)   | 轮播卡片组件 | 左右悬浮按钮、多个卡片切换           |
 
 ### 数据录入
 
 快速构建各种表单，提升数据录入效率。
 
-| 组件                                     | 描述         | 特性                           |
-| ---------------------------------------- | ------------ | ------------------------------ |
-| [FormFields](/components/FormFields)     | 表单项生成器 | 配置化生成、多种布局、联动支持 |
-| [Field](/components/Field)               | 统一表单字段 | 多种输入类型、验证规则、格式化 |
-| [SearchForm](/components/SearchForm)     | 搜索表单组件 | 快速筛选、重置功能、响应式布局 |
-| [RemoteSelect](/components/RemoteSelect) | 远程选择器   | 异步加载、搜索过滤、无限滚动   |
-| [Cascader](/components/Cascader)         | 级联选择器   | 多级联动、异步加载、自定义显示 |
-| [Select](/components/Select)             | 增强选择器   | 多选支持、搜索功能、自定义选项 |
+| 组件                                     | 描述         | 特性                                        |
+| ---------------------------------------- | ------------ | ------------------------------------------- |
+| [FormFields](/components/FormFields)     | 表单项生成器 | 配置化生成、多种布局、联动支持              |
+| [Field](/components/Field)               | 统一表单字段 | 多种输入类型、验证规则、格式化              |
+| [SearchForm](/components/SearchForm)     | 搜索表单组件 | 快速筛选、重置功能、响应式布局              |
+| [RemoteSelect](/components/RemoteSelect) | 远程选择器   | 异步加载、搜索过滤、无限滚动                |
+| [Cascader](/components/Cascader)         | 级联选择器   | 多级联动、异步加载、自定义显示              |
+| [Select](/components/Select)             | 增强选择器   | 多选支持、搜索功能、自定义选项              |
+| Checkbox                                 | 增强复选框   | 远程数据、查看模式、自定义选项名称          |
+| Radio                                    | 增强单选按钮 | 远程数据、查看模式、自定义选项名称          |
+| [Upload](/components/Upload)             | 上传组件     | 图片预览弹窗、扩展自 el-upload              |
+| [TableForm](/components/TableForm)       | 表格表单     | 动态添加/删除行、每行多种表单组件、查看模式 |
 
 ### 反馈组件
 
 提供用户操作反馈，提升交互体验。
 
-| 组件                                   | 描述       | 特性                         |
-| -------------------------------------- | ---------- | ---------------------------- |
-| [Dialog](/components/Dialog)           | 增强对话框 | 拖拽支持、全屏模式、嵌套处理 |
-| [ModalForm](/components/ModalForm)     | 弹窗表单   | 表单验证、提交处理、加载状态 |
-| [ModalDetail](/components/ModalDetail) | 弹窗详情   | 数据展示、打印功能、操作按钮 |
+| 组件                                       | 描述         | 特性                               |
+| ------------------------------------------ | ------------ | ---------------------------------- |
+| [Dialog](/components/Dialog)               | 增强对话框   | 拖拽支持、全屏模式、嵌套处理       |
+| [ModalForm](/components/ModalForm)         | 弹窗表单     | 表单验证、提交处理、加载状态       |
+| [ModalDetail](/components/ModalDetail)     | 弹窗详情     | 数据展示、打印功能、操作按钮       |
+| [ModalSelector](/components/ModalSelector) | 弹窗选择器   | 自定义请求、临时存储选中、确认返回 |
+| [TableModal](/components/TableModal)       | 表格弹窗组件 | 自动获取数据、分页支持、自定义插槽 |
 
 ### 导航组件
 
@@ -58,11 +65,13 @@ Pro El Components 提供了丰富的业务组件，帮助您快速构建企业�
 
 提供标准化的页面布局结构。
 
-| 组件                                       | 描述       | 特性                         |
-| ------------------------------------------ | ---------- | ---------------------------- |
-| [PageContainer](/components/PageContainer) | 页面容器   | 面包屑、标题栏、内容区域     |
-| [PageHeader](/components/PageHeader)       | 页面头部   | 返回按钮、标题描述、操作区域 |
-| [ListPage](/components/ListPage)           | 列表页容器 | 搜索区域、表格区域、分页组件 |
+| 组件                                       | 描述       | 特性                             |
+| ------------------------------------------ | ---------- | -------------------------------- |
+| [PageContainer](/components/PageContainer) | 页面容器   | 面包屑、标题栏、内容区域         |
+| [PageHeader](/components/PageHeader)       | 页面头部   | 返回按钮、标题描述、操作区域     |
+| [PageWrapper](/components/PageWrapper)     | 页面包裹器 | 标准页面容器样式、布局支持       |
+| [ListPage](/components/ListPage)           | 列表页容器 | 搜索区域、表格区域、分页组件     |
+| [DetailPage](/components/DetailPage)       | 详情页组件 | 自动状态切换、编辑/创建/详情模式 |
 
 ### 工具组件
 
@@ -72,37 +81,4 @@ Pro El Components 提供了丰富的业务组件，帮助您快速构建企业�
 | -------------------------------------------- | ---------- | ------------------------------ |
 | [Clipboard](/components/Clipboard)           | 剪贴板操作 | 一键复制、成功提示、兼容性处理 |
 | [SubmitTextarea](/components/submitTextarea) | 提交文本框 | 快捷键提交、字数统计、自动扩展 |
-
-## 快速开始
-
-### 全量引入
-
-```javascript
-import ProElComponents from 'pro-el-components'
-import { createApp } from 'vue'
-import 'pro-el-components/dist/style.css'
-
-const app = createApp(App)
-app.use(ProElComponents)
-```
-
-### 按需引入
-
-```javascript
-import { ProFormFields, ProTable } from 'pro-el-components'
-
-// 在组件中使用
-export default {
-  components: {
-    ProTable,
-    ProFormFields
-  }
-}
-```
-
-## 💡 最佳实践
-
-1. **组件组合** - 多个组件可以自由组合使用，构建复杂的业务场景
-2. **渐进升级** - 可以逐步替换现有的 Element Plus 组件
-3. **自定义扩展** - 通过插槽和事件机制灵活扩展功能
-4. **类型安全** - 充分利用 TypeScript 类型定义，提升开发效率
+| [QuickLogin](/components/QuickLogin)         | 快速登录   | 便捷的登录入口                 |

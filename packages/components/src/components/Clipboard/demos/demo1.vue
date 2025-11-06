@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Document } from '@element-plus/icons-vue'
+import { ElIcon } from 'element-plus'
 import ProClipboard from '../index.vue'
 </script>
 
@@ -14,9 +15,9 @@ import ProClipboard from '../index.vue'
     <ProClipboard text="自定义样式的复制文本" class="mt-4">
       <div class="custom-copy-button">
         <span>自定义样式的复制文本</span>
-        <el-icon class="ml-1 cursor-pointer">
+        <ElIcon class="ml-1 cursor-pointer">
           <Document />
-        </el-icon>
+        </ElIcon>
       </div>
     </ProClipboard>
   </div>

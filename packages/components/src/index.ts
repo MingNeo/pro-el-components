@@ -3,18 +3,14 @@ import type { App } from 'vue'
 // 导入所有组件用于全局注册
 import {
   ProButtonActions,
-  ProCard,
   ProCascader,
   ProCheckbox,
   ProClipboard,
   ProDetailPage,
-  ProDetailPageContent,
   ProDialog,
-  ProExpandCollapseText,
   ProField,
   ProFormFields,
   ProListPage,
-  ProListPageContent,
   ProModalDetail,
   ProModalForm,
   ProModalSelector,
@@ -27,7 +23,6 @@ import {
   ProSearchForm,
   ProSectionHeader,
   ProSelect,
-  ProSideBar,
   ProStatusText,
   ProSubmitTextarea,
   ProSwiperCard,
@@ -35,7 +30,6 @@ import {
   ProTableForm,
   ProTableModal,
   ProTableSelector,
-  ProTableTabs,
   ProTextSummary,
   ProUpload,
 } from './components'
@@ -51,16 +45,12 @@ export * from './utils'
 // 组件注册映射表 - 用于全局注册
 const components = {
   ProButtonActions,
-  ProCard,
   ProCascader,
   ProCheckbox,
   ProClipboard,
-  ProDetailPageContent,
   ProDialog,
-  ProExpandCollapseText,
   ProField,
   ProFormFields,
-  ProListPageContent,
   ProModalDetail,
   ProModalForm,
   ProModalSelector,
@@ -77,7 +67,6 @@ const components = {
   ProTableForm,
   ProTableModal,
   ProTableSelector,
-  ProTableTabs,
   ProTextSummary,
   ProUpload,
   // 布局组件
@@ -86,7 +75,6 @@ const components = {
   ProPageHeader,
   ProPageWrapper,
   ProQuickLogin,
-  ProSideBar,
 }
 
 // 安装函数 - 注册所有组件

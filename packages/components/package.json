@@ -1,7 +1,7 @@
 {
   "name": "pro-el-components",
   "type": "module",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "A Advanced Component Library based on ElementPlus",
   "author": "mingNeo",
   "license": "MIT",
@@ -20,53 +20,58 @@
     "ui",
     "vue"
   ],
-  "exports": {
-    ".": {
-      "types": "./dist/lib/index.d.ts",
-      "import": "./dist/lib/pro-el-components.es.js",
-      "require": "./dist/lib/pro-el-components.es.js",
-      "default": "./dist/lib/pro-el-components.es.js"
-    },
-    "./dist/index.css": "./dist/lib/style.css",
-    "./dist/style.css": "./dist/lib/style.css",
-    "./style.css": "./dist/lib/style.css",
-    "./dist/lib/style.css": "./dist/lib/style.css",
-    "./es/components/*": {
-      "types": "./dist/es/components/*/index.d.ts",
-      "import": "./dist/es/components/*/index.js"
-    },
-    "./es/components/*/style.css": "./dist/es/components/*/style.css",
-    "./components/*": {
-      "types": "./dist/es/components/*/index.d.ts",
-      "import": "./dist/es/components/*/index.js"
-    },
-    "./components/*/style.css": "./dist/es/components/*/style.css",
-    "./es": {
-      "types": "./dist/lib/index.d.ts",
-      "import": "./dist/lib/pro-el-components.es.js"
-    },
-    "./dist/es/*": {
-      "types": "./dist/es/components/*/index.d.ts",
-      "import": "./dist/es/components/*/index.js"
-    },
-    "./resolver": {
-      "types": "./dist/resolver/resolver.d.ts",
-      "import": "./dist/resolver/resolver.es.js",
-      "require": "./dist/resolver/resolver.js",
-      "default": "./dist/resolver/resolver.es.js"
-    },
-    "./*": "./*"
-  },
-  "main": "./dist/lib/pro-el-components.es.js",
-  "module": "./dist/lib/pro-el-components.es.js",
-  "types": "./dist/lib/index.d.ts",
-  "resolver": "./dist/resolver/resolver.js",
-  "resolverTypes": "./dist/resolver/resolver.d.ts",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "resolver": "./src/resolver.ts",
+  "resolverTypes": "./src/resolver.ts",
   "files": [
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "main": "./dist/lib/pro-el-components.es.js",
+    "module": "./dist/lib/pro-el-components.es.js",
+    "types": "./dist/lib/index.d.ts",
+    "resolver": "./dist/resolver/resolver.js",
+    "resolverTypes": "./dist/resolver/resolver.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/lib/index.d.ts",
+        "import": "./dist/lib/pro-el-components.es.js",
+        "require": "./dist/lib/pro-el-components.es.js",
+        "default": "./dist/lib/pro-el-components.es.js"
+      },
+      "./dist/index.css": "./dist/lib/style.css",
+      "./dist/style.css": "./dist/lib/style.css",
+      "./style.css": "./dist/lib/style.css",
+      "./dist/lib/style.css": "./dist/lib/style.css",
+      "./es/components/*": {
+        "types": "./dist/es/components/*/index.d.ts",
+        "import": "./dist/es/components/*/index.js"
+      },
+      "./es/components/*/style.css": "./dist/es/components/*/style.css",
+      "./components/*": {
+        "types": "./dist/es/components/*/index.d.ts",
+        "import": "./dist/es/components/*/index.js"
+      },
+      "./components/*/style.css": "./dist/es/components/*/style.css",
+      "./es": {
+        "types": "./dist/lib/index.d.ts",
+        "import": "./dist/lib/pro-el-components.es.js"
+      },
+      "./dist/es/*": {
+        "types": "./dist/es/components/*/index.d.ts",
+        "import": "./dist/es/components/*/index.js"
+      },
+      "./resolver": {
+        "types": "./dist/resolver/resolver.d.ts",
+        "import": "./dist/resolver/resolver.es.js",
+        "require": "./dist/resolver/resolver.js",
+        "default": "./dist/resolver/resolver.es.js"
+      },
+      "./*": "./*"
+    }
   },
   "engines": {
     "node": ">=18",

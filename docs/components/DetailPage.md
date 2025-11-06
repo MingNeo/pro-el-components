@@ -9,13 +9,16 @@ DetailPage 是一个用于展示和编辑详情页面的通用组件。它提供
 
 ## 基础用法
 
-<demo src="@/components/DetailPage/demos/demo1.vue" class="bg-gray-100 p-0!" />
-<demo src="@/components/DetailPage/demos/demo2.vue" class="bg-gray-100 p-0!" />
+<demo src="@/components/DetailPage/demos/demo1.vue" class="bg-gray-100 p-0!" title="自动获取data" />
+<demo src="@/components/DetailPage/demos/demo2.vue" class="bg-gray-100 p-0!" title="手工设置默认值" />
 
 默认根据以下规则判断当前页面状态
-- 详情页：viewMode为true
-- 新建页：viewMode为false 且 data[idKey] 为空
-- 编辑页：viewMode为false 且 data[idKey] 不为空
+
+| 页面类型 | viewMode | data[idKey] | 说明         |
+| -------- | -------- | ----------- | ------------ |
+| 详情页   | `true`   | -           | 查看模式     |
+| 新建页   | `false`  | 为空        | 创建新数据   |
+| 编辑页   | `false`  | 不为空      | 编辑已有数据 |
 
 #### 扩展表单
 

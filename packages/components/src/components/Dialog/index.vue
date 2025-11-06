@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { ElButton, ElDialog } from 'element-plus'
+import { ElButton, ElDialog, vLoading } from 'element-plus'
+import 'element-plus/es/components/loading/style/index'
 import './style.css'
 
 defineOptions({

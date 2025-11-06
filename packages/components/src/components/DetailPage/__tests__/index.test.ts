@@ -7,7 +7,7 @@ import { describe, expect, it } from 'vitest'
 import { nextTick } from 'vue'
 import DetailPage from '../index.vue'
 
-describe('pageDetail 组件', () => {
+describe('detailPage 组件', () => {
   // 基础配置
   const baseFields = [
     { label: '姓名', prop: 'name' },
@@ -49,7 +49,6 @@ describe('pageDetail 组件', () => {
     })
 
     await nextTick()
-
     expect((wrapper.find('.el-loading-mask').element as any).style.display).toBe('none')
     await nextTick()
     expect((wrapper.find('.el-loading-mask').element as any).style.display).toBe('')

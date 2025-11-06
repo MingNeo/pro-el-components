@@ -7,7 +7,7 @@ defineOptions({
 })
 
 const props = defineProps<{
-  hasPermission: boolean | (() => boolean)
+  hasPermission?: boolean | (() => boolean)
 }>()
 
 const hasPermission = computed(() => typeof props.hasPermission === 'function' ? props.hasPermission() : (props.hasPermission ?? true))

@@ -103,11 +103,11 @@ function handleClick(action: ButtonAction) {
 <template>
   <div class="pro-button-actions" :class="{ 'is-link': type === 'link' }">
     <template v-for="(action, _i) in visibleActions" :key="_i">
-      <Action v-bind="action" :size="size ?? action.size" @click="handleClick(action)" />
+      <Action v-bind="{ ...action, onClick: undefined }" :size="size ?? action.size" @click="handleClick(action)" />
     </template>
 
     <template v-for="(item, _i) in visibleSlots" :key="`slot-${_i}`">
-      <Component :is="item" />
+      <component :is="item" />
     </template>
 
     <ElDropdown
@@ -120,7 +120,7 @@ function handleClick(action: ButtonAction) {
     >
       <ElButton link class="more-action">
         {{ moreText }}
-        <Component :is="moreIcon" v-if="moreIcon" />
+        <component :is="moreIcon" v-if="moreIcon" />
         <ElIcon v-else>
           <MoreFilled class="more-icon" />
         </ElIcon>

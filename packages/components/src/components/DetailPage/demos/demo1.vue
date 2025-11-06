@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
-import { useRequest } from '@/composables/useRequest'
-import { useUrlData } from '@/composables/useUrlData'
+import { ElRadioButton, ElRadioGroup } from 'element-plus'
+import { computed, ref } from 'vue'
 import DetailPage from '../index.vue'
+import * as api from './api'
 
-const { urlData } = useUrlData()
-const { data, isLoading, execute } = useRequest(getRegionInfoById, { immediate: false })
-
-const viewMode = ref(!!(urlData as any).viewMode)
+const mode = ref<'create' | 'edit' | 'detail'>('create')
 const detailFields = computed(() => [
   {
     label: '编码',
@@ -40,10 +37,6 @@ const detailFields = computed(() => [
   },
 ])
 
-onMounted(() => {
-  execute(urlData.value.id as any)
-})
-
 function handleOk() {
   // router.back()
 }
@@ -54,27 +47,19 @@ function handleBack() {
 }
 </script>
 
-<script lang="ts">
-// mock 请求
-async function getRegionInfoById(_params: Record<string, any>) {
-  return {
-    id: 1,
-    regionCode: '1',
-    currencyName: '人民币',
-  }
-}
-</script>
-
 <template>
-  <el-switch v-model="viewMode" class="mb-2" active-text="预览" inactive-text="编辑" />
+  <ElRadioGroup v-model="mode" class="p-2" size="small">
+    <ElRadioButton label="新建" value="create" />
+    <ElRadioButton label="编辑" value="edit" />
+    <ElRadioButton label="查看" value="detail" />
+  </ElRadioGroup>
   <DetailPage
-    :loading="isLoading"
-    :view-mode="viewMode"
-    :default-value="data"
+    :type="mode"
     :fields="detailFields"
-    :title="data?.id ? `编辑国家(地区)` : `创建国家(地区)`"
-    :create-service="(values) => console.log('createService', values)"
-    :update-service="(values) => console.log('updateService', values)"
+    :get-data-service="api.getRegionInfo"
+    :title="(mode) => `${{ create: '创建', edit: '编辑', detail: '查看' }[mode]}国家(地区)`"
+    :create-service="(values) => api.createRegion(values)"
+    :update-service="(values) => api.updateRegion(values)"
     @ok="handleOk"
     @back="handleBack"
   />

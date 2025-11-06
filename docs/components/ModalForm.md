@@ -45,7 +45,7 @@ const modalFormRef = ref(null)
 <script lang="ts" setup>
 const formData = reactive({
   name: '',
-  age: '',
+  age: undefined,
   address: '',
 })
 </script>

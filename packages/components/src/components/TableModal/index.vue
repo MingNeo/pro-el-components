@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import type { DialogProps, PaginationProps, TableProps } from 'element-plus'
 import type { Column } from 'pro-el-components'
-import { ElDialog } from 'element-plus'
+import { ElDialog, vLoading } from 'element-plus'
 import { ProTable, useTableList } from 'pro-el-components'
-import 'pro-el-components/components/Table/style.css'
 import { watch } from 'vue'
+import 'element-plus/es/components/loading/style/index'
+import 'pro-el-components/components/Table/style.css'
 import './style.css'
 
 defineOptions({

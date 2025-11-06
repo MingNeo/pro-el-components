@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { codeToHtml } from 'shiki'
-import { onMounted, ref, useSlots } from 'vue'
+import { onMounted, shallowRef, useSlots } from 'vue'
 import { modules, modulesContent } from './utils'
 
 defineOptions({
@@ -16,9 +16,9 @@ const props = defineProps<{
   class?: string
 }>()
 
-const codeHtml = ref('')
-const demoComp = ref<any>(null)
-const showCode = ref(false)
+const codeHtml = shallowRef('')
+const demoComp = shallowRef<any>(null)
+const showCode = shallowRef(false)
 const slots = useSlots()
 
 async function getCompAndSource(src: string) {

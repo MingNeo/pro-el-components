@@ -1,6 +1,35 @@
+.pro-field {
+  &-file {
+    width: 100% !important;
+  }
+}
+
 .pro-field-view {
   min-height: 32px;
   padding: 0 12px;
   line-height: 32px;
   color: var(--el-text-color-regular);
+  word-break: break-all;
+
+  &-file {
+    width: 100%;
+
+    .el-upload-list__item-status-label,
+    .el-upload--text,
+    .el-upload--picture,
+    .el-upload--picture-card {
+      display: none !important;
+    }
+
+    .el-upload-list__item:hover {
+      background-color: transparent;
+    }
+
+    .el-upload-list--text,
+    .el-upload-list--text .el-upload-list__item-name:hover {
+      margin-top: 0;
+      color: var(--el-text-color-regular);
+      cursor: default;
+    }
+  }
 }

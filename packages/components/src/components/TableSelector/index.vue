@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import type { TableSelectorProps } from './types'
-import { ProTable, useTableList } from 'pro-el-components'
-import 'pro-el-components/components/Table/style.css'
+import { vLoading } from 'element-plus'
+import { ProSearchForm, ProTable, useTableList } from 'pro-el-components'
 import { computed, ref, watch } from 'vue'
+import 'element-plus/es/components/loading/style/index'
+import 'pro-el-components/components/SearchForm/style.css'
+import 'pro-el-components/components/Table/style.css'
 import './style.css'
 
 defineOptions({
@@ -33,10 +36,13 @@ function handleSelectionChange(selection: any[]) {
 const tableRef = ref<any>(null)
 const showIds = computed(() => data.value.map(item => item[props.idKey]))
 function toggleSelection(rows?: any[], ignoreSelectable?: boolean) {
+  if (!tableRef.value)
+    return
+
   if (rows) {
     rows.forEach((row) => {
       if (showIds.value.includes(row[props.idKey])) {
-        tableRef.value!.toggleRowSelection(
+        tableRef.value!.toggleRowSelection?.(
           row,
           undefined,
           ignoreSelectable,
@@ -45,18 +51,18 @@ function toggleSelection(rows?: any[], ignoreSelectable?: boolean) {
     })
   }
   else {
-    tableRef.value!.clearSelection()
+    tableRef.value.clearSelection?.()
   }
 }
 
-watch([data, props.modelValue], () => {
+watch([data, () => props.modelValue], () => {
   toggleSelection(props.modelValue)
 })
 </script>
 
 <template>
   <div>
-    <search-form
+    <ProSearchForm
       v-if="service && searchFields?.length"
       class="table-selector-search-form"
       :column="searchColumn || 2" :fields="searchFields"

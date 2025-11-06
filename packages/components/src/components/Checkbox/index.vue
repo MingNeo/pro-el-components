@@ -9,10 +9,11 @@ interface Option {
 
 defineOptions({
   name: 'ProCheckbox',
+  inheritAttrs: false,
 })
 
 const props = withDefaults(defineProps<{
-  service?: (keyword?: string) => Promise<Option[]>
+  service?: (keyword?: string) => Promise<Option[] | any>
   optionNames?: { label: string, value: string, disabled?: string }
   options?: Option[]
   viewMode?: boolean
@@ -55,7 +56,7 @@ const viewText = computed(() => {
 <template>
   <ElCheckboxGroup
     v-if="!viewMode"
-    :loading="loading"
+    v-loading="loading"
     :model-value="modelValue"
     v-bind="$attrs"
   >

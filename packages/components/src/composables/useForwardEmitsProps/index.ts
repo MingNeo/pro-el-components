@@ -14,8 +14,14 @@ export function useForwardEmitsProps<T extends Record<string, any>, Name extends
   const parsedProps = useForwardProps(props)
   const emitsAsProps = emit ? useEmitAsProps(emit) : {}
 
-  return computed(() => ({
-    ...parsedProps.value,
-    ...emitsAsProps,
-  }))
+  // return computed(() => ({
+  //   ...parsedProps.value,
+  //   ...emitsAsProps,
+  // }))
+  return computed(() => {
+    return {
+      ...parsedProps.value,
+      ...emitsAsProps,
+    }
+  })
 }

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { InfoFilled } from '@element-plus/icons-vue'
-import { ElIcon, ElTooltip } from 'element-plus'
+import { ElIcon, ElInput, ElTooltip } from 'element-plus'
 import { computed, ref } from 'vue'
 
 interface RatingItem {

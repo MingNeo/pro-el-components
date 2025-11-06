@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import TableSelector from '../index.vue'
 
-const data = Array.from({ length: 3 }).fill('').map((v, i) => ({
+const data = Array.from({ length: 30 }).fill('').map((v, i) => ({
   gender: Math.round(Math.random()) ? '男' : '女',
   name: `用户${i + 1}`,
   nickname: `用户${i + 1}`,
@@ -14,7 +14,7 @@ async function getUserList(params: Record<string, any>) {
     data: ['name', 'gender', 'phone'].reduce((prev, cur) => {
       return params[cur] ? prev.filter((item: any) => item[cur].includes(params[cur])) : prev
     }, data),
-    total: 3,
+    total: data.length,
   }
 }
 // import { getUserList } from '@/api/user'
@@ -86,11 +86,9 @@ const columns = [
 </script>
 
 <template>
-  <el-card header="TableSelector">
-    <TableSelector
-      v-model="selectedUsers" :search-fields="searchFields" :service="getUserList" :columns="columns"
-    />
-  </el-card>
+  <TableSelector
+    v-model="selectedUsers" :search-fields="searchFields" :service="getUserList" :columns="columns"
+  />
 </template>
 
 <style lang="css"></style>

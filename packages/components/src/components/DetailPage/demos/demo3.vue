@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
 import { useRequest } from '@/composables/useRequest'
 import { useUrlData } from '@/composables/useUrlData'
+import { ElSwitch } from 'element-plus'
+import { computed, onMounted, ref } from 'vue'
 import DetailPage from '../index.vue'
 
 const { urlData } = useUrlData()
@@ -82,7 +83,7 @@ async function getRegionInfoById(_params: Record<string, any>) {
 </script>
 
 <template>
-  <el-switch v-model="viewMode" class="mb-2" active-text="预览" inactive-text="编辑" />
+  <ElSwitch v-model="viewMode" class="mb-2" active-text="预览" inactive-text="编辑" />
   <DetailPage
     :loading="isLoading"
     :view-mode="viewMode"

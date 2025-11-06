@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { ButtonAction, Column, SearchFormProps } from 'pro-el-components'
-import { ProPageContainer, ProSearchForm, ProSectionHeader, ProTable } from 'pro-el-components'
+import { ProPageHeader, ProSearchForm, ProSectionHeader, ProTable } from 'pro-el-components'
 import { provide } from 'vue'
 import 'pro-el-components/components/PageContainer/style.css'
 import 'pro-el-components/components/SearchForm/style.css'
@@ -35,6 +35,7 @@ const emit = defineEmits<{
   search: [params: Record<string, any>]
   reset: []
   tableChange: [pagination: any, filters: any, sorter: any]
+  back: []
 }>()
 
 provide('isInListPage', true)
@@ -49,6 +50,11 @@ function handleReset() {
   emit('reset')
 }
 
+// 处理返回事件
+function handleBack() {
+  emit('back')
+}
+
 // 处理表格变化事件
 function handleTableChange(pagination: any, filters: any, sorter: any) {
   emit('tableChange', pagination, filters, sorter)
@@ -56,10 +62,19 @@ function handleTableChange(pagination: any, filters: any, sorter: any) {
 </script>
 
 <template>
-  <ProPageContainer class="pro-list-page" :title="title" :actions="headerActions" :show-header="!!headerActions?.length || showHeader">
-    <template #actions>
-      <slot name="headerActions" />
-    </template>
+  <div class="pro-list-page">
+    <ProPageHeader
+      v-if="!!headerActions?.length || showHeader"
+      class="pro-list-page-header" :title="title" :actions="headerActions" v-bind="$attrs"
+      @back="handleBack"
+    >
+      <template #title>
+        <slot name="title" />
+      </template>
+      <template #actions>
+        <slot name="headerActions" />
+      </template>
+    </ProPageHeader>
 
     <!-- 搜索表单 -->
     <ProSearchForm
@@ -75,35 +90,37 @@ function handleTableChange(pagination: any, filters: any, sorter: any) {
       </template>
     </ProSearchForm>
 
-    <div class="pro-list-page-table">
-      <ProSectionHeader class="pro-list-page-table__header" :actions="actions">
-        <template #left>
-          <slot name="actionBarLeft" />
-        </template>
-        <template #right>
-          <slot name="actionBarRight" />
-        </template>
-      </ProSectionHeader>
-      <!-- 表格 -->
-      <ProTable
-        v-if="columns?.length"
-        :columns="columns"
-        :data="data"
-        @change="handleTableChange"
-      >
-        <template #column-header="{ column, $index }">
-          <slot name="tableColumnHeader" v-bind="{ column, $index }" />
-        </template>
-        <template #column-default="{ row, column, $index }">
-          <slot name="tableColumnDefault" v-bind="{ row, column, $index }" />
-        </template>
-        <template #column-filter-icon>
-          <slot name="tableColumnFilterIcon" />
-        </template>
-      </ProTable>
-    </div>
+    <ProSectionHeader v-if="actions?.length || $slots.actionBarLeft || $slots.actionBarRight || $slots.actionBarActions" class="pro-list-page-table__header" :actions="actions">
+      <template #left>
+        <slot name="actionBarLeft" />
+      </template>
+      <template #right>
+        <slot name="actionBarRight" />
+      </template>
+      <template #actions>
+        <slot name="actionBarActions" />
+      </template>
+    </ProSectionHeader>
+
+    <!-- 表格 -->
+    <ProTable
+      v-if="columns?.length"
+      :columns="columns"
+      :data="data"
+      @change="handleTableChange"
+    >
+      <template #column-header="{ column, $index }">
+        <slot name="tableColumnHeader" v-bind="{ column, $index }" />
+      </template>
+      <template #column-default="{ row, column, $index }">
+        <slot name="tableColumnDefault" v-bind="{ row, column, $index }" />
+      </template>
+      <template #column-filter-icon>
+        <slot name="tableColumnFilterIcon" />
+      </template>
+    </ProTable>
 
     <!-- 其他内容插槽 -->
     <slot />
-  </ProPageContainer>
+  </div>
 </template>

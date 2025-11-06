@@ -51,7 +51,7 @@ const { data, execute, isLoading } = useRequest(fetchFn)
 <script setup>
 const { execute, isLoading } = useRequest(fetchFn)
 
-execute().then(result => console.log(result))
+execute().then((result) => {})
 </script>
 ```
 ## API

@@ -24,8 +24,7 @@ const props = withDefaults(defineProps<TableProps>(), {
   bottomOffset: 100,
 })
 
-const isInListPageContent = inject('isInListPageContent', false)
-// const columnSetting = computed(() => props.columnSetting ?? isInListPageContent)
+const isInListPage = inject('isInListPage', false)
 
 const tableKey = props.tableId || window.location.pathname?.replace(/\//g, '_')
 
@@ -73,12 +72,12 @@ function handleSaveColumnKeys(columnKeys: ColumnKey[]) {
 // 自动计算高度
 const tableHeight = ref()
 
-// 设置autoHeight，或在ListPageContent组件中自动计算高度
+// autoHeight/在ListPage组件中时，自动计算高度
 watchEffect(updateTableHeight)
 useEventListener(window, 'resize', updateTableHeight)
 
 function updateTableHeight() {
-  if (props.autoHeight ?? isInListPageContent) {
+  if (props.autoHeight ?? isInListPage) {
     // 使用 props.bottomOffset 替代固定值
     tableHeight.value = window.innerHeight - (tableRef.value?.getBoundingClientRect().top || 0) - props.bottomOffset
   }
@@ -90,7 +89,17 @@ const showSlots = computed(() => Object.keys(slots).filter(key => key !== 'defau
 
 <template>
   <div :class="`pro-table ${props.class}`">
-    <ProSectionHeader v-if="props.title || props.actions" :title="props.title" size="small" :actions="props.actions" class="table-header" />
+    <ProSectionHeader v-if="props.title || props.actions" :title="props.title" size="small" :actions="props.actions" class="pro-table-header">
+      <template #left>
+        <slot name="left" />
+      </template>
+      <template #right>
+        <slot name="headerRight" />
+      </template>
+      <template #actions>
+        <slot name="actions" />
+      </template>
+    </ProSectionHeader>
     <div ref="tableRef" class="pro-table-inner">
       <ElTable class="pro-el-table" :data="showData" v-bind="$attrs">
         <template #default="defaultSlotProps">
@@ -124,12 +133,12 @@ const showSlots = computed(() => Object.keys(slots).filter(key => key !== 'defau
                   <span v-else-if="column.renderAs === 'date'" v-bind="getRenderProps(column.renderProps, row, column)">
                     {{ row[column.prop!] ? dayjs(row[column.prop!]).format(column.fieldProps?.format || 'YYYY-MM-DD') : '' }}
                   </span>
-                  <Component
+                  <component
                     :is="column.renderAs"
                     v-else-if="column.renderAs && typeof column.renderAs !== 'string'"
                     v-bind="{ ...row[column.prop!], ...getRenderProps(column.renderProps, row, column) }"
                   />
-                  <Component :is="column.mappingMap![row[column.prop!]]?.status ? ProStatusText : 'div'" v-else-if="column.renderAs === 'enum'" :status="column.mappingMap![row[column.prop!]]?.status" :style="column.mappingMap![row[column.prop!]]?.style">
+                  <component :is="column.mappingMap![row[column.prop!]]?.status ? ProStatusText : 'div'" v-else-if="column.renderAs === 'enum'" :status="column.mappingMap![row[column.prop!]]?.status" :style="column.mappingMap![row[column.prop!]]?.style">
                     {{ column.mappingMap![row[column.prop!]]?.label || row[column.prop!] }}
                   </Component>
                 </template>
@@ -143,7 +152,7 @@ const showSlots = computed(() => Object.keys(slots).filter(key => key !== 'defau
             </template>
 
             <template #filter-icon>
-              <slot name="column-filter-icon" />
+              <slot name="columnFilterIcon" />
             </template>
           </ElTableColumn>
         </template>

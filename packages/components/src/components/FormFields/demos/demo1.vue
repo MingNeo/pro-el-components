@@ -4,7 +4,7 @@ import { reactive, ref } from 'vue'
 import Demo1Content from './Demo1Content.vue'
 
 defineProps<{
-  title: string
+  title?: string
 }>()
 
 const formData = ref({})

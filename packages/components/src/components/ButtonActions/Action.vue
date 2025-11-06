@@ -5,7 +5,7 @@ import { ElButton, ElPopconfirm } from 'element-plus'
 import { computed } from 'vue'
 
 defineOptions({
-  name: 'Action',
+  name: 'ProButtonAction',
   inheritAttrs: false,
 })
 

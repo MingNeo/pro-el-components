@@ -7,7 +7,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { nextTick } from 'vue'
 import ButtonActions from '../index.vue'
 
-describe('linkActions 组件', () => {
+describe('buttonActions 组件', () => {
   // 基础操作配置
   const baseActions = [
     { text: '编辑', onClick: vi.fn() },
@@ -157,6 +157,9 @@ describe('linkActions 组件', () => {
       props: {
         actions: manyActions,
         maxCount: 3,
+        moreDropdownProps: {
+          teleported: false,
+        },
       },
     })
 

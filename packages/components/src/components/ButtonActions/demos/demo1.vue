@@ -1,30 +1,30 @@
 <script lang="ts" setup>
-import { ElButton } from 'element-plus'
+import { ElButton, ElMessage } from 'element-plus'
 import ButtonActions from '../index.vue'
 
 const actions = [
   {
     text: '查看',
-    onClick: () => console.log('查看'),
+    onClick: () => ElMessage('查看'),
   },
   {
     text: '编辑',
-    onClick: () => console.log('编辑'),
+    onClick: () => ElMessage('编辑'),
   },
   {
     text: '删除',
     danger: true,
     confirm: true,
     confirmText: '请确认是否删除？',
-    onClick: () => console.log('删除'),
+    onClick: () => ElMessage('删除'),
   },
   {
     text: '导出',
-    onClick: () => console.log('导出'),
+    onClick: () => ElMessage('导出'),
   },
   {
     text: '打印',
-    onClick: () => console.log('打印'),
+    onClick: () => ElMessage('打印'),
   },
 ]
 </script>

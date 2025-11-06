@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useRequest } from 'pro-el-components'
 import { ElOption, ElSelect } from 'element-plus'
 import { debounce, uniqBy } from 'lodash-es'
+import { useRequest } from 'pro-el-components'
 import { onMounted, ref, watch } from 'vue'
 
 // 定义组件属性类型
@@ -62,16 +62,20 @@ async function fetchData(reset = false): Promise<void> {
   if (reset && props.searchKey)
     params[props.searchKey] = searchValue.value
 
-  const result = await execute(params)
-  const data = formatOptions(result?.data)
-
-  options.value = reset ? data : uniqBy([...options.value, ...data].reverse(), props.optionNames.value).reverse()
-  props.onOptionsChanged?.(options.value)
-  total.value = result?.total ?? 0
-  emit('loaded', options.value)
-  if (loadedNum.value === 0)
-    emit('firstLoaded', options.value)
-  loadedNum.value++
+  try {
+    const result = await execute(params)
+    const data = formatOptions(result?.data)
+    options.value = reset ? data : uniqBy([...options.value, ...data].reverse(), props.optionNames.value).reverse()
+    props.onOptionsChanged?.(options.value)
+    total.value = result?.total ?? 0
+    emit('loaded', options.value)
+    if (loadedNum.value === 0)
+      emit('firstLoaded', options.value)
+    loadedNum.value++
+  }
+  catch (error) {
+    console.error('RemoteSelect fetchData error', error)
+  }
 }
 
 // 初始化默认选项并加载数据
@@ -132,6 +136,7 @@ function getDisplayText(): string {
   <ElSelect
     v-if="!viewMode"
     :model-value="modelValue"
+    :multiple="multiple"
     v-bind="$attrs"
     :loading="isLoading"
     :remote="!searchInLocal"

@@ -2,8 +2,8 @@
 import type { RecordType, TableSelectorProps } from 'pro-el-components'
 import { ElDialog } from 'element-plus'
 import { ProTableSelector } from 'pro-el-components'
-import 'pro-el-components/components/TableSelector/style.css'
 import { computed, ref, watchEffect } from 'vue'
+import 'pro-el-components/components/TableSelector/style.css'
 
 interface ModalSelectorProps extends Omit<TableSelectorProps, 'modelValue'> {
   title?: string

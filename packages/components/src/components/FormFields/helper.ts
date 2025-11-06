@@ -9,7 +9,6 @@ const placeholderMap: Record<string, any> = {
   timePicker: '请选择',
   cascader: '请选择',
   treeSelect: '请选择',
-  component: '请选择',
   number: '请输入',
   textarea: '请输入',
 }
@@ -78,7 +77,7 @@ export function getFormFieldProps(item: ProFormFieldsField, value: any, formValu
 }
 
 export function getPlaceholder(type: string, label?: string) {
-  return `${placeholderMap[type] || '请输入'}${label || ''}`
+  return placeholderMap[type] ? `${placeholderMap[type]}${label || ''}` : ''
 }
 
 // 处理range数据映射

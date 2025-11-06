@@ -3,9 +3,9 @@ import type { SearchFormProps } from './types'
 import { ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import { ElButton, ElForm, ElIcon } from 'element-plus'
 import { ProFormFields } from 'pro-el-components'
-import 'pro-el-components/components/FormFields/style.css'
 import { computed, isRef, ref, watch } from 'vue'
 import SearchFormButtons from './buttons.vue'
+import 'pro-el-components/components/FormFields/style.css'
 import './style.css'
 
 defineOptions({

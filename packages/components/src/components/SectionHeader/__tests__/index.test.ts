@@ -32,8 +32,7 @@ describe('sectionHeader', () => {
         bordered: true,
       },
     })
-    expect(wrapper.classes()).toContain('border-b')
-    expect(wrapper.classes()).toContain('border-gray-200')
+    expect(wrapper.classes()).toContain('bordered')
   })
 
   it('triggers onClick callback', async () => {

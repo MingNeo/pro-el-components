@@ -5,12 +5,12 @@
     justify-content: flex-end;
   }
 
-  .table-header {
+  &-header {
     padding-top: 0;
     padding-bottom: 0;
   }
 
-  .pro-table-inner {
+  &-inner {
     max-width: 100%;
   }
 
@@ -24,7 +24,7 @@
     justify-content: flex-end;
   }
 
-  .pro-table-pagination {
+  &-pagination {
     margin-top: 8px;
   }
 

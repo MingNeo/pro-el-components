@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import TextSummary from '../index.vue'
+import ProTextSummary from '../index.vue'
 </script>
 
 <template>
-  <TextSummary
+  <ProTextSummary
+    text="这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本"
     :max-length="20"
-    content="这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本"
   />
 </template>

@@ -9,6 +9,7 @@ interface Option {
 
 defineOptions({
   name: 'ProSelect',
+  inheritAttrs: false,
 })
 
 const props = withDefaults(defineProps<{

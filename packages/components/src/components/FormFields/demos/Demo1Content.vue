@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ElButton, ElForm } from 'element-plus'
-import { computed, ref, watch } from 'vue'
+import { computed, markRaw, ref, watch } from 'vue'
 import ProFormFields from '../index.vue'
 import { treeData as treeDataExample } from './constant'
 import CountrySelectorField from './CountrySelectorField.vue'
@@ -41,13 +41,22 @@ const fields = computed(() => [
     label: '年龄',
     prop: 'age',
     type: 'number',
-    column: props.column === 1 ? 3 : props.column,
+    column: props.column === 1 ? 2 : props.column,
+  },
+  {
+    label: '性别',
+    prop: 'gender',
+    type: 'select',
+    column: props.column === 1 ? 2 : props.column,
+    options: [
+      { label: '男', value: 'male' },
+      { label: '女', value: 'female' },
+    ],
   },
   {
     label: '电话',
     prop: 'phone',
     type: 'input',
-    column: props.column === 1 ? 3 : props.column,
     rules: [{
       pattern: /^\d{11}$/,
       message: '请输入正确的电话号码',
@@ -57,21 +66,21 @@ const fields = computed(() => [
     }],
   },
   {
-    label: '性别',
-    prop: 'gender',
-    type: 'select',
-    column: props.column === 1 ? 3 : props.column,
-    options: [
-      { label: '男', value: 'male' },
-      { label: '女', value: 'female' },
-    ],
-  },
-  {
     label: '加入时间',
     prop: 'joinTime',
     type: 'datePicker',
     fieldProps: {
       valueFormat: 'YYYY-MM-DD',
+    },
+  },
+  {
+    label: '测试',
+    prop: 'test',
+    type: 'slider',
+    fieldProps: {
+      min: 0,
+      max: 100,
+      step: 1,
     },
   },
   {
@@ -87,14 +96,15 @@ const fields = computed(() => [
     label: '国家',
     prop: 'country',
     type: 'component',
-    component: CountrySelectorField,
+    component: markRaw(CountrySelectorField),
   },
   // 自定义组件
   {
     label: '评分矩阵',
     prop: 'rate',
     type: 'component',
-    component: RatingsField,
+    // 在computed中，使用markRaw来标记组件，优化性能
+    component: markRaw(RatingsField),
     column: 1,
     fieldProps: {
       dimensions: [

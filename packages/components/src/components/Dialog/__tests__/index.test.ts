@@ -27,10 +27,10 @@ describe('dialog 组件', () => {
     })
 
     await new Promise(resolve => setTimeout(resolve, 200))
-    expect(wrapper.find('.dialog-footer').exists()).toBe(true)
+    expect(wrapper.find('.pro-dialog-footer').exists()).toBe(true)
 
     await wrapper.setProps({ showFooter: false })
-    expect(wrapper.find('.dialog-footer').exists()).toBe(false)
+    expect(wrapper.find('.pro-dialog-footer').exists()).toBe(false)
   })
 
   it('应该正确触发关闭事件', async () => {
@@ -42,7 +42,7 @@ describe('dialog 组件', () => {
     })
 
     await new Promise(resolve => setTimeout(resolve, 200))
-    await wrapper.find('.dialog-footer .el-button').trigger('click')
+    await wrapper.find('.pro-dialog-footer .el-button').trigger('click')
     expect(wrapper.emitted('update:modelValue')).toBeTruthy()
     expect(wrapper.emitted('update:modelValue')![0]).toEqual([false])
   })

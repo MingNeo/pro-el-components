@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Star } from '@element-plus/icons-vue'
-import { ElIcon } from 'element-plus'
+import { ElIcon, ElMessage } from 'element-plus'
 import SectionHeader from '../index.vue'
 
 const actions: any[] = [
@@ -8,13 +8,13 @@ const actions: any[] = [
     text: '新增',
     type: 'primary',
     onClick: () => {
-      console.log('点击新增')
+      ElMessage('点击新增')
     },
   },
   {
     text: '刷新',
     onClick: () => {
-      console.log('点击刷新')
+      ElMessage('点击刷新')
     },
   },
 ]

@@ -128,10 +128,13 @@ describe('table 组件', () => {
     const statusColumns = [{
       prop: 'status',
       label: '状态',
-      mapping: [
-        { value: 1, label: '正常', status: 'success' },
-        { value: 0, label: '禁用', status: 'error' },
-      ],
+      renderAs: 'enum',
+      fieldProps: {
+        options: [
+          { value: 1, label: '正常', status: 'success' },
+          { value: 0, label: '禁用', status: 'error' },
+        ],
+      },
     }]
     const statusData = [
       { status: 1 },

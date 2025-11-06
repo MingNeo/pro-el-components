@@ -1,8 +1,13 @@
 import { computed, onUnmounted, ref, watch } from 'vue'
 
-export function useSecondsCountdown(time: number, { callback }: {
+export function useSecondsCountdown(time: number, {
+  callback,
+  formatTime = (time: number) => String(time).padStart(2, '0'),
+  duration = 1000,
+}: {
   callback?: () => void
   formatTime?: (time: number) => string
+  duration?: number
 } = {}) {
   const current = ref(time)
   const isCounting = ref(false)
@@ -25,7 +30,7 @@ export function useSecondsCountdown(time: number, { callback }: {
           stop()
           callback?.()
         }
-      }, 1000)
+      }, duration)
     }
   }
 
@@ -39,8 +44,4 @@ export function useSecondsCountdown(time: number, { callback }: {
   })
 
   return { start, stop, current, formattedTime, isCounting }
-}
-
-function formatTime(time: number): string {
-  return `${String(time).padStart(2, '0')}`
 }

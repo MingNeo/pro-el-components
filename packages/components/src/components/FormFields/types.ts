@@ -40,7 +40,7 @@ interface ComponentPropsMap {
 
 export interface SearchField {
   label?: string
-  name: string
+  prop: string
   type: string
   component?: any
   fieldProps?: ProFormFieldsField['type'] extends keyof ComponentPropsMap ? ComponentPropsMap[ProFormFieldsField['type']] : Record<string, any>

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ElMessage } from 'element-plus'
 import { ref } from 'vue'
 import ListPage from '../index.vue'
 
@@ -7,7 +8,7 @@ const actions = [
   {
     text: '新建',
     type: 'primary' as const,
-    onClick: () => console.log('新建'),
+    onClick: () => ElMessage('新建'),
   },
 ]
 
@@ -56,27 +57,27 @@ const data = ref([
 
 // 处理搜索
 function handleSearch(params: Record<string, any>) {
-  console.log('搜索参数:', params)
+  ElMessage('搜索参数:', params)
 }
 
 // 处理重置
 function handleReset() {
-  console.log('重置搜索')
+  ElMessage('重置搜索')
 }
 
 // 处理表格变化
 function handleTableChange(pagination: any, filters: any, sorter: any) {
-  console.log('表格变化:', { pagination, filters, sorter })
+  ElMessage('表格变化:', { pagination, filters, sorter })
 }
 
 // 处理编辑
 function handleEdit(record: any) {
-  console.log('编辑:', record)
+  ElMessage('编辑:', record)
 }
 
 // 处理删除
 function handleDelete(record: any) {
-  console.log('删除:', record)
+  ElMessage('删除:', record)
 }
 </script>
 

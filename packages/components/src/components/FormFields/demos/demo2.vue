@@ -1,6 +1,6 @@
 <script setup>
 import { ElButton, ElCard, ElForm, ElFormItem, ElInput } from 'element-plus'
-import { ref } from 'vue'
+import { markRaw, ref } from 'vue'
 import ProFormFields from '../index.vue'
 import CountrySelectorField from './CountrySelectorField.vue'
 
@@ -28,7 +28,8 @@ const fields2 = ref([{
   label: '国家',
   prop: 'country',
   type: 'component',
-  component: CountrySelectorField,
+  // 在computed中，使用markRaw来标记组件，优化性能
+  component: markRaw(CountrySelectorField),
 }])
 </script>
 

@@ -100,7 +100,7 @@ export function useStreamData(options: StreamOptions) {
             }
           }
           catch (e) {
-            console.log(e)
+            console.warn(e)
             handleError(new Error('Failed to process stream chunk'))
           }
         },

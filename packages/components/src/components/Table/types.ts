@@ -19,8 +19,6 @@ export interface Column extends ComponentProps<typeof ElTableColumn> {
   customRender?: (row: Record<string, any>, column: Column, index: number) => any
   // 列操作
   actions?: ButtonAction[] | ((record: Record<string, any>, column: Column, index: number) => ButtonAction[]) | ((record: Record<string, any>, column: Column) => ButtonAction[]) | ((record: Record<string, any>) => ButtonAction[])
-  // 列枚举值映射
-  mapping?: Record<string, any>
   mappingMap?: Record<string, any>
   // 列渲染类型
   renderAs?: 'date' | 'file' | 'link' | 'image' | string | Component
@@ -37,8 +35,12 @@ export interface StorageOptions {
 }
 
 export interface PaginationProps extends ElPaginationProps {
+  // v-model 更新事件
   'onUpdate:currentPage'?: (val: number) => void
   'onUpdate:pageSize'?: (val: number) => void
+  // 事件监听（推荐使用）
+  'onCurrentChange'?: (val: number) => void
+  'onSizeChange'?: (val: number) => void
 }
 
 export interface TableProps extends ElTableProps<any> {

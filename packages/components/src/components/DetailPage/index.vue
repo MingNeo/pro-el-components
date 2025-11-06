@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 import type { FormItemProps } from 'element-plus'
 import type { ButtonAction, ProFormFieldsField } from 'pro-el-components'
-import { ElForm } from 'element-plus'
+import { ElForm, vLoading } from 'element-plus'
 import { ProButtonActions, ProFormFields, ProPageHeader, ProSectionHeader, useRequest } from 'pro-el-components'
+import { computed, getCurrentInstance, ref, useSlots, watch } from 'vue'
+import 'element-plus/es/components/loading/style/index'
 import 'pro-el-components/components/FormFields/style.css'
 import 'pro-el-components/components/PageHeader/style.css'
 import 'pro-el-components/components/SectionHeader/style.css'
 import 'pro-el-components/components/ButtonActions/style.css'
-import { computed, defineEmits, defineProps, ref, useSlots, watch } from 'vue'
 import './style.css'
 
 defineOptions({
@@ -32,8 +33,8 @@ const props = withDefaults(defineProps<{
   showFooter?: boolean
   contentClass?: string
   getDataService?: (...args: any[]) => Promise<Record<string, any> | any[]>
-  updateService?: (...args: any[]) => void
-  createService?: (...args: any[]) => void
+  updateService?: (...args: any[]) => any
+  createService?: (...args: any[]) => any
 }>(), {
   defaultValue: () => ({}),
   showFooter: true,
@@ -41,9 +42,13 @@ const props = withDefaults(defineProps<{
 })
 const emit = defineEmits(['update:visible', 'ok', 'update:formData', 'submit', 'back'])
 
+const instance = getCurrentInstance()
+// 是否受控模式：检查 formData prop 是否被显式传入（标签上是否写了）
+const isControlled = instance?.vnode?.props ? ('formData' in instance.vnode.props || 'form-data' in instance.vnode.props) : !!props.formData
+
 const formRef = ref()
 
-const data = ref(props.formData ?? props.defaultValue)
+const data = ref(isControlled ? props.formData : props.defaultValue)
 const mode = computed(() => props.type ?? (props.viewMode ? 'detail' : (data.value[props.idKey || 'id'] ? 'edit' : 'create')))
 
 const { execute: submitForm, isLoading: isSubmitLoading } = useRequest(async (...args: any) => await (mode.value === 'edit' ? props.updateService : props.createService)?.(...args), {
@@ -51,37 +56,37 @@ const { execute: submitForm, isLoading: isSubmitLoading } = useRequest(async (..
 })
 
 const footerActions = computed(() => {
-  if (props.viewMode)
+  if (mode.value === 'detail')
     return []
 
-  return ((Array.isArray(props.footerActions) ? props.footerActions : props.footerActions?.({ submit: handleSubmit, cancel: () => emit('back'), submitLoading: isSubmitLoading.value })) || [{
-    text: '取消',
-    onClick: () => {
-      emit('back')
-    },
-  }, {
-    text: '提交',
-    type: 'primary',
-    loading: isSubmitLoading.value,
-    onClick: handleSubmit,
-  }]).map(v => ({ ...v, args: [data] }))
+  return (
+    (Array.isArray(props.footerActions) ? props.footerActions : props.footerActions?.({ submit: handleSubmit, cancel: handleCancel, submitLoading: isSubmitLoading.value }))
+    || [{
+      text: '取消',
+      onClick: handleCancel,
+    }, {
+      text: '提交',
+      type: 'primary',
+      loading: isSubmitLoading.value,
+      onClick: handleSubmit,
+    }]
+  ).map(v => ({ ...v, args: [data] }))
 })
 
 const { footer: footerSlot } = useSlots()
-const showFooter = computed(() => {
-  return (props.showFooter ?? !props.viewMode) && !!(footerActions.value?.length || footerSlot)
-})
+const showFooter = computed(() => (props.showFooter ?? mode.value !== 'detail') && !!(footerActions.value?.length || footerSlot))
 
-watch(
-  () => props.defaultValue,
-  (val) => {
-    if (!props.formData) {
+if (!isControlled) {
+  watch(
+    () => props.defaultValue,
+    (val) => {
       data.value = val
+      // 可能有单独监听update:formData事件而非 v-model 的写法，进行兼容
       emit('update:formData', data.value)
-    }
-  },
-  { deep: true },
-)
+    },
+    { deep: true },
+  )
+}
 
 watch(
   () => props.formData,
@@ -89,8 +94,28 @@ watch(
   { deep: true },
 )
 
+// 如果存在getDataService，则自动执行获取数据
+const isGetDataLoading = ref(false)
+
+watch(mode, (newMode) => {
+  if (!newMode || newMode !== 'create') {
+    if (props.getDataService) {
+      isGetDataLoading.value = true
+      props.getDataService().then((res) => {
+        data.value = res
+        emit('update:formData', data.value)
+      }).finally(() => {
+        isGetDataLoading.value = false
+      })
+    }
+    return
+  }
+
+  data.value = isControlled ? props.formData : props.defaultValue
+}, { immediate: true })
+
 async function handleSubmit() {
-  if (!props.viewMode) {
+  if (mode.value !== 'detail') {
     try {
       const value = await formRef.value.validate()
       emit('update:formData', data.value)
@@ -103,6 +128,10 @@ async function handleSubmit() {
       console.log('error', error)
     }
   }
+}
+
+function handleCancel() {
+  emit('back')
 }
 
 function handleDataChange(value: any, merge = false) {
@@ -120,19 +149,6 @@ async function validField(fields: string[] = []) {
 defineExpose({
   validField,
 })
-
-// 如果存在getDataService，则自动执行获取数据
-const isGetDataLoading = ref(false)
-
-if (props.getDataService) {
-  isGetDataLoading.value = true
-  props.getDataService().then((res) => {
-    data.value = res
-    emit('update:formData', data.value)
-  }).finally(() => {
-    isGetDataLoading.value = false
-  })
-}
 </script>
 
 <template>
@@ -156,7 +172,7 @@ if (props.getDataService) {
               <ProFormFields
                 v-model="data"
                 :column="column"
-                :view-mode="viewMode"
+                :view-mode="mode === 'detail'"
                 :fields="fields"
                 :form-item-props="formItemProps"
                 @change="handleDataChange"
@@ -169,7 +185,7 @@ if (props.getDataService) {
                 v-if="item.fields?.length"
                 v-model="data"
                 :column="column"
-                :view-mode="viewMode"
+                :view-mode="mode === 'detail'"
                 :fields="item.fields"
                 :form-item-props="formItemProps"
                 @change="handleDataChange"

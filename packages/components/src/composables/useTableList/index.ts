@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 import { debounce } from 'lodash-es'
 import { useRequest } from 'pro-el-components'
-import { computed, isRef, nextTick, onMounted, ref } from 'vue'
+import { computed, isRef, nextTick, ref } from 'vue'
 
 export type UseTableListService = (params: Record<string, any>) => Promise<{ data: any, total?: number } | any[]>
 
@@ -56,9 +56,9 @@ export function useTableList<T extends TableListItemData>(
   const { data, isLoading, execute } = useRequest(service, { immediate: false })
 
   const total = computed(() => getTotal(data?.value))
-  const listData: Ref<T[]> = computed(() => {
-    const newData = getData(data?.value) as T[]
-    return mergeData ? [...listData.value, ...newData] : newData
+  const listData: Ref<T[]> = computed((oldListData = []) => {
+    const newData = getData(data?.value) || [] as T[]
+    return mergeData ? [...oldListData, ...newData] : newData
   })
 
   const fetchDataSimple = async (params: Record<string, any> = {}, merge = true) => {
@@ -72,7 +72,7 @@ export function useTableList<T extends TableListItemData>(
 
   function bindFormData() {
     // 初始化时将搜索数据绑定到表单组件
-    if (formRef) {
+    if (formRef.value) {
       Object.keys(searchData.value).forEach((key) => {
         try {
           formRef.value[key] = searchData.value[key]
@@ -123,10 +123,8 @@ export function useTableList<T extends TableListItemData>(
     return fetchData()
   }
 
-  onMounted(() => {
-    if (immediate)
-      fetchData()
-  })
+  if (immediate)
+    fetchData()
 
   return {
     searchFormRef: formRef,
@@ -147,8 +145,8 @@ export function useTableList<T extends TableListItemData>(
       currentPage: pageNo.value,
       pageSize: pageSize.value,
       total: total.value,
-      onPageSize: changePageSize,
-      onCurrentPage: changePageNo,
+      onSizeChange: changePageSize,
+      onCurrentChange: changePageNo,
     })),
 
     reset,

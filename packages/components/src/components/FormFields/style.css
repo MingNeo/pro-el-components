@@ -2,26 +2,28 @@
   --label-extra-color: #B2B2B2;
 }
 
-.pro-form-items-builder {
+.pro-form-fields {
   &.view-mode {
     padding-bottom: 8px;
   }
-}
-
-.el-form-item.pro-form-item.view-mode {
-  margin-bottom: 0;
-}
-
-.pro-form-item__label-extra {
-  color: var(--label-extra-color);
-  margin-left: 4px;
 }
 
 .label-tip-icon {
   margin-left: 2px;
 }
 
-.el-form-item.pro-form-item {
+.pro-form-field_content {
+  word-break: break-all;
+}
+
+.pro-form-fields_item,
+.pro-form-fields_item.el-form-item {
+
+  &__label-extra {
+    color: var(--label-extra-color);
+    margin-left: 4px;
+  }
+
   &.view-mode {
     margin-bottom: 18px;
 
@@ -34,7 +36,8 @@
   .el-form-item__content {
 
     .el-picker,
-    .el-input-number {
+    .el-input-number,
+    .el-upload {
       width: 100%;
     }
   }

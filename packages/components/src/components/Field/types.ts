@@ -1,4 +1,6 @@
-export type ValueType =
+import type { Component } from 'vue'
+
+export type FieldType =
   | 'input'
   | 'number'
   | 'password'
@@ -40,10 +42,11 @@ export type ValueType =
   | 'divider'
   | 'dependency'
   | 'file'
+  | 'slider'
 
 export interface ProFieldProps {
   value?: any
-  valueType?: ValueType
+  fieldType?: FieldType | Component
   fieldProps?: Record<string, any>
   mode?: 'read' | 'edit'
 }

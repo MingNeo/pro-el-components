@@ -1,8 +1,34 @@
-# TextSummary
-自动展开和折叠的文本
+# TextSummary 文本摘要
 
-<script setup>
-  import demo1 from '@/components/TextSummary/demos/demo1.vue'
-  import demo1Code from '@/components/TextSummary/demos/demo1.vue?raw'
-</script>
-<demo :comp="demo1" :code="demo1Code" title="基础用法" />
+TextSummary 组件用于自动展开和折叠长文本,适用于需要节省空间同时又能显示完整内容的场景。支持通过属性或插槽传入内容。
+
+## 基础用法
+
+<demo src="@/components/TextSummary/demos/demo1.vue" />
+
+## 属性
+
+| 属性名          | 说明                       | 类型    | 默认值 |
+| --------------- | -------------------------- | ------- | ------ |
+| text            | 要显示的文本内容           | string  | ''     |
+| maxLength       | 折叠状态下显示的最大字符数 | number  | 100    |
+| defaultExpanded | 是否默认展开               | boolean | false  |
+
+## 事件
+
+| 事件名   | 说明           | 回调参数 |
+| -------- | -------------- | -------- |
+| expand   | 文本展开时触发 | -        |
+| collapse | 文本折叠时触发 | -        |
+
+## 插槽
+
+| 插槽名        | 说明           | 插槽参数              | 默认值 |
+| ------------- | -------------- | --------------------- | ------ |
+| default       | 自定义文本内容 | { maxLength: number } | -      |
+| expandLabel   | 展开按钮内容   | -                     | '展开' |
+| collapseLabel | 折叠按钮内容   | -                     | '收起' |
+
+## 示例
+
+### 使用属性传入内容

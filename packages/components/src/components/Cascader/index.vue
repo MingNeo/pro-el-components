@@ -4,7 +4,7 @@ import { ElCascader } from 'element-plus'
 import { computed, onMounted, ref } from 'vue'
 
 interface ProCascader {
-  modelValue: CascaderValue
+  modelValue?: CascaderValue | CascaderValue[]
   service?: () => Promise<CascaderOption[]>
   viewMode?: boolean
   props?: CascaderProps
@@ -13,6 +13,7 @@ interface ProCascader {
 
 defineOptions({
   name: 'ProCascader',
+  inheritAttrs: false,
 })
 
 const props = withDefaults(defineProps<ProCascader>(), {
@@ -33,10 +34,10 @@ function getValue(val: CascaderValue) {
 }
 
 // 处理选择变化
-function handleChange(val: CascaderValue) {
+function handleChange(val: CascaderValue | CascaderValue[]) {
   const selectedValue = multiple
-    ? (val as any[]).map(getValue)
-    : getValue(val)
+    ? (val as CascaderValue[]).map(getValue)
+    : getValue(val as CascaderValue)
 
   emit('update:modelValue', selectedValue)
   emit('change', selectedValue, val)
@@ -84,8 +85,8 @@ function findNodePath(nodes: CascaderOption[], value: string, path: CascaderOpti
 }
 
 // 查找标签
-function findLabels(value: CascaderValue | CascaderValue[]): string[] {
-  const values = Array.isArray(value) ? value : [value]
+function findLabels(value?: CascaderValue | CascaderValue[]): string[] {
+  const values = Array.isArray(value) ? value : [value].filter(Boolean)
   return values.map((v) => {
     if (!v)
       return '-无-'

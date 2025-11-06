@@ -1,0 +1,24 @@
+.pro-upload {
+  &_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    span {
+      white-space: nowrap;
+    }
+  }
+
+  &_preview-dialog {
+    padding: 0;
+
+    .el-dialog__header {
+      display: none;
+    }
+  }
+
+  &_preview-image {
+    width: 100%;
+  }
+}

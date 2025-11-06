@@ -19,7 +19,7 @@ const props = defineProps<{
   activeTab?: string | number | boolean
 }>()
 
-const emit = defineEmits(['cancel', 'update:activeTab'])
+const emit = defineEmits(['back', 'update:activeTab'])
 
 const activeTab = ref(props.activeTab ?? props.tabs?.[0]?.name)
 
@@ -27,8 +27,8 @@ watch(() => props.activeTab, (newVal) => {
   activeTab.value = newVal
 })
 
-function handleCancel() {
-  emit('cancel')
+function handleBack() {
+  emit('back')
 }
 
 function handleUpdateActiveTab(_value: string | number | boolean | undefined) {
@@ -41,7 +41,7 @@ function handleUpdateActiveTab(_value: string | number | boolean | undefined) {
   <div class="pro-page-header" v-bind="$attrs">
     <div class="pro-page-header__top">
       <div class="pro-page-header__title">
-        <ElIcon v-if="showBack" class="pro-page-header__back" @click="handleCancel">
+        <ElIcon v-if="showBack" class="pro-page-header__back" @click="handleBack">
           <ArrowLeft />
         </ElIcon>
         <slot name="title">

@@ -96,16 +96,16 @@ async function handleSubmit() {
       :rules="rules"
       @finish="handleSubmit"
     >
-      <slot name="form-header" />
+      <slot name="formHeader" />
 
       <ElFormItem prop="username">
-        <slot name="username-input">
+        <slot name="usernameInput">
           <ElInput v-model="formData.username" placeholder="请输入账号" />
         </slot>
       </ElFormItem>
 
       <ElFormItem prop="code">
-        <slot name="code-input">
+        <slot name="codeInput">
           <ElInput v-model="formData.code" show-password placeholder="验证码">
             <template #append>
               <slot name="captcha-button" :is-counting="isCounting" :time="formattedTime" :on-get-captcha="handleGetCaptcha">
@@ -122,7 +122,7 @@ async function handleSubmit() {
       </ElFormItem>
 
       <ElFormItem>
-        <slot name="submit-button">
+        <slot name="submitButton">
           <ElButton :disabled="!formData.remember" class="quick-login__submit" type="primary" @click="handleSubmit">
             登录
           </ElButton>
@@ -132,7 +132,7 @@ async function handleSubmit() {
       <slot name="agreement">
         <div class="quick-login__agreement">
           <ElCheckbox v-model="formData.remember" />
-          <slot name="agreement-text">
+          <slot name="agreementText">
             我已阅读并同意 <a href="">《用户协议》</a> 和 <a href="">《隐私政策》</a>
           </slot>
         </div>

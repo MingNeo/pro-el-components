@@ -110,7 +110,7 @@ const containerStyle = computed(() => {
       :style="dotStyle"
     />
     <slot name="icon">
-      <Component :is="icon" v-if="icon" />
+      <component :is="icon" v-if="icon" />
     </slot>
     <span
       class="text"

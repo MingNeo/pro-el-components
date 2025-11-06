@@ -27,7 +27,7 @@ const fields = [
 
 const formData = reactive({
   name: '',
-  age: '',
+  age: undefined,
   address: '',
 })
 

@@ -39,7 +39,9 @@ withDefaults(defineProps<{
       </slot>
     </div>
     <div class="pro-section-header__right">
-      <ProButtonActions :actions="actions" type="button" :size="size" />
+      <ProButtonActions :actions="actions" type="button" :size="size">
+        <slot name="actions" />
+      </ProButtonActions>
       <slot name="right" />
     </div>
   </div>

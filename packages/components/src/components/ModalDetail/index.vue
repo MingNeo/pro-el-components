@@ -2,8 +2,8 @@
 import type { FormItemProps } from 'element-plus'
 import type { ButtonAction } from 'pro-el-components'
 import { ProModalForm, useRequest } from 'pro-el-components'
-import 'pro-el-components/components/ModalForm/style.css'
 import { computed, watch } from 'vue'
+import 'pro-el-components/components/ModalForm/style.css'
 
 defineOptions({
   name: 'ProModalDetail',

@@ -1,19 +1,17 @@
 <script lang="ts" setup>
 import type { UploadProps } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
-import { ElDialog, ElIcon, ElUpload } from 'element-plus'
+import { ElButton, ElDialog, ElIcon, ElUpload } from 'element-plus'
 import { ref } from 'vue'
-
-interface ProUpload extends Partial<UploadProps> {
-}
+import './style.css'
 
 defineOptions({
   name: 'ProUpload',
 })
 
-const props = withDefaults(defineProps<ProUpload>(), {
-  listType: 'picture-card',
-})
+defineProps<{
+  buttonText?: string
+}>()
 
 const previewUrl = ref('')
 const previewShow = ref(false)
@@ -26,13 +24,22 @@ const handlePictureCardPreview: UploadProps['onPreview'] = (uploadFile) => {
 
 <template>
   <ElUpload
-    v-bind="props"
-    :on-preview="props.onPreview || handlePictureCardPreview"
+    class="pro-upload"
+    v-bind="$attrs"
+    :on-preview="$attrs.onPreview || handlePictureCardPreview"
   >
-    <ElIcon><Plus /></ElIcon>
+    <template v-if="$attrs.listType === 'text'">
+      <ElIcon><Plus /></ElIcon>
+    </template>
+    <template v-else>
+      <ElButton class="pro-upload_button">
+        <ElIcon><Plus /></ElIcon>
+        <span>{{ buttonText || '上传' }}</span>
+      </ElButton>
+    </template>
   </ElUpload>
 
-  <ElDialog v-model="previewShow">
-    <img w-full :src="previewUrl" alt="Preview Image">
+  <ElDialog v-model="previewShow" class="pro-upload_preview-dialog">
+    <img class="pro-upload_preview-image" :src="previewUrl" alt="">
   </ElDialog>
 </template>

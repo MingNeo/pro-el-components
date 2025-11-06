@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { ElSwitch } from 'element-plus'
 import { ref } from 'vue'
-import Checkbox from '../index.vue'
+import ProCheckbox from '../index.vue'
 import getData from './mock'
 
 const value = ref()
@@ -17,18 +18,18 @@ const viewMode = ref(false)
 
 <template>
   <div class="p-2">
-    <el-switch v-model="viewMode" class="mb-2" active-text="预览" inactive-text="编辑" />
+    <ElSwitch v-model="viewMode" class="mb-2" active-text="预览" inactive-text="编辑" />
     <div class="flex flex-col gap-2">
       <label>直接设置options: </label>
-      <Checkbox
+      <ProCheckbox
         v-model="value"
         :options="options"
         :view-mode="viewMode"
       />
       <label>通过service设置options: </label>
-      <Checkbox
+      <ProCheckbox
         v-model="selectedValues"
-        :service="getData as any"
+        :service="getData"
         :view-mode="viewMode"
       />
     </div>
