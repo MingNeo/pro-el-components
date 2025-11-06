@@ -1,0 +1,53 @@
+const e=`import type { Component } from 'vue'
+
+export type FieldType =
+  | 'input'
+  | 'number'
+  | 'password'
+  | 'money'
+  | 'textarea'
+  | 'date'
+  | 'dateTime'
+  | 'dateWeek'
+  | 'dateMonth'
+  | 'dateQuarter'
+  | 'dateYear'
+  | 'dateRange'
+  | 'dateTimeRange'
+  | 'time'
+  | 'timeRange'
+  | 'text'
+  | 'select'
+  | 'treeSelect'
+  | 'checkbox'
+  | 'rate'
+  | 'radio'
+  | 'radioButton'
+  | 'progress'
+  | 'percent'
+  | 'digit'
+  | 'second'
+  | 'avatar'
+  | 'code'
+  | 'switch'
+  | 'fromNow'
+  | 'image'
+  | 'jsonCode'
+  | 'color'
+  | 'cascader'
+  | 'segmented'
+  | 'group'
+  | 'formList'
+  | 'formSet'
+  | 'divider'
+  | 'dependency'
+  | 'file'
+  | 'slider'
+
+export interface ProFieldProps {
+  value?: any
+  fieldType?: FieldType | Component
+  fieldProps?: Record<string, any>
+  mode?: 'read' | 'edit'
+}
+`;export{e as default};

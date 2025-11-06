@@ -1,0 +1,1 @@
+import{an as s,ao as n,ap as t}from"./framework.igcgEEdr.js";function i(e){return e==null}const o=e=>e===void 0,a=e=>typeof e=="boolean",f=e=>typeof e=="number",u=e=>!e&&e!==0||n(e)&&e.length===0||t(e)&&!Object.keys(e).length,c=e=>typeof Element>"u"?!1:e instanceof Element,m=e=>i(e),b=e=>s(e)?!Number.isNaN(Number(e)):!1;export{a,b,o as c,c as d,i as e,m as f,u as g,f as i};

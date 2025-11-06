@@ -1,1 +1,0 @@
-import{ap as s,a6 as n,aq as t}from"./framework.C7SOrqHQ.js";function i(e){return e==null}const o=e=>e===void 0,a=e=>typeof e=="boolean",f=e=>typeof e=="number",u=e=>!e&&e!==0||n(e)&&e.length===0||t(e)&&!Object.keys(e).length,c=e=>typeof Element>"u"?!1:e instanceof Element,m=e=>i(e),b=e=>s(e)?!Number.isNaN(Number(e)):!1;export{f as a,b,o as c,i as d,a as e,m as f,u as g,c as i};

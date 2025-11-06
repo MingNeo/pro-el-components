@@ -1,0 +1,1 @@
+async function n(e){}async function o(e){return Promise.resolve(void 0)}async function i(e){return{id:1,regionCode:"1",regionName:"中国",regionShortName:"中国",regionAlias:"中国",timeZone:"东八区",regionLanguage:"中文",currencyName:"人民币"}}export{n as createRegion,i as getRegionInfo,o as updateRegion};

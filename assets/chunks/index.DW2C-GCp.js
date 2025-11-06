@@ -1,0 +1,1 @@
+import{a6 as c,al as s,am as i}from"./framework.igcgEEdr.js";function m(a){const e=c(),t=e==null?void 0:e.type.emits,o={};return t!=null&&t.length||console.warn(`No emitted event found. Please check component: ${e==null?void 0:e.type.__name}`),t==null||t.forEach(n=>{o[s(i(n))]=(...r)=>a(n,...r)}),o}export{m as useEmitAsProps};

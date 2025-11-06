@@ -1,0 +1,1 @@
+import{s as t,o as s,i as e}from"./index.BI4o4ewH.js";import{i as o}from"./isEqual.DkZuJHVE.js";import{i as a}from"./isSymbol.C7jn4vLP.js";function f(i,r){return t(s(i,r,e),i+"")}function p(i){return a(i)&&o(i)}export{f as b,p as i};
