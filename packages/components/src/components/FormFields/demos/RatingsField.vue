@@ -25,7 +25,8 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits(['update:modelValue', 'change'])
 
-const maxScore = props.maxScore || 5
+// 使用 computed 保持响应性
+const maxScore = computed(() => props.maxScore || 5)
 
 // 初始化评分数据
 const ratings = ref<Record<string, RatingItem>>(
@@ -53,8 +54,8 @@ function updateRating(dimension: string, field: 'score' | 'comment', value: numb
   emit('change', ratings.value)
 }
 
-// 生成分数选项
-const scoreOptions = Array.from({ length: maxScore + 1 }, (_, i) => i)
+// 生成分数选项，使用 computed 保持响应性
+const scoreOptions = computed(() => Array.from({ length: maxScore.value + 1 }, (_, i) => i))
 </script>
 
 <template>

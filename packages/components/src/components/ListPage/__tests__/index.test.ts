@@ -141,7 +141,7 @@ describe('listPage 组件', () => {
         columns: mockColumns,
         data: mockData,
         actions: [
-          { text: '新增', type: 'primary' },
+          { text: '新增', type: 'primary', onClick: () => {} },
         ],
       },
     })
@@ -157,7 +157,7 @@ describe('listPage 组件', () => {
         columns: mockColumns,
         data: mockData,
         headerActions: [
-          { text: '返回', type: 'default' },
+          { text: '返回', type: 'default', onClick: () => {} },
         ],
       },
     })

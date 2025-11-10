@@ -40,6 +40,13 @@ function handleOk() {
   emit('change', selected.value)
   visible.value = false
 }
+
+// 暴露给外部访问
+defineExpose({
+  visible,
+  selected,
+  handleOk,
+})
 </script>
 
 <template>

@@ -95,6 +95,12 @@ function handleCompositionEnd() {
     isComposing.value = false
   }, 100)
 }
+
+// 暴露给外部访问
+defineExpose({
+  value,
+  handleSubmit,
+})
 </script>
 
 <template>

@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import { describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it, vi } from 'vitest'
+import { defineComponent } from 'vue'
 import { useEmitAsProps } from '../index'
 
 describe('useEmitAsProps', () => {
@@ -213,4 +213,3 @@ describe('useEmitAsProps', () => {
     expect(wrapper.emitted('change')![0]).toEqual([testArray])
   })
 })
-

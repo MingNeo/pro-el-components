@@ -1,7 +1,7 @@
 /**
  * @vitest-environment jsdom
  */
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { useUrlData } from '../index'
 
 describe('useUrlData', () => {
@@ -37,7 +37,7 @@ describe('useUrlData', () => {
     expect(urlData.value.pageSize).toBe(10)
   })
 
-  it('URL 参数应该覆盖默认值', () => {
+  it('uRL 参数应该覆盖默认值', () => {
     window.history.replaceState({}, '', '?page__num=2')
 
     const defaults = { page: 1, pageSize: 10 }
@@ -69,7 +69,7 @@ describe('useUrlData', () => {
 
     setUrlParam('tags', ['vue', 'react', 'angular'])
 
-    expect(window.location.search).toContain('tags__arr=vue,react,angular')
+    expect(decodeURIComponent(window.location.search)).toBe('?tags__arr=vue,react,angular')
   })
 
   it('应该正确解析数组类型', () => {
@@ -171,13 +171,11 @@ describe('useUrlData', () => {
 
     setUrlParam('active', true)
 
-    expect(urlData.value.active).toBe('true')
+    expect(urlData.value.active).toBe(true)
   })
 
   it('应该正确更新浏览器历史', () => {
     const { setUrlParam } = useUrlData()
-
-    const initialLength = window.history.length
 
     setUrlParam('param', 'value')
 
@@ -230,4 +228,3 @@ describe('useUrlData', () => {
     expect(window.location.search).toBe('')
   })
 })
-

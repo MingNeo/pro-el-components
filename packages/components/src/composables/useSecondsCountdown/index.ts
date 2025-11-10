@@ -1,4 +1,4 @@
-import { computed, onUnmounted, ref, watch } from 'vue'
+import { computed, onScopeDispose, ref, watch } from 'vue'
 
 export function useSecondsCountdown(time: number, {
   callback,
@@ -34,7 +34,7 @@ export function useSecondsCountdown(time: number, {
     }
   }
 
-  onUnmounted(stop)
+  onScopeDispose(stop)
 
   const formattedTime = computed(() => formatTime(current.value))
 

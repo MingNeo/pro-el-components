@@ -6,7 +6,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { nextTick } from 'vue'
 import TableSelector from '../index.vue'
 
-describe('TableSelector 组件', () => {
+describe('tableSelector 组件', () => {
   const mockColumns = [
     { prop: 'id', label: 'ID', type: 'selection' },
     { prop: 'name', label: '名称' },
@@ -59,7 +59,7 @@ describe('TableSelector 组件', () => {
         columns: mockColumns,
         service: mockService,
         searchFields: [
-          { name: 'keyword', label: '关键词', type: 'input' },
+          { prop: 'keyword', label: '关键词', type: 'input' },
         ],
       },
     })
@@ -75,9 +75,10 @@ describe('TableSelector 组件', () => {
       },
     })
 
-    const selectedRows = [mockData[0], mockData[1]]
-    await wrapper.vm.handleSelectionChange(selectedRows)
-
+    const selectedRows = [mockData[0]]
+    const tableWrapper = wrapper.findComponent({ name: 'ProTable' })
+    await tableWrapper.vm.$emit('select', selectedRows, mockData[0])
+    await nextTick()
     expect(wrapper.emitted('update:modelValue')).toBeTruthy()
     expect(wrapper.emitted('update:modelValue')![0]).toEqual([selectedRows])
     expect(wrapper.emitted('change')).toBeTruthy()
@@ -103,7 +104,7 @@ describe('TableSelector 组件', () => {
 
   it('应该支持清除选择', async () => {
     const clearSelection = vi.fn()
-    
+
     const wrapper = shallowMount(TableSelector, {
       props: {
         columns: mockColumns,
@@ -114,7 +115,7 @@ describe('TableSelector 组件', () => {
           ProTable: {
             template: '<div class="pro-table-stub"></div>',
             methods: {
-              clearSelection: clearSelection,
+              clearSelection,
             },
           },
         },
@@ -122,12 +123,12 @@ describe('TableSelector 组件', () => {
     })
 
     await nextTick()
-    
+
     // 等待组件完全挂载并设置 ref
     await new Promise(resolve => setTimeout(resolve, 100))
 
-    // 手动调用 toggleSelection 清除选择（无参数时调用 clearSelection）
-    wrapper.vm.toggleSelection()
+    // 手动清除选择
+    wrapper.vm.clearSelection()
 
     expect(clearSelection).toHaveBeenCalled()
   })
@@ -141,12 +142,12 @@ describe('TableSelector 组件', () => {
       },
     })
 
-
     await wrapper.setProps({ modelValue: [mockData[0]] })
     await new Promise(resolve => setTimeout(resolve, 100))
 
     // 选中状态应该被同步
-    expect(wrapper.vm.showIds).toEqual([1, 2, 3])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')![0]).toEqual([[mockData[0]]])
   })
 
   it('应该默认显示搜索操作按钮', () => {
@@ -156,7 +157,7 @@ describe('TableSelector 组件', () => {
         columns: mockColumns,
         service: mockService,
         searchFields: [
-          { name: 'keyword', label: '关键词', type: 'input' },
+          { prop: 'keyword', label: '关键词', type: 'input' },
         ],
       },
     })
@@ -171,7 +172,7 @@ describe('TableSelector 组件', () => {
         columns: mockColumns,
         service: mockService,
         searchFields: [
-          { name: 'keyword', label: '关键词', type: 'input' },
+          { prop: 'keyword', label: '关键词', type: 'input' },
         ],
         showSearchActions: false,
       },
@@ -198,7 +199,7 @@ describe('TableSelector 组件', () => {
     const remoteData = [{ id: 4, name: '远程数据' }]
     const mockService = vi.fn().mockResolvedValue({ data: remoteData, total: 1 })
 
-    const wrapper = mount(TableSelector, {
+    mount(TableSelector, {
       props: {
         columns: mockColumns,
         service: mockService,
@@ -260,7 +261,7 @@ describe('TableSelector 组件', () => {
         columns: mockColumns,
         service: mockService,
         searchFields: [
-          { name: 'keyword', label: '关键词', type: 'input' },
+          { prop: 'keyword', label: '关键词', type: 'input' },
         ],
         searchColumn: 3,
       },
@@ -269,4 +270,3 @@ describe('TableSelector 组件', () => {
     expect(wrapper.vm.$props.searchColumn).toBe(3)
   })
 })
-

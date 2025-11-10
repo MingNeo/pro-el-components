@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { CascaderOption, CascaderProps, CascaderValue } from 'element-plus'
+import type { CascaderNodePathValue, CascaderNodeValue, CascaderOption, CascaderProps, CascaderValue } from 'element-plus'
 import { ElCascader } from 'element-plus'
 import { computed, onMounted, ref } from 'vue'
 
-interface ProCascader {
-  modelValue?: CascaderValue | CascaderValue[]
+interface ProCascaderProps {
+  modelValue?: CascaderValue
   service?: () => Promise<CascaderOption[]>
   viewMode?: boolean
   props?: CascaderProps
@@ -16,14 +16,19 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const props = withDefaults(defineProps<ProCascader>(), {
+const props = withDefaults(defineProps<ProCascaderProps>(), {
   props: () => ({}),
   options: () => [],
 })
 
 const emit = defineEmits(['update:modelValue', 'change'])
 
-const { label: labelName = 'label', value: valueName = 'value', children: childrenName = 'children', multiple } = props.props
+// 使用 computed 保持响应性
+const cascaderConfig = computed(() => props.props)
+const labelName = computed(() => cascaderConfig.value.label || 'label')
+const valueName = computed(() => cascaderConfig.value.value || 'value')
+const childrenName = computed(() => cascaderConfig.value.children || 'children')
+const multiple = computed(() => cascaderConfig.value.multiple)
 const remoteOptions = ref<CascaderOption[]>([])
 const options = computed<CascaderOption[]>(() => [...props.options, ...remoteOptions.value])
 
@@ -34,9 +39,9 @@ function getValue(val: CascaderValue) {
 }
 
 // 处理选择变化
-function handleChange(val: CascaderValue | CascaderValue[]) {
-  const selectedValue = multiple
-    ? (val as CascaderValue[]).map(getValue)
+function handleChange(val: CascaderValue) {
+  const selectedValue = multiple.value
+    ? (val as (CascaderNodeValue | CascaderNodePathValue)[]).map(getValue)
     : getValue(val as CascaderValue)
 
   emit('update:modelValue', selectedValue)
@@ -57,9 +62,9 @@ async function loadOptions() {
 // 格式化结果
 function formatResult(result: CascaderOption[]): CascaderOption[] {
   return result.map((item) => {
-    const newItem = { ...item, [valueName]: String(item[valueName]) }
-    if (item[childrenName])
-      newItem[childrenName] = formatResult(item[childrenName] as CascaderOption[])
+    const newItem = { ...item, [valueName.value]: String(item[valueName.value]) }
+    if (item[childrenName.value])
+      newItem[childrenName.value] = formatResult(item[childrenName.value] as CascaderOption[])
     return newItem
   })
 }
@@ -71,12 +76,12 @@ function findNodePath(nodes: CascaderOption[], value: string, path: CascaderOpti
     const currentPath = [...path, node]
 
     // 如果找到目标值，返回当前路径
-    if (String(node[valueName]) === String(value))
+    if (String(node[valueName.value]) === String(value))
       return currentPath
 
     // 如果有子节点，继续递归查找
-    if (node[childrenName]) {
-      const found = findNodePath(node[childrenName] as CascaderOption[], value, currentPath)
+    if (node[childrenName.value]) {
+      const found = findNodePath(node[childrenName.value] as CascaderOption[], value, currentPath)
       if (found)
         return found
     }
@@ -95,7 +100,7 @@ function findLabels(value?: CascaderValue | CascaderValue[]): string[] {
     if (!nodePath)
       return '-无-'
 
-    return nodePath.map(node => node[labelName]).join('-')
+    return nodePath.map(node => node[labelName.value]).join('-')
   }).filter(label => label !== '-无-')
 }
 

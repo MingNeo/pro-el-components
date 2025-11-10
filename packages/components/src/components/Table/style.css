@@ -5,6 +5,10 @@
     justify-content: flex-end;
   }
 
+  &-search-form {
+    margin-bottom: 16px;
+  }
+
   &-header {
     padding-top: 0;
     padding-bottom: 0;

@@ -42,6 +42,7 @@ ProFormFields 不是传统的"表单生成器"，而是"表单块生成器"：
   import demo4Code from '@/components/FormFields/demos/demo4.vue?raw'
 </script>
 
+## 用法
 ### 基础用法
 为了灵活性，ProFormFields只生成FormItem集合，需自己包裹在el-form中使用。
 
@@ -167,7 +168,8 @@ watch(formData.province, province => (formData.city = cityOptions.find(v => v.pr
 
 某些场景下，如二次封装的高级组件、低代码平台等等，也许只能使用配置方式来处理联动。
 
-##### 2.1、最简单的field的显示隐藏，可以使用上面提到过的show，show也支持函数，因此获取到formData。
+##### 2.1、使用 show 来联动显示隐藏
+最简单的field的显示隐藏，可以使用上面提到过的show，show也支持函数，因此获取到formData。
 ```ts
 const fields = [{
   label: '城市',
@@ -246,7 +248,7 @@ const fields: ProFormFieldsField[] = [{
 ### 其他
 
 #### 1、inline
-ProFormFields支持ElForm的inline模式，需同时设置ElForm以及ProFormFields的inline为true。
+ProFormFields支持ElForm的inline模式，需同时设置 `ElForm` 以及 `ProFormFields` 的inline为true。
 表单元素将不再包裹在Row和Col中，对应的column、row、col配置将失效。
 
 ```html

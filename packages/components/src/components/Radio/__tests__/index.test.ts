@@ -167,7 +167,7 @@ describe('proRadio 组件', () => {
     const mockService = vi.fn().mockRejectedValue(new Error('加载失败'))
     const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => { })
 
-    const wrapper = mount(ProRadio, {
+    mount(ProRadio, {
       props: {
         service: mockService,
       },
@@ -175,7 +175,6 @@ describe('proRadio 组件', () => {
 
     await new Promise(resolve => setTimeout(resolve, 10))
     expect(consoleWarnSpy).toHaveBeenCalled()
-    // expect(wrapper.findComponent(ElRadioGroup).find('.el-loading-spinner').exists()).toBe(false)
 
     consoleWarnSpy.mockRestore()
   })
@@ -211,7 +210,7 @@ describe('proRadio 组件', () => {
         options: mockOptions,
         radioProps: {
           size: 'large',
-        },
+        } as any,
       },
     })
 

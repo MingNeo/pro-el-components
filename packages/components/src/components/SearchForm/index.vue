@@ -26,9 +26,8 @@ const props = withDefaults(defineProps<SearchFormProps>(), {
 })
 
 const emit = defineEmits(['submit', 'reset', 'change'])
-const { form } = props
 
-const formRef = isRef(form) ? form : ref()
+const formRef = isRef(props.form) ? props.form : ref()
 
 const searchFormData = ref<Record<string, any>>({ ...props.defaultValue })
 
@@ -74,6 +73,7 @@ function toggleCollapse() {
 
 defineExpose({
   searchFormData,
+  showFields,
   onSearchReset,
 })
 </script>

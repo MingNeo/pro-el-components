@@ -20,13 +20,20 @@ const handlePictureCardPreview: UploadProps['onPreview'] = (uploadFile) => {
   previewUrl.value = uploadFile.url!
   previewShow.value = true
 }
+
+// 暴露给外部访问
+defineExpose({
+  previewUrl,
+  previewShow,
+  handlePictureCardPreview,
+})
 </script>
 
 <template>
   <ElUpload
     class="pro-upload"
     v-bind="$attrs"
-    :on-preview="$attrs.onPreview || handlePictureCardPreview"
+    :on-preview="($attrs.onPreview as UploadProps['onPreview']) || handlePictureCardPreview"
   >
     <template v-if="$attrs.listType === 'text'">
       <ElIcon><Plus /></ElIcon>

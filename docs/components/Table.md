@@ -56,6 +56,17 @@ ProTable 100% 兼容 Element Plus Table 的原生写法。只需将 `<ElTable>` 
 ProTable 支持同时使用配置式列（columns）和Elment plus 的 ElTableColumn 组件，让你可以渐进式迁移或灵活选择最适合的方式：
 
 <demo src="@/components/Table/demos/demo5.vue" title="配置式与模板式混合使用" />
+
+### 集成搜索表单
+
+ProTable 内置了搜索表单功能，只需在 columns 配置中添加 `search: true` 即可自动生成搜索字段：
+
+<demo src="@/components/Table/demos/demo6.vue" title="自动提取搜索字段" />
+
+也可以通过 `searchForm` 属性传入完整的搜索表单配置，自定义搜索字段和布局：
+
+<demo src="@/components/Table/demos/demo7.vue" title="自定义搜索表单配置" />
+
 ## 高级功能
 
 ### 列配置管理
@@ -160,25 +171,42 @@ const columns = [
 
 在 [Element Plus Table](https://element-plus.org/zh-CN/component/table.htm) 的基础上，新增以下配置：
 
-| 参数            | 说明               | 类型              | 默认值   |
-| --------------- | ------------------ | ----------------- | -------- |
-| `columnSetting` | 是否启用列配置功能 | `boolean`         | `false`  |
-| `columns`       | 表格列配置数组     | `Column[]`        | `[]`     |
-| `loading`       | 加载状态           | `boolean`         | `false`  |
-| `pagination`    | 分页配置对象       | `PaginationProps` | -        |
-| `tableId`       | 表格唯一标识       | `string`          | 自动生成 |
+| 参数            | 说明                                                    | 类型                               | 默认值   |
+| --------------- | ------------------------------------------------------- | ---------------------------------- | -------- |
+| `columnSetting` | 是否启用列配置功能                                      | `boolean`                          | `false`  |
+| `columns`       | 表格列配置数组                                          | `Column[]`                         | `[]`     |
+| `loading`       | 加载状态                                                | `boolean`                          | `false`  |
+| `pagination`    | 分页配置对象                                            | `PaginationProps`                  | -        |
+| `tableId`       | 表格唯一标识                                            | `string`                           | 自动生成 |
+| `searchForm`    | 搜索表单配置，传入 `true` 时自动从 columns 提取搜索字段 | `boolean \| TableSearchFormConfig` | -        |
+
+### ProTable Events
+
+| 事件名        | 说明               | 回调参数                                  |
+| ------------- | ------------------ | ----------------------------------------- |
+| `search`      | 搜索表单提交时触发 | `(formData: Record<string, any>) => void` |
+| `searchReset` | 搜索表单重置时触发 | `() => void`                              |
 
 ### Column 配置
 
-| 参数           | 说明                               | 类型                                                 | 默认值 |
-| -------------- | ---------------------------------- | ---------------------------------------------------- | ------ |
-| `label`        | 列标题                             | `string`                                             | -      |
-| `prop`         | 数据字段名                         | `string`                                             | -      |
-| `width`        | 列宽度                             | `string \| number`                                   | -      |
-| `customRender` | 自定义渲染函数，优先级高于renderAs | `(value, row, index) => VNode`                       | -      |
-| `renderAs`     | 内置渲染器类型                     | `'file' \| 'date' \| 'image' \| 'enum' \| Component` | -      |
-| `fieldProps`   | 渲染器属性                         | `Record<string, any>`                                | `{}`   |
-| `actions`      | 操作按钮配置                       | `Action[] \| (row, column, index) => Action[]`       | -      |
+| 参数               | 说明                                     | 类型                                                 | 默认值 |
+| ------------------ | ---------------------------------------- | ---------------------------------------------------- | ------ |
+| `label`            | 列标题                                   | `string`                                             | -      |
+| `prop`             | 数据字段名                               | `string`                                             | -      |
+| `width`            | 列宽度                                   | `string \| number`                                   | -      |
+| `customRender`     | 自定义渲染函数，优先级高于renderAs       | `(value, row, index) => VNode`                       | -      |
+| `renderAs`         | 内置渲染器类型                           | `'file' \| 'date' \| 'image' \| 'enum' \| Component` | -      |
+| `fieldProps`       | 渲染器属性                               | `Record<string, any>`                                | `{}`   |
+| `actions`          | 操作按钮配置                             | `Action[] \| (row, column, index) => Action[]`       | -      |
+| `search`           | 是否作为搜索字段                         | `boolean`                                            | -      |
+| `searchType`       | 搜索字段类型，不指定则自动推断           | `string`                                             | -      |
+| `searchFieldProps` | 搜索字段属性                             | `Record<string, any>`                                | -      |
+| `searchProp`       | 搜索字段的 prop，默认使用 column 的 prop | `string`                                             | -      |
+
+> **搜索字段类型自动推断规则**
+> - `renderAs: 'date'` → `datePicker`
+> - `renderAs: 'enum'` + 配置了 options → `select`
+> - 其他 → `input`
 
 ### Action 配置
 

@@ -32,42 +32,16 @@
 
 <demo src="@/composables/useTableList/demos/demo3.vue" />
 
-## 💡 核心概念
+## API
 
-### 数据流程
-
-```mermaid
-graph LR
-    A[组件挂载] --> B[调用 fetchData]
-    B --> C[更新 loading 状态]
-    C --> D[获取数据]
-    D --> E[更新 data 和 pagination]
-    F[搜索/分页操作] --> B
-```
-
-### 状态管理
-
-useTableList 管理以下状态：
-
-- **data** - 当前页的数据列表
-- **loading** - 加载状态标识
-- **pagination** - 分页信息（当前页、每页数量、总数等）
-- **searchData** - 搜索表单的数据
-
-## 🔧 API 详解
-
-### 函数签名
+### Typescript
 
 ```typescript
 function useTableList<T = any>(
   service: UseTableListService<T>,
   options?: UseTableListOptions
 ): UseTableListReturn<T>
-```
 
-### Service 函数
-
-```typescript
 type UseTableListService<T> = (
   params: {
     pageNo: number // 当前页码
@@ -87,15 +61,15 @@ type UseTableListService<T> = (
 
 ### Options 配置
 
-| 参数              | 类型                  | 默认值                            | 描述                                           |
-| ----------------- | --------------------- | --------------------------------- | ---------------------------------------------- |
-| `immediate`       | `boolean`             | `true`                            | 是否在组件挂载时立即加载数据                   |
-| `form`            | `FormInstance`        | -                                 | 表单实例，可选，用于重置表单, 如不传则自动生成 |
-| `defaultPageSize` | `number`              | `10`                              | 默认每页数量                                   |
-| getTotal          | (data: any) => number | (data: any) => data?.value?.total | 否                                             | 定义如何获取请求返回列表数据的total |
-| getList           | (data: any) => any[]  | (data: any) => data?.value?.data  | 否                                             | 定义如何获取请求返回列表数据的total |
-| onReset           | () => any             |                                   | 否                                             | 自定义清空处理                      |
-| mergeData         | () => any             |                                   | 否                                             | 自定义清空处理                      |
+| 参数              | 类型                        | 默认值                              | 描述                                                  |
+| ----------------- | --------------------------- | ----------------------------------- | ----------------------------------------------------- |
+| `immediate`       | `boolean`                   | `true`                              | 是否在组件挂载时立即加载数据                          |
+| `form`            | `FormInstance`              | -                                   | 表单实例，可选，用于重置表单, 如不传则自动生成        |
+| `defaultPageSize` | `number`                    | `10`                                | 默认每页数量                                          |
+| getTotal          | `(data: any) => number`     | `(data: any) => data?.value?.total` | 否                                                    | 定义如何获取请求返回列表数据的total |
+| getList           | `(data: any) => any[]`      | `(data: any) => data?.value?.data`  | 否                                                    | 定义如何获取请求返回列表数据的total |
+| onReset           | `() => Record<string, any>` |                                     | 自定义清空处理,返回值将赋值给searchState及 searchData |
+| mergeData         | `boolean`                   | true                                | 是否自动合并                                          |
 
 ### 返回值
 
@@ -117,156 +91,16 @@ type UseTableListService<T> = (
 | changePageSize  | function                                                                   | 每页行数改变回调                       |
 | onSortChange    | `(data: {column: any, sortBy: string, prop: string, order: any }) => void` | 用于sortChange事件                     |
 | `pagination`    | `Ref<PaginationProps>`                                                     | 分页配置对象, 可直接用于 ProTable 组件 |
-| reset           | `({ reFetchData?: boolean } = {}) => void`                                 | 重置搜索表单并自动刷新列表             |
+| reset           | `() => void`                                                               | 重置搜索表单并自动刷新列表             |
+| reSearch        | `() => void`                                                               | 重置页码并请求数据                     |
 | searchFormRef   | ref                                                                        | 当前搜索表单ref                        |
 
-## 💻 使用示例
-
-### 完整的列表页实现
-
-```vue
-<script setup lang="ts">
-import { useTableList } from 'pro-el-components'
-import { ref } from 'vue'
-
-// 表单引用
-const searchFormRef = ref()
-
-// 用户数据类型定义
-interface UserItem {
-  id: number
-  username: string
-  email: string
-  status: 'active' | 'inactive'
-  createdAt: string
-}
-
-// 数据获取函数
-async function fetchUserList(params: any) {
-  const response = await api.getUserList(params)
-  return {
-    data: response.data.list,
-    total: response.data.total
-  }
-}
-
-// 使用 useTableList 管理状态
-const {
-  data,
-  loading,
-  pagination,
-  searchData,
-  search: { submit, reset }
-} = useTableList<UserItem>(fetchUserList, {
-  form: searchFormRef, // 传入表单引用用于重置
-  defaultPageSize: 20,
-  defaultParams: { status: 'active' }
-})
-
-// 搜索表单配置
-const searchFields = [
-  {
-    label: '用户名',
-    prop: 'username',
-    component: 'input',
-    fieldProps: { placeholder: '请输入用户名' }
-  },
-  {
-    label: '邮箱',
-    prop: 'email',
-    component: 'input',
-    fieldProps: { placeholder: '请输入邮箱' }
-  },
-  {
-    label: '状态',
-    prop: 'status',
-    component: 'select',
-    options: [
-      { label: '激活', value: 'active' },
-      { label: '禁用', value: 'inactive' }
-    ]
-  }
-]
-
-// 表格列配置
-const columns = [
-  { label: 'ID', prop: 'id', width: 80 },
-  { label: '用户名', prop: 'username' },
-  { label: '邮箱', prop: 'email' },
-  {
-    label: '状态',
-    prop: 'status',
-    renderAs: 'enum',
-    fieldProps: {
-      options: [
-        { label: '激活', value: 'active', status: 'success' },
-        { label: '禁用', value: 'inactive', status: 'danger' }
-      ]
-    }
-  },
-  {
-    label: '创建时间',
-    prop: 'createdAt',
-    renderAs: 'date',
-    fieldProps: { format: 'YYYY-MM-DD HH:mm:ss' }
-  },
-  {
-    label: '操作',
-    actions: [
-      { text: '编辑', onClick: handleEdit },
-      { text: '删除', onClick: handleDelete, danger: true }
-    ]
-  }
-]
-
-// 事件处理
-function handleSearch(params: any) {
-  submit(params)
-}
-
-function handleReset() {
-  reset()
-}
-
-function handleEdit(row: UserItem) {
-  console.log('编辑用户:', row)
-}
-
-function handleDelete(row: UserItem) {
-  console.log('删除用户:', row)
-}
-</script>
-
-<template>
-  <div class="user-list-page">
-    <!-- 搜索表单 -->
-    <SearchForm
-      ref="searchFormRef"
-      :fields="searchFields"
-      :search="{ submit: handleSearch, reset: handleReset }"
-      :default-value="searchData"
-    />
-
-    <!-- 数据表格 -->
-    <ProTable
-      :columns="columns"
-      :data="data"
-      :loading="loading"
-      :pagination="pagination"
-    />
-  </div>
-</template>
-```
-
-## ⚠️ 注意事项
-
-> **重要提醒**
+## 提醒
 > 1. 如果使用重置功能，`searchForm` 需要关联 `searchFormRef`，以使用 `resetFields` 方法清空表单
-> 2. `fetchData` 方法默认启用防抖机制，避免频繁请求
-> 3. 分页参数使用 `pageNo` 和 `pageSize`，请确保后端接口参数匹配
+> 2. `fetchData` 方法默认启用防抖机制，避免频繁请求, 可在第二个参数手工关闭
+> 3. 分页参数使用 `pageNo` 和 `pageSize`，如参数不一致请自行在 service 中转化格式
 
 ## 🔗 相关链接
 
 - [ProTable](/components/Table) - 配套的高级表格组件
 - [SearchForm](/components/SearchForm) - 搭配使用的搜索表单
-- [Vue 3 Composition API](https://vuejs.org/guide/extras/composition-api-faq.html) - 了解组合式 API 基础

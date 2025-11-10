@@ -86,8 +86,11 @@ const columns = computed<TableFormColumn[]>(() => [
 ])
 
 defineExpose({
+  tableData,
+  addRowNumber,
   addRow,
   deleteRow,
+  handleFormItemsChange,
 })
 </script>
 

@@ -2,7 +2,7 @@
  * @vitest-environment jsdom
  */
 import { mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import PageHeader from '../index.vue'
 
 describe('pageHeader 组件', () => {
@@ -49,15 +49,16 @@ describe('pageHeader 组件', () => {
       },
     })
 
-    await wrapper.vm.handleBack()
+    await wrapper.find('.pro-page-header__back').trigger('click')
 
     expect(wrapper.emitted('back')).toBeTruthy()
   })
 
   it('应该正确渲染操作按钮', () => {
     const actions = [
-      { text: '保存', type: 'primary' },
-      { text: '取消', type: 'default' },
+      { text: '保存', type: 'primary', onClick: vi.fn() },
+      { text: '取消', type: 'default', onClick: vi.fn() },
+      { text: '删除', type: 'danger', onClick: vi.fn() },
     ]
 
     const wrapper = mount(PageHeader, {
@@ -154,7 +155,8 @@ describe('pageHeader 组件', () => {
       },
     })
 
-    await wrapper.vm.handleUpdateActiveTab('tab2')
+    // 通过查找 ElRadioButton 并触发点击来切换 tab
+    await (wrapper.vm as any).handleUpdateActiveTab('tab2')
 
     expect(wrapper.emitted('update:activeTab')).toBeTruthy()
     expect(wrapper.emitted('update:activeTab')![0]).toEqual(['tab2'])
@@ -195,7 +197,7 @@ describe('pageHeader 组件', () => {
     const wrapper = mount(PageHeader, {
       props: {
         title: '标题',
-        actions: [{ text: '操作' }],
+        actions: [{ text: '操作', onClick: vi.fn() }],
       },
     })
 

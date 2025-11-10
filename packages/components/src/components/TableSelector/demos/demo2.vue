@@ -16,9 +16,7 @@ async function getUserList(params: Record<string, any>) {
     total: data.length,
   }
 }
-
 const selectedRows = ref([])
-
 const searchFields = [
   {
     label: '姓名',
@@ -49,7 +47,6 @@ const searchFields = [
 
 const columns = [
   {
-    type: 'selection',
     width: '55',
     selectable: () => true,
   },
@@ -70,7 +67,7 @@ const columns = [
 
 <template>
   <TableSelector
-    v-model="selectedRows" :search-fields="searchFields" :service="getUserList" :columns="columns"
+    v-model="selectedRows" :search-fields="searchFields" :service="getUserList" :columns="columns" mode="single"
   />
 
   <div class="mt-16px p-12px bg-[#f5f7fa] rounded-[4px]">

@@ -178,7 +178,7 @@ describe('tableModal 组件', () => {
     const tableProps = {
       stripe: true,
       border: true,
-    }
+    } as any
 
     const wrapper = mount(TableModal, {
       props: {

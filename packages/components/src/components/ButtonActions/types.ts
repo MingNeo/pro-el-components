@@ -1,6 +1,6 @@
 import type { ButtonProps as ElButtonProps } from 'element-plus'
 
-export interface ButtonAction extends Partial<Omit<ElButtonProps, 'text' | 'onClick' | 'disabled'>> {
+export interface ButtonAction extends Partial<Omit<ElButtonProps, 'text' | 'onClick' | 'disabled' | 'type'>> {
   text?: string
   icon?: any
   onClick: (...args: any[]) => void
@@ -10,7 +10,8 @@ export interface ButtonAction extends Partial<Omit<ElButtonProps, 'text' | 'onCl
   confirm?: boolean
   confirmText?: string
   permission?: string | string[]
-  type?: '' | 'text' | 'default' | 'success' | 'warning' | 'info' | 'primary' | 'danger'
+  // 使用 string & {} ：保留字面量类型提示，同时接受任意 string
+  type?: '' | 'text' | 'default' | 'success' | 'warning' | 'info' | 'primary' | 'danger' | (string & {})
   [x: string]: any
 }
 

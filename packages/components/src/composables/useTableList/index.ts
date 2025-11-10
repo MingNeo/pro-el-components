@@ -3,14 +3,15 @@ import { debounce } from 'lodash-es'
 import { useRequest } from 'pro-el-components'
 import { computed, isRef, nextTick, ref } from 'vue'
 
-export type UseTableListService = (params: Record<string, any>) => Promise<{ data: any, total?: number } | any[]>
+export type UseTableListService = (params: { pageNo: number, pageSize: number, [key: string]: any }) => Promise<{ data: any, total?: number } | any[]>
 
 export interface TableListItemData {
   [key: string]: any
 }
 export interface UseTableListOptions<T extends TableListItemData> {
-  form?: Ref<any>
+  searchForm?: Ref<any>
   defaultSearchData?: Record<string, any>
+  defaultPageNo?: number
   defaultPageSize?: number
   immediate?: boolean
   debounceTime?: number
@@ -25,8 +26,9 @@ export interface UseTableListOptions<T extends TableListItemData> {
 export function useTableList<T extends TableListItemData>(
   service: UseTableListService,
   {
-    form,
+    searchForm,
     immediate = true,
+    defaultPageNo = 1,
     defaultPageSize = 10,
     defaultSearchData = {},
     getTotal = (data: any) => Array.isArray(data) ? data.length : data?.total || 0,
@@ -38,9 +40,9 @@ export function useTableList<T extends TableListItemData>(
     refetchOnReset = true,
   }: UseTableListOptions<T> = {},
 ) {
-  const formRef = isRef(form) ? form : ref()
+  const searchFormRef = isRef(searchForm) ? searchForm : ref()
 
-  const pageNo = ref(defaultSearchData.pageNo || 1)
+  const pageNo = ref(+(defaultSearchData.pageNo || defaultPageNo))
   const pageSize = ref(+(defaultSearchData.pageSize || defaultPageSize))
 
   // searchState用于存储搜索表单实时的数据
@@ -72,10 +74,10 @@ export function useTableList<T extends TableListItemData>(
 
   function bindFormData() {
     // 初始化时将搜索数据绑定到表单组件
-    if (formRef.value) {
+    if (searchFormRef.value) {
       Object.keys(searchData.value).forEach((key) => {
         try {
-          formRef.value[key] = searchData.value[key]
+          searchFormRef.value[key] = searchData.value[key]
         }
         catch (error) {
           // eslint-disable-next-line no-console
@@ -92,17 +94,22 @@ export function useTableList<T extends TableListItemData>(
     fetchData({ prop, sortBy: prop, order, column })
   }
 
-  const reset = () => {
-    const params = onReset?.() || {}
-    if (formRef?.value?.resetFields)
-      formRef?.value?.resetFields?.()
-    else
-      searchState.value = { ...params }
+  const reset = async () => {
+    const params = await onReset?.() || {}
+    if (searchFormRef?.value?.resetFields)
+      searchFormRef?.value?.resetFields?.()
+
+    searchState.value = { ...params }
     pageNo.value = 1
     pageSize.value = +searchData.value.pageSize
     updateSearchData({ ...params })
     if (refetchOnReset)
       fetchData(searchData.value)
+  }
+
+  const reSearch = (params: Record<string, any> = {}) => {
+    pageNo.value = 1
+    fetchData(params)
   }
 
   const loadNextPage = () => {
@@ -127,20 +134,24 @@ export function useTableList<T extends TableListItemData>(
     fetchData()
 
   return {
-    searchFormRef: formRef,
+    searchFormRef,
     data: listData,
     searchState,
     searchData,
     loading: isLoading,
-    fetchData, // 默认请求方法使用debounce处理
-    loadNextPage,
-    onSortChange,
-
     currentPage: pageNo,
     pageSize,
     total,
+
+    fetchData,
+    loadNextPage,
+    onSortChange,
     changePageSize,
     changePageNo,
+    reSearch,
+    reset,
+
+    // 用于 ProTable 组件的 pagination 属性
     pagination: computed(() => ({
       currentPage: pageNo.value,
       pageSize: pageSize.value,
@@ -148,13 +159,9 @@ export function useTableList<T extends TableListItemData>(
       onSizeChange: changePageSize,
       onCurrentChange: changePageNo,
     })),
-
-    reset,
+    // 用于 ProTable 组件的 search 属性
     search: {
-      onSubmit: (params: any = {}) => {
-        pageNo.value = 1
-        return fetchData(params)
-      },
+      onSubmit: reSearch,
       onReset: reset,
     },
   }

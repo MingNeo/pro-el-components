@@ -64,8 +64,8 @@ function handleDelete(index: number, row: any) {
 }
 
 // 切换状态
-function handleStatusChange(val: boolean, row: any) {
-  row.status = val ? 'active' : 'inactive'
+function handleStatusChange(val: string | number | boolean, row: any) {
+  row.status = val === 'active' || val === true ? 'active' : 'inactive'
   console.log('状态变更:', row)
 }
 

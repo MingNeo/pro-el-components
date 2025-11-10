@@ -51,6 +51,12 @@ function toggle() {
   expanded.value = !expanded.value
   emit(expanded.value ? 'expand' : 'collapse')
 }
+
+// 暴露给外部访问
+defineExpose({
+  expanded,
+  toggle,
+})
 </script>
 
 <template>

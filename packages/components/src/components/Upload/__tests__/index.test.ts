@@ -58,7 +58,9 @@ describe('Upload 组件', () => {
     const mockFile = {
       url: 'https://example.com/image.jpg',
       name: 'image.jpg',
-    }
+      status: 'success',
+      uid: 1,
+    } as any
 
     await wrapper.vm.handlePictureCardPreview(mockFile)
 

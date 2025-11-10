@@ -3,7 +3,7 @@ import type { ProFormFieldsField, ProFormFieldsFormData, ProFormFieldsProps } fr
 import { QuestionFilled } from '@element-plus/icons-vue'
 import { ElFormItem, ElTooltip } from 'element-plus'
 import { ProField } from 'pro-el-components'
-import { computed, ref, watch, withDefaults } from 'vue'
+import { computed, ref, watch } from 'vue'
 import FieldWrapper from './FieldWrapper.vue'
 import { formatRangeData, getFormFieldProps, getFormItemCol, getformItemProps, getItemName, getPlaceholder, getRulesForColumn } from './helper'
 import { useFieldWatch } from './hooks/useFieldWatch'

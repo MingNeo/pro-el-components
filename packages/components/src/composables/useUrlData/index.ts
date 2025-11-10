@@ -1,4 +1,4 @@
-import { computed, ref } from 'vue'
+import { computed, onScopeDispose, ref } from 'vue'
 
 interface UseUrlDataOptions {
   /** 默认的 URL 参数值 */
@@ -103,8 +103,14 @@ export function useUrlData(options: UseUrlDataOptions = {}) {
 
   // 监听 URL 变化
   if (typeof window !== 'undefined') {
-    window.addEventListener('popstate', () => {
+    const handlePopState = () => {
       currentUrlData.value = parseQueryString(window.location.search.slice(1))
+    }
+    window.addEventListener('popstate', handlePopState)
+
+    // 组件/作用域销毁时清理事件监听器，防止内存泄漏
+    onScopeDispose(() => {
+      window.removeEventListener('popstate', handlePopState)
     })
   }
 

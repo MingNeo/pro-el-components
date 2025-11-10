@@ -78,6 +78,13 @@ async function handleSubmit() {
     return ElMessage.error(`${props.errorMessages.loginFailed}${error.message}`)
   }
 }
+
+// 暴露给外部访问
+defineExpose({
+  formData,
+  handleGetCaptcha,
+  handleSubmit,
+})
 </script>
 
 <template>

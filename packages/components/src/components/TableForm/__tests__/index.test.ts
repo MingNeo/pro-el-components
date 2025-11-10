@@ -2,7 +2,7 @@
  * @vitest-environment jsdom
  */
 import { mount } from '@vue/test-utils'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import TableForm from '../index.vue'
 
 describe('tableForm 组件', () => {
@@ -279,8 +279,9 @@ describe('tableForm 组件', () => {
     const actionsColumn = computedColumns.find((col: any) => col.prop === 'actions')
 
     expect(actionsColumn?.actions).toBeDefined()
-    expect(actionsColumn?.actions[0].confirm).toBe(true)
-    expect(actionsColumn?.actions[0].confirmText).toBe('确认删除?')
+    const actions = actionsColumn?.actions as any[]
+    expect(actions[0].confirm).toBe(true)
+    expect(actions[0].confirmText).toBe('确认删除?')
   })
 
   it('应该暴露 addRow 和 deleteRow 方法', () => {

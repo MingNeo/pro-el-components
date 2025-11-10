@@ -360,7 +360,7 @@ describe('proFormFields组件', () => {
 
     // 触发表单验证
     try {
-      await wrapper.vm.formRef.validate()
+      await (wrapper.vm as any).formRef.validate()
       // 如果验证通过则测试失败,因为必填字段为空
       expect(true).toBe(false)
     }
@@ -378,7 +378,7 @@ describe('proFormFields组件', () => {
 
     await nextTick()
     // 现在验证应该通过
-    await wrapper.vm.formRef.validate()
+    await (wrapper.vm as any).formRef.validate()
   })
 
   // 联动字段测试

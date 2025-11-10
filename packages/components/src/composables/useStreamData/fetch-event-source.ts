@@ -48,7 +48,14 @@ export async function fetchEvent(
         }
       },
       onmessage(e: any) {
-        const res = JSON.parse(e.data || '{}')
+        let res: any
+        try {
+          res = JSON.parse(e.data || '{}')
+        }
+        catch (parseError) {
+          console.warn('SSE 消息解析失败:', e.data, parseError)
+          return // 跳过无法解析的消息
+        }
         // TODO: 对结果增加通用数据转化层
 
         // 请求结束

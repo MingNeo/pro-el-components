@@ -4,7 +4,7 @@ export interface SearchField extends ProFormFieldsField {
   mappingProp?: string[]
 }
 
-export interface SearchFormProps extends ProFormFieldsProps {
+export type SearchFormProps = ProFormFieldsProps & {
   defaultValue?: Record<string, any>
   showActions?: boolean
   form?: any

@@ -21,6 +21,11 @@ const emit = defineEmits(['cancel'])
 function handleCancel() {
   emit('cancel')
 }
+
+// 暴露给外部访问
+defineExpose({
+  handleCancel,
+})
 </script>
 
 <template>

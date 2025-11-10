@@ -57,7 +57,7 @@ const data = ref([
 
 // 处理搜索
 function handleSearch(params: Record<string, any>) {
-  ElMessage('搜索参数:', params)
+  ElMessage(`搜索参数: ${JSON.stringify(params)}`)
 }
 
 // 处理重置
@@ -66,18 +66,18 @@ function handleReset() {
 }
 
 // 处理表格变化
-function handleTableChange(pagination: any, filters: any, sorter: any) {
-  ElMessage('表格变化:', { pagination, filters, sorter })
+function handleTableChange(pagination: any, _filters: any, _sorter: any) {
+  ElMessage(`表格变化: 页码 ${pagination?.currentPage}`)
 }
 
 // 处理编辑
 function handleEdit(record: any) {
-  ElMessage('编辑:', record)
+  ElMessage(`编辑: ${record.name}`)
 }
 
 // 处理删除
 function handleDelete(record: any) {
-  ElMessage('删除:', record)
+  ElMessage(`删除: ${record.name}`)
 }
 </script>
 

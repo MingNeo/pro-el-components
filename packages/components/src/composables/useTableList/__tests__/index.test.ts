@@ -88,7 +88,7 @@ describe('useTableList', () => {
     const formRef = ref({ resetFields: vi.fn() })
     const { reset, currentPage, changePageNo } = useTableList(mockService, {
       immediate: false,
-      form: formRef,
+      searchForm: formRef,
       defaultPageSize: 20,
     })
 

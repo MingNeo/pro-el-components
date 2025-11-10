@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { DialogProps, PaginationProps, TableProps } from 'element-plus'
-import type { Column } from 'pro-el-components'
+import type { DialogProps, PaginationProps } from 'element-plus'
+import type { Column, TableProps } from 'pro-el-components'
 import { ElDialog, vLoading } from 'element-plus'
 import { ProTable, useTableList } from 'pro-el-components'
 import { watch } from 'vue'
@@ -20,7 +20,7 @@ const props = defineProps<{
   columns: Column[]
   pagination?: Partial<PaginationProps>
   dialogProps?: Partial<DialogProps>
-  tableProps?: Partial<TableProps<any>>
+  tableProps?: Partial<TableProps>
 }>()
 
 const emit = defineEmits(['update:modelValue'])
@@ -30,6 +30,11 @@ const { data: searchData, search, loading, pagination } = useTableList(props.ser
 watch(() => props.modelValue, (val: any, prevVal: any) => {
   if (props.service && !props.data && val && !prevVal)
     search.onSubmit()
+})
+
+// 暴露给外部访问
+defineExpose({
+  loading,
 })
 </script>
 

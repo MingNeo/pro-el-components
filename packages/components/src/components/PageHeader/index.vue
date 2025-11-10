@@ -16,7 +16,7 @@ const props = defineProps<{
   title?: string
   actions?: ButtonAction[]
   tabs?: { title: string, name: string }[]
-  activeTab?: string | number | boolean
+  activeTab?: string | number
 }>()
 
 const emit = defineEmits(['back', 'update:activeTab'])
@@ -32,8 +32,8 @@ function handleBack() {
 }
 
 function handleUpdateActiveTab(_value: string | number | boolean | undefined) {
-  activeTab.value = _value
-  emit('update:activeTab', _value)
+  activeTab.value = _value as string | number
+  emit('update:activeTab', _value as string | number)
 }
 </script>
 

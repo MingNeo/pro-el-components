@@ -6,13 +6,14 @@ Vue 3 的组合式 API 为我们提供了强大的逻辑复用能力。Pro El Co
 
 处理各种数据获取、缓存和状态管理需求。
 
-| Composable                                    | 描述         | 核心功能                 |
-| --------------------------------------------- | ------------ | ------------------------ |
-| [useTableList](/composables/useTableList)     | 表格列表管理 | 分页查询、搜索、加载状态 |
-| [useRequest](/composables/useRequest)         | 请求管理     | 防抖、错误处理、重试机制 |
-| [useSelection](/composables/useSelection)     | 选择状态管理 | 多选、全选、反选逻辑     |
-| [usePageStorage](/composables/usePageStorage) | 页面缓存     | 表单数据、滚动位置缓存   |
-| [useUrlData](/composables/useUrlData)         | URL 状态同步 | 查询参数、路由状态管理   |
+| Composable                                          | 描述         | 核心功能                     |
+| --------------------------------------------------- | ------------ | ---------------------------- |
+| [useTableList](/composables/useTableList)           | 表格列表管理 | 分页查询、搜索、加载状态     |
+| [useRequest](/composables/useRequest)               | 请求管理     | 防抖、错误处理、重试机制     |
+| [useSelection](/composables/useSelection)           | 选择状态管理 | 多选、全选、反选逻辑         |
+| [usePageStorage](/composables/usePageStorage)       | 页面缓存     | 表单数据、滚动位置缓存       |
+| [useUrlData](/composables/useUrlData)               | URL 状态同步 | 查询参数、路由状态管理       |
+| [useTableSelection](/composables/useTableSelection) | 表格多选处理 | 表格异步分页数据跨页面多选等 |
 
 ### UI 交互
 

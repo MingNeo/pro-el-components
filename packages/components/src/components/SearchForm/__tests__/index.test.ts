@@ -267,7 +267,7 @@ describe('proSearchForm 组件', () => {
   it('应该正确过滤 rules 和 required 属性', () => {
     const fieldsWithRules = [
       { prop: 'name', label: '名称', type: 'input', required: true, rules: [{ required: true, message: '必填' }] },
-      { prop: 'email', label: '邮箱', type: 'input', rules: [{ type: 'email', message: '邮箱格式' }] },
+      { prop: 'email', label: '邮箱', type: 'input', rules: [{ type: 'email' as const, message: '邮箱格式' }] },
     ]
 
     const wrapper = mount(SearchForm, {

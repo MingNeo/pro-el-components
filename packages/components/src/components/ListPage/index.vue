@@ -59,6 +59,14 @@ function handleBack() {
 function handleTableChange(pagination: any, filters: any, sorter: any) {
   emit('tableChange', pagination, filters, sorter)
 }
+
+// 暴露方法给外部访问
+defineExpose({
+  handleSearch,
+  handleReset,
+  handleBack,
+  handleTableChange,
+})
 </script>
 
 <template>

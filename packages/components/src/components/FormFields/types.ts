@@ -21,7 +21,7 @@ import type {
 import type { Component, ExtractPropTypes, Ref, VNode } from 'vue'
 
 // 定义组件类型到属性的映射
-interface ComponentPropsMap {
+export interface ComponentPropsMap {
   input: InputProps
   select: ISelectProps
   datePicker: DatePickerProps
@@ -65,7 +65,7 @@ export interface FormItemWatch {
   conditions?: WatchCondition[]
 }
 
-interface Option {
+export interface Option {
   label: string
   value: string | number
   [x: string]: any

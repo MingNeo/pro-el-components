@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid'
-import { computed, onUnmounted, ref, shallowRef } from 'vue'
+import { computed, onScopeDispose, ref, shallowRef } from 'vue'
 import { fetchEvent } from './fetch-event-source'
 
 export interface StreamResponse {
@@ -139,7 +139,7 @@ export function useStreamData(options: StreamOptions) {
     onError?.(e)
   }
 
-  onUnmounted(() => {
+  onScopeDispose(() => {
     stop()
   })
 

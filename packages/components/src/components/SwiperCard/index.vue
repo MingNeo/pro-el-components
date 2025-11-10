@@ -49,6 +49,15 @@ function handleCheckShowBtn() {
   showLeft.value = translateX.value > 0
   showRight.value = translateX.value < getMaxOffset()
 }
+
+// 暴露给外部访问
+defineExpose({
+  container,
+  translateX,
+  showAnimate,
+  moveLeft,
+  moveRight,
+})
 </script>
 
 <template>
