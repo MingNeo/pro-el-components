@@ -1,0 +1,1 @@
+import{_ as o}from"./index.vue_vue_type_script_setup_true_lang.Uf5iF4Ye.js";import{b as t,o as e}from"./framework.DOUpOfj3.js";/* empty css              */const p={__name:"demo1",setup(r){return(a,_)=>(e(),t(o,{"auto-height":""}))}};export{p as default};

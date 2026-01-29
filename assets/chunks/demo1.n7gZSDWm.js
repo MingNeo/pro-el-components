@@ -1,0 +1,1 @@
+import{_ as e}from"./index.vue_vue_type_script_setup_true_lang.2-XeoqQ5.js";import{d as o,b as t,o as a}from"./framework.DOUpOfj3.js";/* empty css              */const p=o({__name:"demo1",setup(r){return(m,n)=>(a(),t(e,{text:"这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本这是一段测试文本","max-length":20}))}});export{p as default};

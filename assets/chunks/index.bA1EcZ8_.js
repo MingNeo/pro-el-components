@@ -1,0 +1,1 @@
+import{useForwardProps as p}from"./index.VfUVXZ3l.js";import{useEmitAsProps as e}from"./index.LfyACI6C.js";import{h as m}from"./framework.DOUpOfj3.js";function a(o,r){const s=p(o),t=r?e(r):{};return m(()=>({...s.value,...t}))}export{a as useForwardEmitsProps};
